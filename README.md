@@ -8,7 +8,9 @@ Integration tests for CollectionSpace using cucumber-jvm, selenium, and jUnit
 
 ## Usage
 `git clone https://github.com/bibliotechy/cspace-cucumber.git`
+
 `cd cspace-cucumber`
+
 `mvn clean verify`
 
 Then watch all the tests pass.
