@@ -2,12 +2,11 @@ package org.collectionspace.qa.cucumber.person;
 
 
 
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+
 
 
 import org.openqa.selenium.By;
@@ -20,12 +19,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 
+import static org.collectionspace.qa.utils.Utilities.isInSearchResults;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.collectionspace.qa.utils.Utilities.buildCreateNewRecordTypeXpath;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 
 public class PersonVocabularyStepDef {
@@ -40,18 +38,7 @@ public class PersonVocabularyStepDef {
             PASSWORD = "Administrator";
 
     private HashMap<String,String> fields =
-            new HashMap<String,String>();
-
-
-    @Before
-    private void setup() {
-
-    }
-
-    @After
-    private void cleanUp() {
-        driver.quit();
-    }
+            new HashMap<>();
 
     public PersonVocabularyStepDef(){
         this.driver = new FirefoxDriver();
@@ -62,7 +49,6 @@ public class PersonVocabularyStepDef {
         driver.findElement(By.className("csc-login-button")).click();
 
         fields.put("Display Name", "repeat::.csc-personAuthority-termDisplayName");
-
     }
 
 
@@ -70,6 +56,12 @@ public class PersonVocabularyStepDef {
     public void user_is_on_create_new() throws Throwable {
         driver.get(BASE_URL + "createnew.html");
         wait.until(elementToBeClickable(By.className("csc-createNew-createButton")));
+    }
+
+    @Given("^user is on the My CollectionSpace page$")
+    public void user_is_on_my_collectionspace() throws Throwable {
+        driver.get(BASE_URL + "myCollectionSpace.html");
+        wait.until(elementToBeClickable(By.className("csc-myCollectionSpace-categoryHeader")));
     }
 
     @And("^selects the \"([^\"]*)\" radio button on the Create New page$")
@@ -137,7 +129,7 @@ public class PersonVocabularyStepDef {
 
     }
 
-    @And("^user selects \"([^\"]*)\" Person from dropdown in \"([^\"]*)\" row$")
+    @And("^user selects \"([^\"]*)\" from dropdown in \"([^\"]*)\" row$")
     public void user_selects_Person_from_dropdown_in_row(String templateType, String recordType) throws Throwable {
         String xpath = buildCreateNewRecordTypeXpath(recordType);
         WebElement row = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
@@ -148,6 +140,44 @@ public class PersonVocabularyStepDef {
     @Then(("^close the browser$"))
     public void close_the_browser() {
         driver.close();
+    }
+
+    @And("^user enters \"([^\"]*)\" in the top nav search field$")
+    public void user_enters_in_the_top_nav_search_field(String searchTerm) throws Throwable {
+        String xpath = "//div[@class='csc-header-searchBox']/div/input[@type='text']";
+        driver.findElement(By.xpath(xpath)).sendKeys(searchTerm);
+    }
+
+    @And("^selects \"([^\"]*)\" from the top nav search record type select field$")
+    public void selects_from_the_top_nav_record_type_select_field(String searchType) throws Throwable {
+        String xpath = "//div[@class='csc-header-searchBox']/div/select[@name='recordTypeSelect-selection']";
+        Select select = new Select(driver.findElement(By.xpath(xpath)));
+        select.selectByVisibleText(searchType);
+
+    }
+
+    @And("^selects \"([^\"]*)\" from the top nav search vocabulary select field$")
+    public void selects_from_the_top_nav_vocab_type_select_field(String searchType) throws Throwable {
+        String xpath = "//div[@class='csc-header-searchBox']/div/select[@name='selectVocab-selection']";
+        WebElement vocab = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
+        Select vocabSelect = new Select(vocab);
+        vocabSelect.selectByVisibleText(searchType);
+    }
+
+    @And("^clicks on the top nav search submit button$")
+    public void clicks_on_the_top_nav_search_submit_button() throws Throwable {
+        String xpath = "//div[@class='csc-header-searchBox']/div/input[@type='button']";
+        driver.findElement(By.xpath(xpath)).click();
+    }
+
+
+    @Then("^the search results should contain \"([^\"]*)\"$")
+    public void the_search_results_should_contain_results(String results) throws Throwable {
+        wait.until(visibilityOfElementLocated(By.xpath("(//tr[@class='csc-row']/td/a)[1]")));
+        String[] options = results.split("; ");
+        for (String option : options){
+            assertTrue(isInSearchResults(driver, option));
+        }
     }
 }
 
