@@ -3,6 +3,7 @@ package org.collectionspace.qa.cucumber.person;
 
 
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -178,6 +179,12 @@ public class PersonVocabularyStepDef {
         for (String option : options){
             assertTrue(isInSearchResults(driver, option));
         }
+    }
+
+    @And("^the user clicks on \"([^\"]*)\"$")
+    public void the_user_clicks_on(String term) throws Throwable {
+        String xpath = "(//tr[@class='csc-row']/td/a[text()='" + term +"'])[1]";
+        driver.findElement(By.xpath(xpath)).click();
     }
 }
 

@@ -29,16 +29,26 @@ Feature: Person Vocabulary Data Entry
       Then the resulting page titlebar should contain "ULAN Person"
       Then close the browser
 
-    Scenario Outline: Existing records should be searchable
+    Scenario: Searching for known records works as expected
+      Given user is on the My CollectionSpace page
+      And user enters "Joe Bean" in the top nav search field
+      And selects "Person" from the top nav search record type select field
+      And clicks on the top nav search submit button
+      Then the search results should contain "Joe Bean; Joe Bean Jr"
+      Then close the browser
+
+    Scenario Outline: Scoping search for known records works as expected
       Given user is on the My CollectionSpace page
         And user enters "<searchTerm>" in the top nav search field
         And selects "<recordType>" from the top nav search record type select field
         And selects "<vocabulary>" from the top nav search vocabulary select field
         And clicks on the top nav search submit button
-      Then the search results should contain "<results>"
+      Then the search results should contain "<result>"
+        And the user clicks on "<result>"
+      Then "<result>" should be in the "Display Name" field
+      Then the resulting page titlebar should contain "<vocabulary>"
       Then close the browser
       Examples:
-      | searchTerm | recordType | vocabulary       | results               |
-      | Joe Bean   | Person     | All Vocabularies | Joe Bean; Joe Bean Jr |
+      | searchTerm | recordType | vocabulary       | result                |
       | Joe Bean   | Person     | Local Persons    | Joe Bean              |
       | Joe Bean   | Person     | ULAN Persons     | Joe Bean Jr           |
