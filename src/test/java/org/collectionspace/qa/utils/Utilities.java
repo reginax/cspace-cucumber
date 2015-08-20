@@ -1,16 +1,13 @@
 package org.collectionspace.qa.utils;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,18 +50,23 @@ public class Utilities {
             try {
                 driver.findElement(By.className("flc-pager-next")).click();
                 result = isInSearchResults(driver, term);
-            } catch (Exception e) {}
+            } catch (Exception e) { log(e.getMessage());}
         }
         return result;
     }
 
+    /**
+     * Generate unique test data for a field of a given type
+     */
     public static String generateTestFieldDataFor(String recordType) {
         long timestamp = (new Date().getTime());
-        String data = "required-" + recordType + "-" + timestamp;
-        return data;
+        return "required-" + recordType + "-" + timestamp;
     }
 
-
+    /**
+     * Fill in ann fields for a given record type.
+     * Creates a new Record of the recordType, where fields are defined.
+     */
     public static void fillInAllFieldsFor(String recordType, WebDriver driver) {
         try {
             Record record = loadRecordOfType(recordType);
@@ -74,37 +76,58 @@ public class Utilities {
         } catch (Exception e) { log(e.getMessage()); }
     }
 
+    /**
+     * Iterate over a Map to fill in field identified by field selector with value
+     * @param fieldMap HashMap of fields for given Record type, providing
+     *                 selectors and values.
+     */
     public static void fillInFields(WebDriver driver, Map<String,String> fieldMap) {
         for (Map.Entry<String, String> field : fieldMap.entrySet()) {
-            fillFieldLocatedByIdWith(field.getKey(), field.getValue(), driver);
+            fillFieldLocatedById(field.getKey(), field.getValue(), driver);
         }
     }
 
+    /**
+     * Iterate over a Map to select an option from a '<select>' field by value
+     * @param selectMap HashMap of '<select>' fields for given Record type, providing
+     *                 selectors and values.
+     */
     private static void updateSelectFieldsToNonDefault(WebDriver driver, Map<String, String> selectMap) {
         for (Map.Entry<String, String> field : selectMap.entrySet()) {
-            updateSelectFieldLocatedByIdToNonDefault(field.getKey(), field.getValue(), driver);
+            updateSelectFieldLocatedById(field.getKey(), field.getValue(), driver);
         }
     }
 
-    private static void updateSelectFieldLocatedByIdToNonDefault(String selector, String value, WebDriver driver) {
+    /**
+     * Select an '<option>' in a '<select>' by its text
+     * @param selector id of the field to be updated
+     * @param visibleText the text of the option to select
+     */
+    private static void updateSelectFieldLocatedById(String selector, String visibleText, WebDriver driver) {
         WebElement element = driver.findElement(By.id(selector));
         Select select = new Select(element);
-        select.selectByVisibleText(value);
-        WebElement option = element.findElement(By.xpath("//option[text()='" + value + "']"));
+        select.selectByVisibleText(visibleText);
+        WebElement option = element.findElement(By.xpath("//option[text()='" + visibleText + "']"));
         new WebDriverWait(driver, 10)
                 .until(elementToBeSelected(option));
-
     }
 
-
-    public static void fillFieldLocatedByIdWith(String selector, String value, WebDriver driver) {
+    /**
+     * Fill a field with a value
+     * @param selector id of the field to be filled
+     * @param value the value with which to fill in the field
+     */
+    public static void fillFieldLocatedById(String selector, String value, WebDriver driver) {
         WebElement field =  driver.findElement(By.id(selector));
         field.sendKeys(value);
         new WebDriverWait(driver, 10)
             .until(textToBePresentInElementValue(field, value));
     }
 
-
+    /**
+     * Verify that fields for a given Record have been filled in.
+     * @param recordType the type of Record to check
+     */
     public static void verifyAllFieldsFilledIn(String recordType,WebDriver driver){
         try {
             Record record = loadRecordOfType(recordType);
@@ -113,20 +136,32 @@ public class Utilities {
         } catch (Exception e) { log(e.getMessage()); }
     }
 
-
-    public static void verifyFieldLocatedByIDIsFilledIn(String selector, String value, WebDriver driver) {
-        assertTrue(
-                driver.findElement(By.id(selector)).getAttribute("value").contains(value));
-    }
-
-
-
-
+    /**
+     * Iterate over a Map to verify each field from a record
+     * @param fieldMap HashMap of fields for given Record type, providing
+     *                 selectors and expected values.
+     */
     public static void verifyFieldsAreFilledIn(WebDriver driver, Map<String, String> fieldMap) {
         for (Map.Entry<String, String> field : fieldMap.entrySet()) {
             verifyFieldLocatedByIDIsFilledIn(field.getKey(), field.getValue(), driver);
         }
     }
+
+    /**
+     * Verify that a single field has been filled with the correct value
+     * @param selector id of the field that should be filled in
+     */
+    public static void verifyFieldLocatedByIDIsFilledIn(String selector, String expectedValue, WebDriver driver) {
+        assertTrue(
+                driver.findElement(By.id(selector)).getAttribute("value").contains(expectedValue));
+    }
+
+    /**
+     * Given a string name of a Record type, instantiate a new Object of that type and return it.
+     * @param recordType the type of Record object to be created
+     * @return an object of the type requested by recordType
+     * @throws Exception if the record type is not known
+     */
     private static Record loadRecordOfType(String recordType) throws Exception{
         Record record;
         switch (recordType) {
@@ -134,7 +169,7 @@ public class Utilities {
                 record = new Person();
                 break;
             default:
-                throw new Exception();
+                throw new Exception(recordType + ": No classes of that Type known");
         }
         return record;
     }
