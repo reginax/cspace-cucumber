@@ -93,11 +93,15 @@ Feature: Person Vocabulary Data Entry
       Then the titlebar should contain "JEJ"
       Then close the browser
 
-    @testThis
-    Scenario: Create Person record will All fields filled in
+  @test
+    Scenario: Create Person record will All fields filled in, then empty it
       Given user is on a blank Local Person record
+        And user repeats all repeatable fields
         And user fills in all the fields of the "Person" record
         And the user saves the record
       Then the record is successfully saved
       Then all fields in "Person" record should be filled in
+        And user clears all fields of the "Person" record
+        And the user saves the record
+      Then the error message bar should appear with "Please specify a Display Name"
       Then close the browser

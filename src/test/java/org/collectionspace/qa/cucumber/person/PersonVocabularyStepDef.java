@@ -1,15 +1,12 @@
 package org.collectionspace.qa.cucumber.person;
 
 
-
-
+import java.util.*;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-
-
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,20 +15,23 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-import java.util.*;
-
-import static org.collectionspace.qa.utils.Utilities.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+
+import org.collectionspace.qa.records.*;
+import static org.collectionspace.qa.utils.Utilities.*;
+
+
 
 
 public class PersonVocabularyStepDef {
 
     WebDriver driver;
     private final WebDriverWait wait;
+    Person person;
 
     public static String
             BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/",
@@ -45,16 +45,17 @@ public class PersonVocabularyStepDef {
             new HashMap<>();
 
     public PersonVocabularyStepDef(){
+        this.person = new Person();
         this.driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 10);
         driver.get(BASE_URL + LOGIN_PATH);
         driver.findElement(By.className("csc-login-userId")).sendKeys(USERNAME);
         driver.findElement(By.className("csc-login-password")).sendKeys(PASSWORD);
         driver.findElement(By.className("csc-login-button")).click();
 
-        fields.put("Display Name", "repeat::.csc-personAuthority-termDisplayName");
-        fields.put("Forename","repeat::.csc-personAuthority-foreName");
-        fields.put("Cataloging->Content->Person", "repeat::.csc-object-description-content-person");
+        fields.put("Display Name", ".csc-personAuthority-termDisplayName");
+        fields.put("Forename", ".csc-personAuthority-foreName");
+        fields.put("Cataloging->Content->Person", ".csc-object-description-content-person");
 
 
 
@@ -104,9 +105,7 @@ public class PersonVocabularyStepDef {
 
     @Then("^the titlebar should contain \"([^\"]*)\"$")
     public void the_titlebar_should_contain(String expectedText) throws Throwable {
-        WebElement titlebar =
-                wait.until(visibilityOfElementLocated(By.id("title-bar")));
-        assertTrue(titlebar.getText().contains(expectedText));
+        assertTrue(wait.until(textToBePresentInElementLocated(By.id("title-bar"), expectedText)));
     }
 
     @And("^clicks on the Create button$")
@@ -124,17 +123,13 @@ public class PersonVocabularyStepDef {
     @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" field$")
     public void user_enters_in_the_field(String value, String fieldName) throws Throwable {
         String selector = fields.get(fieldName);
-        WebElement field = wait.until(visibilityOfElementLocated(By.id(selector)));
-        field.sendKeys(value);
+        fillFieldLocatedById(selector, value, driver);
     }
 
     @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" vocab field$")
     public void user_enters_in_the_vocab_field(String value, String fieldName) throws Throwable {
         String selector = fields.get(fieldName);
-        String xpath= "//li[input[@name='" + selector +"']]/input[@class='cs-autocomplete-input']";
-        WebElement field =
-                wait.until(visibilityOfElementLocated(By.xpath(xpath)));
-        field.sendKeys(value);
+        fillVocabFieldLocatedByID(selector, value, driver);
     }
 
     @And("^the user saves the record$")
@@ -151,15 +146,13 @@ public class PersonVocabularyStepDef {
     @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" field$")
     public void should_be_in_the_field(String value, String fieldName) throws Throwable {
         String selector = fields.get(fieldName);
-        WebElement field =
-                wait.until(visibilityOfElementLocated(By.id(selector)));
-        assertEquals(field.getAttribute("value"), value);
+        verifyFieldLocatedByIDIsFilledIn(selector, value, driver);
     }
 
     @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" vocab field$")
     public void should_be_in_the_vocab_field(String value, String fieldName) throws Throwable {
         String selector = fields.get(fieldName);
-        String xpath = "//li[input[@name='" + selector +"']]/input[@class='cs-autocomplete-input']";
+        String xpath = "//*[input[contains(@name,'" + selector +"')]]/input[@class='cs-autocomplete-input']";
         WebElement field = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
         assertEquals(field.getAttribute("value"), value);
     }
@@ -278,7 +271,8 @@ public class PersonVocabularyStepDef {
     @And("^user removes focus from \"([^\"]*)\" field$")
     public void user_removes_focus_from_field(String fieldName) throws Throwable {
         String selector = fields.get(fieldName);
-        driver.findElement(By.id(selector)).sendKeys("\t");
+        String xpath = "//input[contains(@id, '" + selector + "')]";
+        driver.findElement(By.xpath(xpath)).sendKeys("\t");
     }
 
     @And("^user clicks the plus to repeat the \"([^\"]*)\" form$")
@@ -318,6 +312,19 @@ public class PersonVocabularyStepDef {
     public void all_fields_in_record_should_be_filled_in(String recordType) throws Throwable {
         // Express the Regexp above with the code you wish you had
         verifyAllFieldsFilledIn(recordType, driver);
+    }
+
+    @And("^user repeats all repeatable fields$")
+    public void user_repeats_all_repeatable_fields() throws Throwable {
+        String xpath = "//input[@type='button'][@value='+']";
+        for (WebElement plus : driver.findElements(By.xpath(xpath))) {
+            plus.click();
+        }
+    }
+
+    @And("^user clears all fields of the \"([^\"]*)\" record$")
+    public void user_clears_all_fields_of_the_record(String recordType) throws Throwable {
+        clearAllFieldsFor(recordType, driver);
     }
 }
 

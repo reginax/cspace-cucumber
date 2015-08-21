@@ -1,6 +1,7 @@
 package org.collectionspace.qa.utils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
@@ -71,7 +72,33 @@ public class Utilities {
         try {
             Record record = loadRecordOfType(recordType);
             fillInFields(driver, record.getFieldMap());
-            updateSelectFieldsToNonDefault(driver, record.getSelectMap());
+            updateSelectFields(driver, record.getSelectMap());
+            fillInVocabFields(driver, record.getVocabMap());
+            //TODO ADD Dates and Checkboxes
+
+        } catch (Exception e) { log(e.getMessage()); }
+    }
+
+    public static void clearAllFieldsFor(String recordType, WebDriver driver) {
+        try {
+            Record record = loadRecordOfType(recordType);
+            clearFields(driver, record.getFieldMap());
+            clearSelectFields(driver, record.getSelectMap());
+            clearVocabFields(driver, record.getVocabMap());
+            //TODO ADD Dates and Checkboxes
+
+        } catch (Exception e) { log(e.getMessage()); }
+    }
+
+    /**
+     * Verify that fields for a given Record have been filled in.
+     * @param recordType the type of Record to check
+     */
+    public static void verifyAllFieldsFilledIn(String recordType,WebDriver driver){
+        try {
+            Record record = loadRecordOfType(recordType);
+            verifyFieldsAreFilledIn(driver, record.getFieldMap());
+            verifySelectFieldsUpdated(driver, record.getSelectMap());
 
         } catch (Exception e) { log(e.getMessage()); }
     }
@@ -92,48 +119,134 @@ public class Utilities {
      * @param selectMap HashMap of '<select>' fields for given Record type, providing
      *                 selectors and values.
      */
-    private static void updateSelectFieldsToNonDefault(WebDriver driver, Map<String, String> selectMap) {
+    private static void updateSelectFields(WebDriver driver, Map<String, String> selectMap) {
         for (Map.Entry<String, String> field : selectMap.entrySet()) {
-            updateSelectFieldLocatedById(field.getKey(), field.getValue(), driver);
+            updateSelectFieldLocatedByClass(field.getKey(), field.getValue(), driver);
+        }
+    }
+
+    public static void fillInVocabFields(WebDriver driver, Map<String, String> vocabMap) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        for (Map.Entry<String, String> field : vocabMap.entrySet()) {
+            fillVocabFieldLocatedByID(field.getKey(), field.getValue(), driver);
+
+            WebElement autocomplete = wait.until(visibilityOfElementLocated(By.className("cs-autocomplete-popup")));
+            String xpath = "//li[contains(@class, 'cs-autocomplete-matchItem')]/span[text()='" + field.getValue() + "']";
+            List<WebElement> options = driver.findElements(By.xpath(xpath));
+            if (!options.isEmpty()){
+                options.get(0).click();
+            } else {
+                autocomplete.findElement(By.id("authorityItem:")).click();
+            }
+        }
+    }
+
+    public static void clearFields(WebDriver driver, Map<String, String> fieldMap) {
+        for (Map.Entry<String, String> field : fieldMap.entrySet()) {
+            clearFieldLocatedById(field.getKey(), field.getValue(), driver);
+        }
+    }
+
+    public static void clearVocabFields(WebDriver driver, Map<String, String> vocabMap) {
+        for (Map.Entry<String, String> field : vocabMap.entrySet()) {
+            clearVocabFieldLocatedByID(field.getKey(), driver);
+        }
+    }
+
+    public static void clearSelectFields(WebDriver driver, Map<String, String> selectMap) {
+        for (Map.Entry<String, String> field : selectMap.entrySet()) {
+            updateSelectFieldtoDefault(field.getKey(), driver);
         }
     }
 
     /**
-     * Select an '<option>' in a '<select>' by its text
-     * @param selector id of the field to be updated
-     * @param visibleText the text of the option to select
-     */
-    private static void updateSelectFieldLocatedById(String selector, String visibleText, WebDriver driver) {
-        WebElement element = driver.findElement(By.id(selector));
-        Select select = new Select(element);
-        select.selectByVisibleText(visibleText);
-        WebElement option = element.findElement(By.xpath("//option[text()='" + visibleText + "']"));
-        new WebDriverWait(driver, 10)
-                .until(elementToBeSelected(option));
-    }
-
-    /**
-     * Fill a field with a value
-     * @param selector id of the field to be filled
+     * Fill any field whose id contains the id with a value
+     * @param id id of the field to be filled
      * @param value the value with which to fill in the field
      */
-    public static void fillFieldLocatedById(String selector, String value, WebDriver driver) {
-        WebElement field =  driver.findElement(By.id(selector));
-        field.sendKeys(value);
-        new WebDriverWait(driver, 10)
-            .until(textToBePresentInElementValue(field, value));
+    public static void fillFieldLocatedById(String id, String value, WebDriver driver) {
+        String xpath = "(//input|//textarea)[contains(@id, '"  + id + "')]";
+
+        for (WebElement field : driver.findElements(By.xpath(xpath))) {
+            field.sendKeys(value);
+            new WebDriverWait(driver, 10)
+                    .until(textToBePresentInElementValue(field, value));
+        }
     }
 
     /**
-     * Verify that fields for a given Record have been filled in.
-     * @param recordType the type of Record to check
+     * Select an '<option>' in a all '<select>' containing @param selector in their id by its text
+     * @param selector class partial of the field to be updated
+     * @param visibleText the text of the option to select
      */
-    public static void verifyAllFieldsFilledIn(String recordType,WebDriver driver){
-        try {
-            Record record = loadRecordOfType(recordType);
-            verifyFieldsAreFilledIn(driver, record.getFieldMap());
+    private static void updateSelectFieldLocatedByClass(String selector, String visibleText, WebDriver driver) {
+        String xpath = "(//select)[contains(@class, '"  + selector + "')]";
+        for (WebElement element : driver.findElements(By.xpath(xpath))) {
+            Select select = new Select(element);
+            select.selectByVisibleText(visibleText);
+            WebElement option = element.findElement(By.xpath("//option[text()='" + visibleText + "']"));
+            new WebDriverWait(driver, 10)
+                    .until(elementToBeSelected(option));
+        }
+    }
 
-        } catch (Exception e) { log(e.getMessage()); }
+    public static void fillVocabFieldLocatedByID(String selector, String value, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        String xpath= "//*[input[contains(@id,'" + selector +"')]]/input[@class='cs-autocomplete-input']";
+
+        wait.until(visibilityOfElementLocated(By.xpath(xpath)));
+
+        for (WebElement field : driver.findElements(By.xpath(xpath))) {
+            field.sendKeys(value);
+        }
+    }
+
+
+    public static void clearFieldLocatedById(String id, String value, WebDriver driver) {
+        String xpath = "(//input|//textarea)[contains(@id, '"  + id + "')]";
+
+        for (WebElement field : driver.findElements(By.xpath(xpath))) {
+            field.clear();
+            new WebDriverWait(driver, 10)
+                    .until(not(textToBePresentInElementValue(field, value)));
+        }
+    }
+
+    private static void updateSelectFieldtoDefault(String selector, WebDriver driver) {
+        String xpath = "(//select)[contains(@class, '"  + selector + "')]";
+        for (WebElement element : driver.findElements(By.xpath(xpath))) {
+            Select select = new Select(element);
+            select.selectByIndex(0);
+            new WebDriverWait(driver, 10)
+                    .until(elementToBeSelected(select.getOptions().get(0)));
+        }
+    }
+
+    public static void clearVocabFieldLocatedByID(String selector, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        String xpath= "//*[input[contains(@id,'" + selector +"')]]/input[@class='cs-autocomplete-input']";
+        wait.until(visibilityOfElementLocated(By.xpath(xpath)));
+
+        for (WebElement field : driver.findElements(By.xpath(xpath))) {
+            field.clear();
+        }
+    }
+
+    private static void verifySelectFieldsUpdated(WebDriver driver, Map<String, String> selectMap) {
+        for (Map.Entry<String, String> select : selectMap.entrySet() ) {
+            verifySelectFieldOptionSelected(select.getKey(), select.getValue(), driver);
+        }
+    }
+
+    private static void verifySelectFieldOptionSelected(String selector, String expectedValue, WebDriver driver) {
+        String xpath = "//select[contains(@class, '"  + selector + "')]";
+        List<WebElement> selects = driver.findElements(By.xpath(xpath));
+        for (WebElement element : selects) {
+            Select select = new Select(element);
+            assertTrue(
+                    select.getFirstSelectedOption().getText().contains(expectedValue)
+            );
+        }
     }
 
     /**
@@ -148,12 +261,14 @@ public class Utilities {
     }
 
     /**
-     * Verify that a single field has been filled with the correct value
+     * Verify that a all fields with id containing selector have been filled with the correct value
      * @param selector id of the field that should be filled in
      */
     public static void verifyFieldLocatedByIDIsFilledIn(String selector, String expectedValue, WebDriver driver) {
-        assertTrue(
-                driver.findElement(By.id(selector)).getAttribute("value").contains(expectedValue));
+        String xpath = "(//input|//textarea)[contains(@id, '"  + selector + "')]";
+        for (WebElement field : driver.findElements(By.xpath(xpath))) {
+            assertTrue(field.getAttribute("value").contains(expectedValue));
+        }
     }
 
     /**
