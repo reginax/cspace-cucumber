@@ -103,5 +103,5 @@ Feature: Person Vocabulary Data Entry
       Then all fields in "Person" record should be filled in
         And user clears all fields of the "Person" record
         And the user saves the record
-      Then the error message bar should appear with "Please specify a Display Name"
+      Then all fields of the "Person" record should be empty
       Then close the browser

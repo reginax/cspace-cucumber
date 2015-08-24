@@ -8,11 +8,14 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class Record {
 
-    protected Map<String, String> fieldMap   = new HashMap<>();
-    protected Map<String, String> selectMap  = new HashMap<>();
-    protected Map<String, String> vocabMap   = new HashMap<>();
-    protected Map<String, String> dateMap    = new HashMap<>();
-    protected Map<String, String> tickBoxMap = new HashMap<>();
+    protected Map<String, String> requiredMap = new HashMap<>();
+    protected Map<String, String> fieldMap    = new HashMap<>();
+    protected Map<String, String> selectMap   = new HashMap<>();
+    protected Map<String, String> vocabMap    = new HashMap<>();
+    protected Map<String, String> dateMap     = new HashMap<>();
+    protected Map<String, String> tickBoxMap  = new HashMap<>();
+
+    public Map<String, String> getRequiredMap() {return requiredMap; }
 
     public Map<String, String> getFieldMap() {
         return fieldMap;

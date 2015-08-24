@@ -326,5 +326,10 @@ public class PersonVocabularyStepDef {
     public void user_clears_all_fields_of_the_record(String recordType) throws Throwable {
         clearAllFieldsFor(recordType, driver);
     }
+
+    @Then("^all fields of the \"([^\"]*)\" record should be empty$")
+    public void all_fields_should_be_empty(String recordType) throws Throwable {
+        verifyAllFieldsCleared(recordType, driver);
+    }
 }
 

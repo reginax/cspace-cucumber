@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
@@ -71,6 +72,7 @@ public class Utilities {
     public static void fillInAllFieldsFor(String recordType, WebDriver driver) {
         try {
             Record record = loadRecordOfType(recordType);
+            fillInFields(driver, record.getRequiredMap());
             fillInFields(driver, record.getFieldMap());
             updateSelectFields(driver, record.getSelectMap());
             fillInVocabFields(driver, record.getVocabMap());
@@ -79,6 +81,9 @@ public class Utilities {
         } catch (Exception e) { log(e.getMessage()); }
     }
 
+    /**
+     * Clears all fields except required fields
+     */
     public static void clearAllFieldsFor(String recordType, WebDriver driver) {
         try {
             Record record = loadRecordOfType(recordType);
@@ -99,6 +104,15 @@ public class Utilities {
             Record record = loadRecordOfType(recordType);
             verifyFieldsAreFilledIn(driver, record.getFieldMap());
             verifySelectFieldsUpdated(driver, record.getSelectMap());
+
+        } catch (Exception e) { log(e.getMessage()); }
+    }
+
+    public static void verifyAllFieldsCleared(String recordType,WebDriver driver){
+        try {
+            Record record = loadRecordOfType(recordType);
+            verifyFieldsAreCleared(driver, record.getFieldMap());
+            verifySelectFieldsCleared(driver, record.getSelectMap());
 
         } catch (Exception e) { log(e.getMessage()); }
     }
@@ -249,6 +263,20 @@ public class Utilities {
         }
     }
 
+    private static void verifySelectFieldsCleared(WebDriver driver, Map<String, String> selectMap) {
+        for (Map.Entry<String, String> select : selectMap.entrySet() ) {
+            verifySelectFieldIsDefault(select.getKey(), driver);
+        }
+    }
+
+    private static void verifySelectFieldIsDefault(String selector, WebDriver driver) {
+        String xpath = "//select[contains(@class, '"  + selector + "')]";
+        for (WebElement element : driver.findElements(By.xpath(xpath))) {
+            Select select = new Select(element);
+            assertEquals(select.getFirstSelectedOption(), select.getOptions().get(0));
+        }
+    }
+
     /**
      * Iterate over a Map to verify each field from a record
      * @param fieldMap HashMap of fields for given Record type, providing
@@ -259,6 +287,18 @@ public class Utilities {
             verifyFieldLocatedByIDIsFilledIn(field.getKey(), field.getValue(), driver);
         }
     }
+
+    /**
+     * Iterate over a Map to verify each field from a record has been cleared
+     * @param fieldMap HashMap of fields for given Record type, providing
+     *                 selectors and expected values.
+     */
+    public static void verifyFieldsAreCleared(WebDriver driver, Map<String, String> fieldMap) {
+        for (Map.Entry<String, String> field : fieldMap.entrySet()) {
+            verifyFieldLocatedByIDIsFilledIn(field.getKey(), "" , driver);
+        }
+    }
+
 
     /**
      * Verify that a all fields with id containing selector have been filled with the correct value

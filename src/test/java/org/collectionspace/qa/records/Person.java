@@ -4,15 +4,17 @@ package org.collectionspace.qa.records;
 public class Person extends Record{
 
     public Person() {
-        fieldMap.put(".csc-personAuthority-termDisplayName", "FiORE MIDDabLE abSURd");
+
+        requiredMap.put(".csc-personAuthority-termDisplayName", "SUCH NAME");
+
         fieldMap.put(".csc-personAuthority-termName", "A term");
         fieldMap.put(".csc-personAuthority-termQualifier", "A qualifier");
         fieldMap.put(".csc-personAuthority-termSourceDetail","A source detail");
         fieldMap.put(".csc-personAuthority-termSourceID","A source ID");
         fieldMap.put(".csc-personAuthority-termSourceNote","A source Note");
-        fieldMap.put(".csc-personAuthority-foreName", "Fiore");
-        fieldMap.put(".csc-personAuthority-middleName", "Middable");
-        fieldMap.put(".csc-personAuthority-surName", "abSurdName");
+        fieldMap.put(".csc-personAuthority-foreName", "MUCH");
+        fieldMap.put(".csc-personAuthority-middleName", "WOW");
+        fieldMap.put(".csc-personAuthority-surName", "VERY");
         fieldMap.put(".csc-personAuthority-nameAdditions", "Esquire");
         fieldMap.put(".csc-personAuthority-initials", "FaMouSE");
         fieldMap.put(".csc-personAuthority-occupation", "Factotum");
