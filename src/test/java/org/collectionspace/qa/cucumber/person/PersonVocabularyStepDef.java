@@ -8,6 +8,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
+import org.collectionspace.qa.utils.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class PersonVocabularyStepDef {
     WebDriver driver;
     private final WebDriverWait wait;
     Person person;
+    private Pages pages = new Pages();
 
     public static String
             BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/",
@@ -45,9 +47,9 @@ public class PersonVocabularyStepDef {
             new HashMap<>();
 
     public PersonVocabularyStepDef(){
-        this.person = new Person();
-        this.driver = new FirefoxDriver();
-        this.wait = new WebDriverWait(driver, 10);
+        person = new Person();
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 10);
         driver.get(BASE_URL + LOGIN_PATH);
         driver.findElement(By.className("csc-login-userId")).sendKeys(USERNAME);
         driver.findElement(By.className("csc-login-password")).sendKeys(PASSWORD);
@@ -114,9 +116,9 @@ public class PersonVocabularyStepDef {
     }
 
 
-    @Given("^user is on a blank Local Person record$")
-    public void user_is_on_a_blank_Local_Person_page() throws Throwable {
-        driver.get(BASE_URL + "person.html?vocab=person");
+    @Given("^user is on a blank \"([^\"]*)\" record$")
+    public void user_is_on_a_blank_pagename_page(String pageName) throws Throwable {
+        driver.get(BASE_URL + pages.getPageUrls(pageName));
         wait.until(visibilityOfElementLocated(By.className("saveButton")));
     }
 
