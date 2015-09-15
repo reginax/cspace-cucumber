@@ -19,6 +19,18 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Utilities {
 
+    public static String
+        LOGIN_PATH = "index.html",
+        USERNAME = "admin@core.collectionspace.org",
+        PASSWORD = "Administrator";
+
+    public static void login(WebDriver driver, String baseURL){
+        driver.get(baseURL + LOGIN_PATH);
+        driver.findElement(By.className("csc-login-userId")).sendKeys(USERNAME);
+        driver.findElement(By.className("csc-login-password")).sendKeys(PASSWORD);
+        driver.findElement(By.className("csc-login-button")).click();
+    }
+
     public static void log(String str) {
         System.out.print(str);
     }
@@ -55,6 +67,19 @@ public class Utilities {
             } catch (Exception e) { log(e.getMessage());}
         }
         return result;
+    }
+
+    /**
+     * Fill in the required fields for a record type
+     */
+    public static void fillRequiredFieldsFor(String recordType, WebDriver driver) throws Exception{
+        Record record = loadRecordOfType(recordType);
+        Map<String, String> requiredMap = record.getRequiredMap();
+        for (String required : requiredMap.keySet()){
+            driver.findElement(By.id(required))
+                    .sendKeys(generateTestFieldDataFor(recordType));
+        }
+
     }
 
     /**
@@ -322,6 +347,9 @@ public class Utilities {
         switch (recordType) {
             case "Person":
                 record = new Person();
+                break;
+            case "Cataloging":
+                record = new Cataloging();
                 break;
             default:
                 throw new Exception(recordType + ": No classes of that Type known");

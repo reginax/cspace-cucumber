@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.collectionspace.qa.utils.Utilities.*;
-import org.openqa.selenium.WebDriver;
+
 
 public abstract class Record {
 
@@ -14,6 +14,8 @@ public abstract class Record {
     protected Map<String, String> vocabMap    = new HashMap<>();
     protected Map<String, String> dateMap     = new HashMap<>();
     protected Map<String, String> tickBoxMap  = new HashMap<>();
+
+    protected Map<String, String> fieldSelectorByLabel = new HashMap<>();
 
     public Map<String, String> getRequiredMap() {return requiredMap; }
 
@@ -37,6 +39,12 @@ public abstract class Record {
         return tickBoxMap;
     }
 
+    public String getFieldSelectorByLabel(String fieldLabel) {
+        return fieldSelectorByLabel.get(fieldLabel);
+    }
 
+    public String generateRequiredData(){
+        return generateTestFieldDataFor(getClass().getName());
+    }
 
 }

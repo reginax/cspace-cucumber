@@ -52,6 +52,11 @@ public class Person extends Record{
 
         tickBoxMap.put("repeat::.csc-personAuthority-termPrefForLang", "");
 
+
+        fieldSelectorByLabel.put("Display Name", ".csc-personAuthority-termDisplayName");
+        fieldSelectorByLabel.put("Forename", ".csc-personAuthority-foreName");
+        // Selector for the Person Vocab field in the cataloging record
+        fieldSelectorByLabel.put("Cataloging->Content->Person", ".csc-object-description-content-person");
     }
 
 

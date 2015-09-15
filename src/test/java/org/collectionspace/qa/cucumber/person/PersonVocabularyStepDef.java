@@ -3,7 +3,6 @@ package org.collectionspace.qa.cucumber.person;
 
 import java.util.*;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,71 +29,47 @@ import static org.collectionspace.qa.utils.Utilities.*;
 
 public class PersonVocabularyStepDef {
 
-    WebDriver driver;
+    private final WebDriver driver;
     private final WebDriverWait wait;
     Person person;
     private Pages pages = new Pages();
 
     public static String
-            BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/",
-            LOGIN_PATH = "index.html",
-            USERNAME = "admin@core.collectionspace.org",
-            PASSWORD = "Administrator";
+            BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/";
 
-    private HashMap<String,String> fields =
-            new HashMap<>();
-    private HashMap<String, String>  requiredFields =
-            new HashMap<>();
 
-    public PersonVocabularyStepDef(){
-        person = new Person();
+    public PersonVocabularyStepDef() {
         driver = new FirefoxDriver();
+        person = new Person();
         wait = new WebDriverWait(driver, 10);
-        driver.get(BASE_URL + LOGIN_PATH);
-        driver.findElement(By.className("csc-login-userId")).sendKeys(USERNAME);
-        driver.findElement(By.className("csc-login-password")).sendKeys(PASSWORD);
-        driver.findElement(By.className("csc-login-button")).click();
-
-        fields.put("Display Name", ".csc-personAuthority-termDisplayName");
-        fields.put("Forename", ".csc-personAuthority-foreName");
-        fields.put("Cataloging->Content->Person", ".csc-object-description-content-person");
-
-
-
-        requiredFields.put("Cataloging", ".csc-object-identification-object-number" );
+        login(driver, BASE_URL);
     }
 
 
-    @Given("^user is on the Create New page$")
-    public void user_is_on_create_new() throws Throwable {
-        driver.get(BASE_URL + "createnew.html");
+    @Given("^user is on the \"([^\"]*)\" page$")
+    public void user_is_on_page(String pageName) throws Throwable {
+        driver.get(BASE_URL + pages.getPageUrls(pageName));
         wait.until(elementToBeClickable(
-                By.className("csc-createNew-createButton")));
+                By.className(pages.getPageLoadedSelector(pageName))));
     }
 
-    @Given("^user is on the My CollectionSpace page$")
-    public void user_is_on_my_collectionspace() throws Throwable {
-        driver.get(BASE_URL + "myCollectionSpace.html");
-        wait.until(elementToBeClickable(
-                By.className("csc-myCollectionSpace-categoryHeader")));
-    }
 
     @And("^selects the \"([^\"]*)\" radio button on the Create New page$")
     public void user_selects_the_radio_button_in_the_vocabularies_section(String vocab) throws Throwable {
         WebElement radio = driver.findElement(
-                        By.xpath("//input[@value='" + vocab.toLowerCase() + "']"));
+                By.xpath("//input[@value='" + vocab.toLowerCase() + "']"));
         radio.click();
     }
 
     @Then("^a drop down list should appear in the \"([^\"]*)\" row$")
-    public void a_drop_down_list_should_appear_in_the_row(String recordType) throws Throwable {
+    public void a_drop_down_list_should_appear_in_the_create_new_row(String recordType) throws Throwable {
         String xpath = buildCreateNewRecordTypeXpath(recordType);
         WebElement row = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
         assertFalse(row.findElements(By.tagName("select")).isEmpty());
     }
 
     @Then("^the list in the \"([^\"]*)\" row should contain \"([^\"]*)\"$")
-    public void the_list_should_contain(String recordType, String optionsString) throws Throwable {
+    public void the_list_on_create_new_page_should_contain(String recordType, String optionsString) throws Throwable {
         String xpath = buildCreateNewRecordTypeXpath(recordType);
         WebElement row = driver.findElement(By.xpath(xpath));
 
@@ -117,20 +92,20 @@ public class PersonVocabularyStepDef {
 
 
     @Given("^user is on a blank \"([^\"]*)\" record$")
-    public void user_is_on_a_blank_pagename_page(String pageName) throws Throwable {
+    public void user_is_on_a_blank_record_type_page(String pageName) throws Throwable {
         driver.get(BASE_URL + pages.getPageUrls(pageName));
         wait.until(visibilityOfElementLocated(By.className("saveButton")));
     }
 
     @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" field$")
     public void user_enters_in_the_field(String value, String fieldName) throws Throwable {
-        String selector = fields.get(fieldName);
+        String selector = person.getFieldSelectorByLabel(fieldName);
         fillFieldLocatedById(selector, value, driver);
     }
 
     @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" vocab field$")
     public void user_enters_in_the_vocab_field(String value, String fieldName) throws Throwable {
-        String selector = fields.get(fieldName);
+        String selector = person.getFieldSelectorByLabel(fieldName);
         fillVocabFieldLocatedByID(selector, value, driver);
     }
 
@@ -147,13 +122,13 @@ public class PersonVocabularyStepDef {
 
     @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" field$")
     public void should_be_in_the_field(String value, String fieldName) throws Throwable {
-        String selector = fields.get(fieldName);
+        String selector = person.getFieldSelectorByLabel(fieldName);
         verifyFieldLocatedByIDIsFilledIn(selector, value, driver);
     }
 
     @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" vocab field$")
     public void should_be_in_the_vocab_field(String value, String fieldName) throws Throwable {
-        String selector = fields.get(fieldName);
+        String selector = person.getFieldSelectorByLabel(fieldName);;
         String xpath = "//*[input[contains(@name,'" + selector +"')]]/input[@class='cs-autocomplete-input']";
         WebElement field = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
         assertEquals(field.getAttribute("value"), value);
@@ -210,6 +185,21 @@ public class PersonVocabularyStepDef {
         }
     }
 
+    @Then("^the search results should not contain \"([^\"]*)\"$")
+    public void the_search_results_should_not_contain_results(String results) throws Throwable {
+        try {
+            wait.until(visibilityOfElementLocated(
+                    By.xpath("(//tr[@class='csc-row']/td/a)[1]")));
+        } catch(Exception e) {
+            return;
+        }
+
+        String[] options = results.split("; ");
+        for (String option : options){
+            assertFalse(isInSearchResults(driver, option));
+        }
+    }
+
     @And("^the user clicks on result with text \"([^\"]*)\"$")
     public void the_user_clicks_on(String term) throws Throwable {
         String xpath = "(//tr[@class='csc-row']/td/a[text()='" + term +"'])[1]";
@@ -228,9 +218,7 @@ public class PersonVocabularyStepDef {
 
     @And("^user fills in required fields for \"([^\"]*)\" record$")
     public void user_fills_in_required_fields_for_record(String recordType) throws Throwable {
-        String requiredID = requiredFields.get(recordType);
-        driver.findElement(By.id(requiredID))
-                .sendKeys(generateTestFieldDataFor(recordType));
+        fillRequiredFieldsFor(recordType, driver);
     }
 
     @And("^user clicks on \"([^\"]*)\" from autocomplete options$")
@@ -272,7 +260,7 @@ public class PersonVocabularyStepDef {
 
     @And("^user removes focus from \"([^\"]*)\" field$")
     public void user_removes_focus_from_field(String fieldName) throws Throwable {
-        String selector = fields.get(fieldName);
+        String selector = person.getFieldSelectorByLabel(fieldName);
         String xpath = "//input[contains(@id, '" + selector + "')]";
         driver.findElement(By.xpath(xpath)).sendKeys("\t");
     }
@@ -332,6 +320,50 @@ public class PersonVocabularyStepDef {
     @Then("^all fields of the \"([^\"]*)\" record should be empty$")
     public void all_fields_should_be_empty(String recordType) throws Throwable {
         verifyAllFieldsCleared(recordType, driver);
+    }
+
+    @Then("^the delete button should not be clickable$")
+    public void the_button_should_not_be_clickable() throws Throwable {
+        WebElement element = driver.findElement(By.className("deleteButton"));
+        wait.until(not(elementToBeClickable(element)));
+
+    }
+
+    @And("^user clicks on the delete button$")
+    public void user_clicks_on_the_delete_button() throws Throwable {
+        driver.findElement(By.className("deleteButton")).click();
+    }
+
+    @Then("^delete confirmation dialogue should appear$")
+    public void delete_confirmation_dialogue_should_appear() throws Throwable {
+        wait.until(visibilityOfElementLocated(By.className("csc-confirmationDialog")));
+    }
+
+    @And("^user clicks cancel button$")
+    public void user_clicks_cancel_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialogButton-cancel")).click();
+    }
+
+    @And("^user clicks close button$")
+    public void user_clicks_close_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialog-closeBtn")).click();
+    }
+
+    @And("^user clicks the confirmation delete button$")
+    public void user_clicks_the_confirmation_delete_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
+    }
+
+    @Then("^deletion should be confirmed in a dialogue$")
+    public void deletion_should_be_confirmed_in_a_dialogue() throws Throwable {
+        WebElement element = wait.until(presenceOfElementLocated(By.className("csc-confirmationDialog-text")));
+        assertTrue(element.getText().equals("Person successfully deleted"));
+    }
+
+    @And("^user clicks delete confirmation OK button$")
+    public void user_clicks_delete_confirmation_OK_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
+        wait.until(textToBePresentInElementLocated(By.className("header-name"), "Find and Edit"));
     }
 }
 
