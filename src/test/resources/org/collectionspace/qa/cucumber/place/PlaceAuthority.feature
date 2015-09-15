@@ -39,3 +39,19 @@ Feature: Place Authority Data Entry
     And clicks on the top nav search submit button
     Then the search results should contain "New York; New York City"
     Then close the browser
+
+  Scenario Outline: Scoping search for known records works as expected
+    Given user is on the "My CollectionSpace" page
+    And user enters "<searchTerm>" in the top nav search field
+    And selects "<recordType>" from the top nav search record type select field
+    And selects "<vocabulary>" from the top nav search vocabulary select field
+    And clicks on the top nav search submit button
+    Then the search results should contain "<result>"
+    And the user clicks on result with text "<result>"
+    Then "<result>" should be in the "<recordType>" "Display Name" field
+    Then the titlebar should contain "<vocabulary>"
+    Then close the browser
+    Examples:
+      | searchTerm | recordType | vocabulary                          | result                |
+      | New York   | Place      | Local Places                        | New York              |
+      | New York   | Place      | Thesaurus of Geographic Names (TGN) | New York City         |
