@@ -1,0 +1,33 @@
+# Created by cbn at 9/15/15
+
+Feature: Place Authority Data Entry
+
+
+  Scenario: User Creates a minimal Basic Place record
+    Given user is on the "Create New" page
+    And selects the "Place" radio button on the Create New page
+    Then a drop down list should appear in the "Place" row
+    Then the list in the "Place" row should contain "Local Places, Thesaurus of Geographic Names (TGN)"
+    And clicks on the Create button
+    Then the titlebar should contain "Local Places"
+    And user enters "New York" in the "Place" "Display Name" field
+    And the user saves the record
+    Then the record is successfully saved
+    Then "New York" should be in the "Place" "Display Name" field
+    Then the titlebar should contain "Local Places"
+    Then close the browser
+
+
+  Scenario: User creates a basic TGN Place record
+    Given user is on the "Create New" page
+    And selects the "Place" radio button on the Create New page
+    Then a drop down list should appear in the "Place" row
+    And user selects "Thesaurus of Geographic Names (TGN)" from dropdown in "Place" row
+    And clicks on the Create button
+    Then the titlebar should contain "Thesaurus of Geographic Names (TGN)"
+    And user enters "New York City" in the "Place" "Display Name" field
+    And the user saves the record
+    Then the record is successfully saved
+    Then "New York City" should be in the "Place" "Display Name" field
+    Then the titlebar should contain "Thesaurus of Geographic Names (TGN)"
+    Then close the browser
