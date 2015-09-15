@@ -342,7 +342,7 @@ public class Utilities {
      * @return an object of the type requested by recordType
      * @throws Exception if the record type is not known
      */
-    private static Record loadRecordOfType(String recordType) throws Exception{
+    public static Record loadRecordOfType(String recordType) throws Exception{
         Record record;
         switch (recordType) {
             case "Person":
@@ -350,6 +350,9 @@ public class Utilities {
                 break;
             case "Cataloging":
                 record = new Cataloging();
+                break;
+            case "Place":
+                record = new Place();
                 break;
             default:
                 throw new Exception(recordType + ": No classes of that Type known");

@@ -1,4 +1,4 @@
-package org.collectionspace.qa.cucumber.person;
+package org.collectionspace.qa.cucumber.stepDefinitions;
 
 
 import java.util.*;
@@ -25,22 +25,19 @@ import org.collectionspace.qa.records.*;
 import static org.collectionspace.qa.utils.Utilities.*;
 
 
-
-
-public class PersonVocabularyStepDef {
+public class StepDefs {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
-    Person person;
+    private Record record;
     private Pages pages = new Pages();
 
     public static String
             BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/";
 
 
-    public PersonVocabularyStepDef() {
+    public StepDefs() {
         driver = new FirefoxDriver();
-        person = new Person();
         wait = new WebDriverWait(driver, 10);
         login(driver, BASE_URL);
     }
@@ -97,15 +94,17 @@ public class PersonVocabularyStepDef {
         wait.until(visibilityOfElementLocated(By.className("saveButton")));
     }
 
-    @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" field$")
-    public void user_enters_in_the_field(String value, String fieldName) throws Throwable {
-        String selector = person.getFieldSelectorByLabel(fieldName);
+    @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" \"([^\"]*)\" field$")
+    public void user_enters_in_the_field(String value, String recordType , String fieldName) throws Throwable {
+        record = loadRecordOfType(recordType);
+        String selector = record.getFieldSelectorByLabel(fieldName);
         fillFieldLocatedById(selector, value, driver);
     }
 
-    @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" vocab field$")
-    public void user_enters_in_the_vocab_field(String value, String fieldName) throws Throwable {
-        String selector = person.getFieldSelectorByLabel(fieldName);
+    @And("^user enters \"([^\"]*)\" in the \"([^\"]*)\" \"([^\"]*)\" vocab field$")
+    public void user_enters_in_the_vocab_field(String value, String recordType, String fieldName) throws Throwable {
+        record = loadRecordOfType(recordType);
+        String selector = record.getFieldSelectorByLabel(fieldName);
         fillVocabFieldLocatedByID(selector, value, driver);
     }
 
@@ -120,15 +119,17 @@ public class PersonVocabularyStepDef {
                 By.className("cs-messageBar-message"), "successfully saved"));
     }
 
-    @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" field$")
-    public void should_be_in_the_field(String value, String fieldName) throws Throwable {
-        String selector = person.getFieldSelectorByLabel(fieldName);
+    @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" \"([^\"]*)\" field$")
+    public void should_be_in_the_field(String value, String recordType, String fieldName) throws Throwable {
+        record = loadRecordOfType(recordType);
+        String selector = record.getFieldSelectorByLabel(fieldName);
         verifyFieldLocatedByIDIsFilledIn(selector, value, driver);
     }
 
-    @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" vocab field$")
-    public void should_be_in_the_vocab_field(String value, String fieldName) throws Throwable {
-        String selector = person.getFieldSelectorByLabel(fieldName);;
+    @Then("^\"([^\"]*)\" should be in the \"([^\"]*)\" \"([^\"]*)\" vocab field$")
+    public void should_be_in_the_vocab_field(String value, String recordType, String fieldName) throws Throwable {
+        record = loadRecordOfType(recordType);
+        String selector = record.getFieldSelectorByLabel(fieldName);
         String xpath = "//*[input[contains(@name,'" + selector +"')]]/input[@class='cs-autocomplete-input']";
         WebElement field = wait.until(visibilityOfElementLocated(By.xpath(xpath)));
         assertEquals(field.getAttribute("value"), value);
@@ -258,9 +259,10 @@ public class PersonVocabularyStepDef {
         driver.findElement(By.className("csc-messageBar-cancel")).click();
     }
 
-    @And("^user removes focus from \"([^\"]*)\" field$")
-    public void user_removes_focus_from_field(String fieldName) throws Throwable {
-        String selector = person.getFieldSelectorByLabel(fieldName);
+    @And("^user removes focus from \"([^\"]*)\" \"([^\"]*)\" field$")
+    public void user_removes_focus_from_field(String recordType, String fieldName) throws Throwable {
+        record = loadRecordOfType(recordType);
+        String selector = record.getFieldSelectorByLabel(fieldName);
         String xpath = "//input[contains(@id, '" + selector + "')]";
         driver.findElement(By.xpath(xpath)).sendKeys("\t");
     }

@@ -7,5 +7,7 @@ public class Cataloging extends Record {
 
     public Cataloging(){
         requiredMap.put(".csc-object-identification-object-number",generateRequiredData());
+
+        fieldSelectorByLabel.put("Person", "csc-object-description-content-person");
     }
 }
