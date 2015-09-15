@@ -1,5 +1,6 @@
 # Created by cbn at 9/15/15
 
+  @place
 Feature: Place Authority Data Entry
 
 
@@ -17,7 +18,6 @@ Feature: Place Authority Data Entry
     Then the titlebar should contain "Local Places"
     Then close the browser
 
-
   Scenario: User creates a basic TGN Place record
     Given user is on the "Create New" page
     And selects the "Place" radio button on the Create New page
@@ -30,4 +30,12 @@ Feature: Place Authority Data Entry
     Then the record is successfully saved
     Then "New York City" should be in the "Place" "Display Name" field
     Then the titlebar should contain "Thesaurus of Geographic Names (TGN)"
+    Then close the browser
+
+  Scenario: Searching for known records works as expected
+    Given user is on the "My CollectionSpace" page
+    And user enters "New York" in the top nav search field
+    And selects "Place" from the top nav search record type select field
+    And clicks on the top nav search submit button
+    Then the search results should contain "New York; New York City"
     Then close the browser
