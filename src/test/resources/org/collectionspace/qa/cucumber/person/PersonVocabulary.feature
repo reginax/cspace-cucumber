@@ -4,7 +4,7 @@ Feature: Person Vocabulary Data Entry
   That Data should persist
 
   Scenario: User Creates a minimal Basic Person record
-    Given user is on the Create New page
+    Given user is on the "Create New" page
       And selects the "Person" radio button on the Create New page
     Then a drop down list should appear in the "Person" row
     Then the list in the "Person" row should contain "Local Persons, ULAN Persons"
@@ -18,7 +18,7 @@ Feature: Person Vocabulary Data Entry
     Then close the browser
 
     Scenario: User creates a basic ULAN Person record
-      Given user is on the Create New page
+      Given user is on the "Create New" page
         And selects the "Person" radio button on the Create New page
       Then a drop down list should appear in the "Person" row
         And user selects "ULAN Persons" from dropdown in "Person" row
@@ -32,7 +32,7 @@ Feature: Person Vocabulary Data Entry
       Then close the browser
 
     Scenario: Searching for known records works as expected
-      Given user is on the My CollectionSpace page
+      Given user is on the "My CollectionSpace" page
         And user enters "Joe Bean" in the top nav search field
         And selects "Person" from the top nav search record type select field
         And clicks on the top nav search submit button
@@ -40,7 +40,7 @@ Feature: Person Vocabulary Data Entry
       Then close the browser
 
     Scenario Outline: Scoping search for known records works as expected
-      Given user is on the My CollectionSpace page
+      Given user is on the "My CollectionSpace" page
         And user enters "<searchTerm>" in the top nav search field
         And selects "<recordType>" from the top nav search record type select field
         And selects "<vocabulary>" from the top nav search vocabulary select field
@@ -56,7 +56,7 @@ Feature: Person Vocabulary Data Entry
       | Joe Bean   | Person     | ULAN Persons     | Joe Bean Jr           |
 
     Scenario Outline: Person Vocab Terms should be suggested in Cataloging record
-      Given user is on the Create New page
+      Given user is on the "Create New" page
         And selects the "Cataloging" radio button on the Create New page
         And clicks on the Create button
       Then the titlebar should contain "Cataloging"
@@ -78,7 +78,7 @@ Feature: Person Vocabulary Data Entry
       | Joe   | Cataloging->Content->Person |Joe Bean; Joe Bean Jr| Joe Bean Jr |
 
     Scenario: Display Name
-      Given user is on a blank Local Person record
+      Given user is on a blank "Person" record
         And user enters "James" in the "Forename" field
         And the user saves the record
       Then the error message bar should appear with "Please specify a Display Name"
@@ -93,7 +93,7 @@ Feature: Person Vocabulary Data Entry
       Then the titlebar should contain "JEJ"
       Then close the browser
 
-    Scenario: Create Person record will All fields filled in, then empty it
+    Scenario: Create Person record with All fields filled in, then empty it
       Given user is on a blank "Person" record
         And user repeats all repeatable fields
         And user fills in all the fields of the "Person" record
@@ -104,3 +104,28 @@ Feature: Person Vocabulary Data Entry
         And the user saves the record
       Then all fields of the "Person" record should be empty
       Then close the browser
+
+    Scenario: Create then delete a record
+      Given user is on a blank "Person" record
+        And user enters "Delete Me" in the "Display Name" field
+      Then the delete button should not be clickable
+        And the user saves the record
+      Then the record is successfully saved
+        And user clicks on the delete button
+      Then delete confirmation dialogue should appear
+        And user clicks cancel button
+      Then "Delete Me" should be in the "Display Name" field
+        And user clicks on the delete button
+      Then delete confirmation dialogue should appear
+        And user clicks close button
+      Then "Delete Me" should be in the "Display Name" field
+        And user clicks on the delete button
+      Then delete confirmation dialogue should appear
+        And user clicks the confirmation delete button
+      Then deletion should be confirmed in a dialogue
+        And user clicks delete confirmation OK button
+        And user enters "Delete Me" in the top nav search field
+        And clicks on the top nav search submit button
+      Then the search results should not contain "Delete Me"
+      Then close the browser
+
