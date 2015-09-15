@@ -1,3 +1,4 @@
+ @person
 Feature: Person Vocabulary Data Entry
   As a user
   I want to be able to enter data into the Person Vocabulary Form
