@@ -127,7 +127,9 @@ With that in place, we can now run our new test feature. Since we annotated the 
 
 `mvn clean verify -Dcucumber.options="--tags @place"`
 
+@TODO Add some text about the expected output
 
+## Other Topics
 
 ### Step Definitions
 
@@ -171,7 +173,7 @@ The class also exposes getter classes for each HashMap.
 Cucumber allows you to pass in a "tags" option that will limit testing to only those features or scenarios that have that tag. For example, to only run the Place authority tests, you can run:
 
 `mvn clean verify -Dcucumber.options="--tags @place"`
-
+ 
 By convention, each Feature is started with an tag annotation, such as  `@place`, `@person`, etc., to simplify running single tests. Similarly, 
 if you only want to run a single Scenario, perhaps during the development process, just add a `@test` tag at the start of the scenario and pass the `@test` tag to maven on the cli. 
 
