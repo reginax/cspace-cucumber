@@ -128,6 +128,7 @@ With that in place, we can now run our new test feature. Since we annotated the 
 `mvn clean verify -Dcucumber.options="--tags @place"`
 
 
+
 ### Step Definitions
 
 Each line that starts with `Given`, `And`, or `Then` needs to have a corresponding Step Definition with a regular 
@@ -150,10 +151,20 @@ public void user_is_on_page(String pageName) throws Throwable {
 The step definitions can re used by any Feature because they are defined in a separate package at 
 `src/test/java/org/collectionspace/qa/cucumber/stepDefinitions/StepDefs.java`
  
- 
-
 
 ### Record Class
+The Record class which other record classes extend, instantiates several HashMaps to contain information needed to interact 
+with record forms. They are broken out to accommodate different ways field types need to be handled. They are:
+
+* requiredMap - contains id selector and test data for fields that are required for that record type.
+* fieldMap - contains id selector and test data for text fields for that record type.
+* selectMap - contains id selector and test data for <select> fields.
+* vocabMap - contains id selector and test data for vocabulary fields.
+* dateMap - contains id selector and test date for calendar date fields.
+* tickBoxMap - contains id selector and test date for tick box fields.
+* fieldSelectorByLabel - contains label name and id selector for fields. Allows fields to be interacted with by their label, which is only required for a small subset. 
+
+The class also exposes getter classes for each HashMap.
 
 ### Run a single feature test
 
