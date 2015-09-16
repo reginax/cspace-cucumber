@@ -158,7 +158,7 @@ with record forms. They are broken out to accommodate different ways field types
 
 * requiredMap - contains id selector and test data for fields that are required for that record type.
 * fieldMap - contains id selector and test data for text fields for that record type.
-* selectMap - contains id selector and test data for <select> fields.
+* selectMap - contains id selector and test data for `<select>` fields.
 * vocabMap - contains id selector and test data for vocabulary fields.
 * dateMap - contains id selector and test date for calendar date fields.
 * tickBoxMap - contains id selector and test date for tick box fields.
