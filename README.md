@@ -174,3 +174,8 @@ Cucumber allows you to pass in a "tags" option that will limit testing to only t
 
 By convention, each Feature is started with an tag annotation, such as  `@place`, `@person`, etc., to simplify running single tests. Similarly, 
 if you only want to run a single Scenario, perhaps during the development process, just add a `@test` tag at the start of the scenario and pass the `@test` tag to maven on the cli. 
+
+### Further Reading
+* [Cucumber reference](https://cucumber.io/docs/reference) - language agnostic
+* [Cucumber-jvm](https://cucumber.io/docs/reference/jvm) 
+* [Gherkin Syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
