@@ -35,7 +35,7 @@ First we'll need to create the cucumber test class for the Place Authority, whic
 * Integration Test Class - `src/test/java/org/collectionspace.qa.cucumber/place/PlaceAuthorityIT.java` 
 
 #### Example Cucumber Feature
-A simple cucumber feature for Place Authority would look like:
+A simple cucumber feature for Place Authority at `src/test/resources/org/collectionspace.qa.cucumber/place/PlaceAuthority.feature` would look like:
 
 ```gherkin
 @place
@@ -62,7 +62,7 @@ More information is in the [Step Definitions](#step-definition) section.
 
 
 #### Example Integration Test Class
-The integration test class is all boilerplate, but required. It should look something like:
+The integration test class for Place Authority at `src/test/java/org/collectionspace.qa.cucumber/place/PlaceAuthorityIT.java` is all boilerplate, but required. It should look something like:
 
 ```java
 package org.collectionspace.qa.cucumber.place;
