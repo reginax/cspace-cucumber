@@ -18,7 +18,7 @@ Then watch all the tests pass.
 ## Contributing
 
 ### Adding a new test feature
-If adding a feature for a record or authority, the bare minimum you'll need to do is:
+If adding a feature for a record or authority, you'll need to:
 
 * create new [cucumber files](#new-cucumber-files)
  * [cucumber feature](#example-cucumber-feature)
@@ -41,7 +41,7 @@ A simple cucumber feature for Place Authority would look like:
 @place
 Feature: Place Authority Data Entry
    As a logged in admin user 
-   I want to be able to enter data in the Place authority form   
+   I want to be able to enter data in the Place authority form 
    
   Scenario: User Creates a minimal Basic Place record
     Given user is on the "Create New" page
@@ -53,24 +53,12 @@ Feature: Place Authority Data Entry
     Then the record is successfully saved
     Then "New York" should be in the "Place" "Display Name" field
 ```
-Each file has a single feature that can contain many `Scenario`s.
+Each file has a single feature that can contain many Scenarios.
 
-Each line that starts with `Given`, `And`, or `Then` needs to have a corresponding Step Definition with a regular expression that matches the line, with words in quotes being passed as variables. For example
-
-```gherkin
-Given user is on the "Create New" page
-```
-corresponds to the Step Definition:
-```java
-@Given("^user is on the \"([^\"]*)\" page$")
-public void user_is_on_page(String pageName) throws Throwable {
-   driver.get(BASE_URL + pages.getPageUrls(pageName));
-   wait.until(elementToBeClickable(
-      By.className(pages.getPageLoadedSelector(pageName))));
-    }
-```
-The step definitions are defined in a separate package so multiple features can reuse them. Find out more in the 
-[Step definitions section](#step-definitions)
+Each line that starts with `Given`, `And`, or `Then` needs to have a corresponding Step Definition with a regular 
+expression that matches the line, with words in quotes being passed as variables. All the lines we wrote in our 
+feature are all already defined in the shared step definitions, so this is all we need to do for our feature. 
+More information is in the [Step Definitions](#step-definition) section.
 
 
 #### Example Integration Test Class
@@ -113,9 +101,57 @@ public class Place extends Record {
 ```
 
 #### Update Utils method
+Finally, we need to update the `loadRecordOfType(String recordType)` method, to include a "Place" case in the switch statement.
+```java
+ public static Record loadRecordOfType(String recordType) throws Exception{
+     Record record;
+     switch (recordType) {
+         case "Person":
+             record = new Person();
+             break;
+         case "Cataloging":
+             record = new Cataloging();
+             break;
+         case "Place":
+             record = new Place();
+             break;
+         default:
+             throw new Exception(recordType + ": No classes of that Type known");
+     }
+     return record;
+ }
+```
+
+#### Run your empty 
+With that in place, we can now run our new test feature. Since we annotated the place feature with the `@place` tag, we can just run our new test:
+
+`mvn clean verify -Dcucumber.options="--tags @place"`
 
 
 ### Step Definitions
+
+Each line that starts with `Given`, `And`, or `Then` needs to have a corresponding Step Definition with a regular 
+expression that matches the line, with words in quotes being passed as variables.
+
+For example
+
+```gherkin
+Given user is on the "Create New" page
+```
+corresponds to the Step Definition:
+```java
+@Given("^user is on the \"([^\"]*)\" page$")
+public void user_is_on_page(String pageName) throws Throwable {
+   driver.get(BASE_URL + pages.getPageUrls(pageName));
+   wait.until(elementToBeClickable(
+      By.className(pages.getPageLoadedSelector(pageName))));
+    }
+```
+The step definitions can re used by any Feature because they are defined in a separate package at 
+`src/test/java/org/collectionspace/qa/cucumber/stepDefinitions/StepDefs.java`
+ 
+ 
+
 
 ### Record Class
 
