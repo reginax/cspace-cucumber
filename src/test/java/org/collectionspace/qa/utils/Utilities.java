@@ -354,6 +354,9 @@ public class Utilities {
             case "Place":
                 record = new Place();
                 break;
+            case "Organization":
+                record = new Organization();
+                break;
             default:
                 throw new Exception(recordType + ": No classes of that Type known");
         }
