@@ -3,11 +3,13 @@ package org.collectionspace.qa.cucumber.stepDefinitions;
 
 import java.util.*;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 import org.collectionspace.qa.utils.Pages;
+import org.collectionspace.qa.utils.Roles;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,13 +25,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.collectionspace.qa.records.*;
 import static org.collectionspace.qa.utils.Utilities.*;
-
+import static org.collectionspace.qa.utils.Roles.*;
 
 public class StepDefs {
 
-    private final WebDriver driver;
-    private final WebDriverWait wait;
-    private Record record;
+    protected final WebDriver driver;
+    protected final WebDriverWait wait;
+    protected Record record;
     private Pages pages = new Pages();
 
     public static String
@@ -366,6 +368,39 @@ public class StepDefs {
     public void user_clicks_delete_confirmation_OK_button() throws Throwable {
         driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
         wait.until(textToBePresentInElementLocated(By.className("header-name"), "Find and Edit"));
+    }
+
+    @And("^user clicks on \"([^\"]*)\" tab$")
+    public void user_clicks_on_tab(String tabText) throws Throwable {
+        String xpath = "//a[contains(text(), '" + tabText + "')]";
+        wait.until(elementToBeClickable(By.xpath(xpath))).click();
+    }
+
+    @And("^user clicks on the button with text \"([^\"]*)\"$")
+    public void user_clicks_on_button_with_text(String text) throws Throwable {
+        String xpath = "//input[contains(@value, '" + text + "')]";
+        wait.until(elementToBeClickable(By.xpath(xpath))).click();
+    }
+
+    @Then("^the \"([^\"]*)\" field should be visible in the \"([^\"]*)\" form$")
+    public void the_field_should_be_visible(String fieldLabel, String recordType) throws Throwable {
+        String selector = loadRecordOfType(recordType).getFieldSelectorByLabel(fieldLabel);
+        wait.until(visibilityOfElementLocated(By.id(selector)));
+    }
+
+    @And("^user adds permissions for \"([^\"]*)\"$")
+    public void user_adds_all_other_permissions_for(String roleName) throws Throwable {
+        // The rows containing permissions for roles are not semantically labeled, so we find
+        // the right row by text, get the parent div, the search within there for the input
+        // with the correct value. Ouch.
+        Roles roles = new Roles();
+        HashMap<String, String> perms = roles.getPermsFor(roleName);
+        for (Map.Entry<String, String> perm : perms.entrySet()){
+            log(perm.getKey());
+            String xpath = "//div[contains(@id, 'csc-permissions-record-row')][text()='"
+                    + perm.getKey() +"']/parent::div[1]//input[@value='" + perm.getValue() +"']";
+            driver.findElement(By.xpath(xpath)).click();
+        }
     }
 }
 

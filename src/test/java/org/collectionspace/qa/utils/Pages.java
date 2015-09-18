@@ -17,6 +17,8 @@ public class Pages {
         pageUrls.put("My CollectionSpace","myCollectionSpace.html");
         pageLoadedSelector.put("My CollectionSpace","csc-myCollectionSpace-categoryHeader");
 
+        pageUrls.put("Administration", "administration.html");
+        pageLoadedSelector.put("Administration","csc-admin-listView");
     }
 
 

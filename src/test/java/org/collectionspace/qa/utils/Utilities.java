@@ -357,6 +357,9 @@ public class Utilities {
             case "Organization":
                 record = new Organization();
                 break;
+            case "Roles & Permissions":
+                record = new RolesAndPermissions();
+                break;
             default:
                 throw new Exception(recordType + ": No classes of that Type known");
         }
