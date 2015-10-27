@@ -1,6 +1,6 @@
 # Created by cbn at 9/15/15
 
-  @place
+  @authority
 Feature: Place Authority Data Entry
 
 
