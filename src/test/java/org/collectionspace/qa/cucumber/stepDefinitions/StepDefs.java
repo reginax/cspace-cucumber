@@ -33,7 +33,7 @@ public class StepDefs {
     private Pages pages = new Pages();
 
     public static String
-            BASE_URL = "http://localhost:8180/collectionspace/ui/core/html/";
+            BASE_URL = "http://qa.collectionspace.org:8180/collectionspace/ui/core/html/index.html";
 
 
     public StepDefs() {
