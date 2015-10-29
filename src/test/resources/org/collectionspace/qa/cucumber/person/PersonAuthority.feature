@@ -1,4 +1,4 @@
- @person
+@person
 Feature: Person Vocabulary Data Entry
   As a user
   I want to be able to enter data into the Person Vocabulary Form
@@ -17,7 +17,6 @@ Feature: Person Vocabulary Data Entry
     Then "Joe Bean" should be in the "Person" "Display Name" field
     Then the titlebar should contain "Local Person"
     Then close the browser
-
     Scenario: User creates a basic ULAN Person record
       Given user is on the "Create New" page
         And selects the "Person" radio button on the Create New page
