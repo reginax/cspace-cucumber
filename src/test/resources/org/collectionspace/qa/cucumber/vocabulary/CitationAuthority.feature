@@ -1,4 +1,5 @@
-@general_page.create_new_page
+@vocabulary
+
 Feature: #Enter feature name here
   # Enter feature description here
 

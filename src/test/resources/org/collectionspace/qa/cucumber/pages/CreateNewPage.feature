@@ -1,4 +1,4 @@
-@authority
+@pages
 Feature: #Enter feature name here
   # Enter feature description here
 

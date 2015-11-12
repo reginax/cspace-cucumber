@@ -1,4 +1,5 @@
-@general_page.create_new_page
+@sidebar
+
 Feature: #Enter feature name here
   # Enter feature description here
 

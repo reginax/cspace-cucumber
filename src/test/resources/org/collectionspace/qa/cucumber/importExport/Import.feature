@@ -1,4 +1,4 @@
-@general_page.create_new_page
+@ie
 Feature: #Enter feature name here
   # Enter feature description here
 
