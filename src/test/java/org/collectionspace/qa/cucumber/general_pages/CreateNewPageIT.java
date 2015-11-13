@@ -1,4 +1,4 @@
-package org.collectionspace.qa.cucumber.supplementary_to_secondary_tab;
+package org.collectionspace.qa.cucumber.general_pages;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -9,5 +9,6 @@ import org.junit.runner.RunWith;
         glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
         format = { "json:target/report.json" }
 )
-public class CatalogingIT {
+public class CreateNewPageIT {
+	// Intentionally left empty
 }

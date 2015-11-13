@@ -1,4 +1,4 @@
-package org.collectionspace.qa.cucumber.pages;
+package org.collectionspace.qa.cucumber.general_pages;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

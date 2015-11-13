@@ -1,4 +1,4 @@
-package org.collectionspace.qa.cucumber.person;
+package org.collectionspace.qa.cucumber.records_primary_tab;
 
 
 import org.junit.runner.RunWith;
