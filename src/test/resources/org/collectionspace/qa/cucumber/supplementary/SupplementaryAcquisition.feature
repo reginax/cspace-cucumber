@@ -1,5 +1,5 @@
 # Created by rx at 10/27/15
-@supplementary
+@supplementary_acquisitionx
 Feature: Supplementary Manual QA - Acquisition
   
   Scenario: User Observes New Record Behavior

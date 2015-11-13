@@ -1,4 +1,4 @@
-@general_pages.CreateNewPage
+@general_pages.FrontPageAndLogin
 
 Feature: #Enter feature name here
   # Enter feature description here
@@ -10,9 +10,9 @@ Feature: #Enter feature name here
     Then the list in the "Person" row should contain "Local Persons, ULAN Persons"
       And clicks on the Create button
     Then the titlebar should contain "Local Person"
-      And user enters "Rob Miller_x" in the "Person" "Display Name" field
+      And user enters "Rob Miller_y" in the "Person" "Display Name" field
       And the user saves the record
     Then the record is successfully saved
-    Then "Rob Miller_x" should be in the "Person" "Display Name" field
+    Then "Rob Miller_y" should be in the "Person" "Display Name" field
     Then the titlebar should contain "Local Person"
     Then close the browser

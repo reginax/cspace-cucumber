@@ -6,8 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
-        format = { "json:target/report.json" }
+      glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
+      format = { "json:target/report.json" }
 )
 public class GeneralPagesIT {
+
 }
