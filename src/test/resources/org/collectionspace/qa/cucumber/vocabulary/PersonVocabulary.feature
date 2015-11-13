@@ -46,6 +46,7 @@ Feature: Person Vocabulary Data Entry
     Then "Hallowed \n Provenance" should be in the "Person" "Name Notes" field
     Then "<school/style2>" should be in the repeated "Person" "School/Style" field
     Then "<occupation2>" should be in the repeated "Person" "Occupation" field
+    Then close the browser
 
   #Test 9
   Scenario: Repeat groups and check for alternating shading
@@ -55,7 +56,8 @@ Feature: Person Vocabulary Data Entry
     Then the new "Person Term Group" forms should alternate between dark and light shading
       And user clicks on the plus to repeat the "Address" form
       And user clicks on the plug to repeat the "Address" form
-    Then the new "Address" forms should alternate between dark and light shading.
+    Then the new "Address" forms should alternate between dark and light shading
+    Then close the browser
 
 
   #Test 11
@@ -78,6 +80,7 @@ Feature: Person Vocabulary Data Entry
     Then nothing should happen
     Then Cancel changes button at top of page should be disabled
     Then Cancel changes button at bottom of page should be disabled
+    Then close the browser
 
   #Test 13
   Scenario: Edit page and attempt to leave. Warning appears, save.
@@ -89,6 +92,7 @@ Feature: Person Vocabulary Data Entry
     Then the record is successfully saved
     Then user should be redirected to the page navigated to
     Then "Saved Change" should be in the "Person" "Display name" field
+    Then close the browser
 
   Scenario: Edit page and attempt to leave. Warning appears, do not save.
     Given user is on a "Person" record
@@ -99,6 +103,7 @@ Feature: Person Vocabulary Data Entry
     Then the record is not successfully saved
     Then user should be redirected to the page navigated to
     Then "Unsaved Change" should not be in the "Person" "Display name" field  
+    Then close the browser
 
   Scenario: Edit page and attempt to leave. Warning appears, user cancels.
     Given user is on a "Person" record
@@ -107,8 +112,9 @@ Feature: Person Vocabulary Data Entry
     Then a confirmation dialogue should appear
       And user clicks on the Cancel button
     Then the dialogue is dismissed
+    Then close the browser
 
-  #Test 21, not sure on what stepdefs are appropriate
+  #Test 21, not sure on which stepdefs are appropriate
   Scenario: User tabs to "Forename", enters something and then tabs to save and saves.
     Given user is on a "Person" record
       And user tabs to "Person" "Occupation" field
@@ -118,6 +124,39 @@ Feature: Person Vocabulary Data Entry
       And user hits enter
     Then the record is successfully saved
     Then "Tabber" should be in the "Person" "Occupation" field
+    Then close the browser
+
+    #Test 23
+    Scenario: Create Loan In and select "Joe Bean" from drop down menu for Lender using keyboard only
+      Given user is on the "Create New" page
+        And user selects the "Loan In" radio button on the "Create New" page
+        And user clicks on the Create button
+      Then the titlebar should contain "Loan In"
+        And user enters "Joe" in the "Loan In" "Lender" field
+      Then a drop down menu should appear in the "Lender" row
+      #need to decide on stepdef for select using keyboard only
+        And user selects "Joe Bean" from dropdown in "Lender" row 
+      Then "Joe Bean" should be in the "Loan In" "Lender" field
+      Then close the browser
+
+    Scenario: Create Loan In and add nonexisting Person through Lender drop down
+      Given user is on the "Create New" page
+        And user selects the "Loan In" radio button on the "Create New" page
+        And user clicks on the Create button
+      Then the titlebar should contain "Loan In"
+        And user enters "Does Not Exist" in the "Loan In" "Lender" field
+      Then a drop down menu should appear in the "Lender" row
+        And user selects "Local Persons" from dropdown in "Lender" row
+      Then the titlebar should contain "Does Not Exist"
+        And user enters "Does Not Exist" in the top nav search field
+        And selects "Person" from the top nav search record type select field
+        And clicks on the top nav search submit button
+      Then the search results should contain "Does Not Exist"
+      Then close the browser
+
+
+
+
 
 
 
