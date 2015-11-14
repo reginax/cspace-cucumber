@@ -384,11 +384,11 @@ public class Utilities {
             case "RightSideBar":
                 record = new RightSideBar();
                 break;
-            case "SupplementaryS":
-                record = new SupplementaryS();
+            case "SupplementarySecondary":
+                record = new SupplementarySecondary();
                 break;
-            case "SupplementaryP":
-                record = new SupplementaryP();
+            case "SupplementaryPrimary":
+                record = new SupplementaryPrimary();
                 break;
             case "VocabularyTerms":
                 record = new VocabularyTerms();

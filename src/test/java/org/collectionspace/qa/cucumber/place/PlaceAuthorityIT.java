@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
         format = { "json:target/report.json" },
-        tags = { "@place" }
+        tags = { "place" }
 )
 public class PlaceAuthorityIT {
 }
