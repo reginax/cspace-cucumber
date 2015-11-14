@@ -1,11 +1,4 @@
 # Created by xxx on mo/day/2015
-Feature: #Enter feature name here
-  # Enter feature description here
-
-  Scenario: # Enter scenario name here
-    # Enter steps here
-
-
 Feature: Test 1: Acquisition Reference Number
   As a user
   I want to be able to create a new Acquisition record
