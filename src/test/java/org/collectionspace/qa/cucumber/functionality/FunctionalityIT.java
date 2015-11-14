@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
-        features = { "org.collectionspace.qa.cucumber.functionality" },
+        tags = { "@functionality" },
         format = { "json:target/report.json" }
 )
 public class FunctionalityIT {

@@ -8,8 +8,8 @@ import cucumber.api.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
-        features = { "org.collectionspace.qa.cucumber.person"},
-        format = { "json:target/report.json" }
+        format = { "json:target/report.json" },
+        tags = { "person" }
 )
 public class PersonAuthorityIT {
 

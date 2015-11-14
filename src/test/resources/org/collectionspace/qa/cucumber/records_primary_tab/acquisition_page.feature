@@ -1,4 +1,6 @@
 # Created by xxx on mo/day/2015
+
+@recordsprimarytab
 Feature: Test 1: Acquisition Reference Number
   As a user
   I want to be able to create a new Acquisition record

@@ -1,6 +1,7 @@
 # Created by Alan Kwok on 11/6/2015
 # needs to be completed
 
+@recordsprimarytab
 Feature: Intake Page Testing
 
   Scenario: Error on no Intake Entry Number
