@@ -1,4 +1,4 @@
-package org.collectionspace.qa.cucumber.place;
+package org.collectionspace.qa.cucumber.functionality;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         glue = { "org.collectionspace.qa.cucumber.stepDefinitions" },
-        format = { "json:target/report.json" },
-        tags = { "place" }
+        tags = { "functionality" },
+        format = { "json:target/report.json" }
 )
-public class PlaceAuthorityIT {
+public class FunctionalityIT {
 }
