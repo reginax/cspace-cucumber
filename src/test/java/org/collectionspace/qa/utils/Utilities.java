@@ -345,17 +345,53 @@ public class Utilities {
     public static Record loadRecordOfType(String recordType) throws Exception{
         Record record;
         switch (recordType) {
+            case "Administration":
+                record = new Administration();
+                break;
+            case "AdvancedSearch":
+                record = new AdvancedSearch();
+                break;
+            case "AdvancedSearchVocabulary":
+                record = new AdvancedSearchVocabulary();
+                break;
+            case "FCTenant":
+                record = new FCTenant();
+                break;
+            case "Functionality":
+                record = new Functionality();
+                break;
+            case "GeneralPages":
+                record = new GeneralPages();
+                break;
+            case "ImportExport":
+                record = new ImportExport();
+                break;
+            case "LifeSciTenant":
+                record = new LifeSciTenant();
+                break;
             case "Person":
                 record = new Person();
-                break;
-            case "Cataloging":
-                record = new Cataloging();
                 break;
             case "Place":
                 record = new Place();
                 break;
-            case "Organization":
-                record = new Organization();
+            case "RecordsPrimaryTab":
+                record = new RecordsPrimaryTab();
+                break;
+            case "RecordsSecondaryTab":
+                record = new RecordsSecondaryTab();
+                break;
+            case "RightSideBar":
+                record = new RightSideBar();
+                break;
+            case "SupplementarySecondary":
+                record = new SupplementarySecondary();
+                break;
+            case "SupplementaryPrimary":
+                record = new SupplementaryPrimary();
+                break;
+            case "VocabularyTerms":
+                record = new VocabularyTerms();
                 break;
             default:
                 throw new Exception(recordType + ": No classes of that Type known");
