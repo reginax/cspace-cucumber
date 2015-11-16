@@ -51,7 +51,6 @@ public class StepDefs {
                 By.className(pages.getPageLoadedSelector(pageName))));
     }
 
-
     @And("^selects the \"([^\"]*)\" radio button on the Create New page$")
     public void user_selects_the_radio_button_in_the_vocabularies_section(String vocab) throws Throwable {
         WebElement radio = driver.findElement(
@@ -175,7 +174,6 @@ public class StepDefs {
         String xpath = "//div[@class='csc-header-searchBox']/div/input[@type='button']";
         driver.findElement(By.xpath(xpath)).click();
     }
-
 
     @Then("^the search results should contain \"([^\"]*)\"$")
     public void the_search_results_should_contain_results(String results) throws Throwable {
