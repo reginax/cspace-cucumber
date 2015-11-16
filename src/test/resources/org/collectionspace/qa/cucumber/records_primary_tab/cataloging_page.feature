@@ -1,4 +1,4 @@
-# Created by xxx on mo/day/2015
+# Created by Regina Xu on 11/17/2015
 
 @recordsprimarytab
 Feature: Cataloging Page Test Plan
