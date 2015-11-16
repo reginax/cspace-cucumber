@@ -16,7 +16,6 @@ public class Pages {
 
         pageUrls.put("My CollectionSpace","myCollectionSpace.html");
         pageLoadedSelector.put("My CollectionSpace","csc-myCollectionSpace-categoryHeader");
-
     }
 
 
