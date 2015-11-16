@@ -72,13 +72,13 @@ Feature: Loan In Page Testing
     Given user is on the "Find and Edit" page
     And selects "Loan In" from the top nav search record type select field
     And clicks on the top nav search submit button
-    And selects Loan In **** #fix
-    And user clears all fields of the "****" record
-    And user enters "****" in the "Loan In Number" field
+    And selects Loan In "xxx" #fix
+    And user clears all fields of the "xxx" record
+    And user enters "xxx" in the "Loan In Number" field
     And user clicks on the Save button
     Then #a success message from save should appear
-    And the titlebar should contain "****"
-    And all fields of the "****" record should be empty
+    And the titlebar should contain "xxx"
+    And all fields of the "xxx" record should be empty
     When user clears the "Loan In Number" field
     And user clicks on the Save button
     Then the error message bar should appear with "Please specify an Loan In Number"
