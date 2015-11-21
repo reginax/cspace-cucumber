@@ -1,5 +1,5 @@
 # Created by Regina Xu on 11/17/2015
-
+# Updated on 11/21
 @recordsprimarytab
 Feature: Cataloging Page Test Plan
 
@@ -82,7 +82,7 @@ Scenario: Structured Date
 Scenario: Removing values from all fields
     # if you have not done Scenario 5: open or create a Cataloging record with all fields filled in and save it
     When user removes the values from all the fields in the formula, except the Identification number
-    And click on the "Save" button
+    And clicks on the "Save" button
     Then a success message from save should appear
     Then the header above the tabs should show only identification number and no title for object record
     Then the "Terms Used" area in the right sidebar should be empty.
@@ -107,41 +107,30 @@ Scenario: Deletion of Record
     And clicks on the "close" button
     Then Dialog should be dismissed
     Then no other changes should occur
-    And click on the "delete" button
+    And clicks on the "delete" button
     And in the appearing dialog, click "Delete"
     Then user should be redirected to the "Find and Edit" page
     When using the top right search area, select "Object" from the drop down and enter the identification number of the deleted record
     Then the Object should not be found.
-
-Actions:
-    Create a new cataloging record and fill in at least the identification number
-    Take note of the identification number of the record
-    Save the record
-    Add a related Loan In record
-    Save
-    Click the "Delete" button in the very bottom of the object record
-Expected:
-    A dialog should appear asking you to delete this record and its relationships
-Actions:
-    click cancel.
-Expected
-    Dialog should be dismissed
-    no other changes should occur.
-Actions:
-    Click the delete button again
-Actions:
-    click the close symbol
-Expected
-    Dialog should be dismissed
-    no other changes should occur.
-    And click on the "delete" button
-    In the appearing dialog, click Delete
-Expected:
-    You should be redirected to the Find and Edit page
-Actions:
-    Using the top right search area, select Object from the drop down and enter the identification number of the deleted record
-Expected:
-    The Object should not be found.
+    When user creates a new cataloging record and fill in at least the identification number
+    And take note of the identification number of the record
+    And clicks on the "Save" button
+    And clicks on the "Add" button # + a related Loan In record
+    And clicks on the "Save" button
+    And clicks on the "Delete" button 
+    Then a dialog should appear asking you to delete this record and its relationships
+    And clicks on the "Cancel" button
+    Then the "Dialog" should be dismissed
+    Then no other changes should occur.
+    And clicks on the "delete" button
+    And clicks on the "Close" button
+    Then "Dialog" should be dismissed
+    Then no other changes should occur.
+    And clicks on the "delete" button
+    Then user is redirected to the Find and Edit page
+    And selects Object from the drop down
+    And enters the identification number of the deleted record 
+    Then Object should not be found.
 
 Scenario 11: Fold/Unfolding boxes
 
@@ -201,15 +190,12 @@ Actions:
 Expected:
     A message should be displayed in the bottom of the screen saying "Please save the record you are creating before trying to relate other records to it"
 
-Keyboard Navigation:
-Scenario: All fields available via the keyboard
 
-Actions:
-    Use tab through the entire formula
-Expected:
-    Each of the fields should be reachable
-    The two save buttons, as well as Cancel button, should be reachable
-    The folding functionality should be usable (tab to it and hit space)
+Scenario: Keyboard Navigation - all fields available via the keyboard
+    When user uses tab through the entire formula
+    Then each of the fields should be reachable
+    Then two save buttons, as well as Cancel button, should be reachable
+    Then the folding functionality should be usable (tab to it and hit space)
 
 Scenario: Vocabulary Fields usable via keyboard only
 Go to a name authority field (e.g. Object Description Information->Content->Person)
