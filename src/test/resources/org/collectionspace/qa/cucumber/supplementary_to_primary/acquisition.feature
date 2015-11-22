@@ -21,7 +21,7 @@ Feature: Supplementary Manual QA - Acquisition
     And clicks on the "Create" button
     Then the titlebar should contain "Local Places"
     And enters "New York" in the "Place" "Display Name" field
-    And saves the record
+    And the user saves the record
     Then the record is successfully saved
     Then "New York" should be in the "Place" "Display Name" field
     Then the titlebar should contain "Local Places"
@@ -66,7 +66,7 @@ Feature: Supplementary Manual QA - Acquisition
 
   Scenario: Vocabulary pivoting
     When user adds "test" to the "authority" field
-    And saves the record
+    And the user saves the record
     Then the record is successfully saved
     Then both top and bottom "cancel" buttons should be "disabled"
     Then both top and bottom "Delete" buttons should be "enabled"
