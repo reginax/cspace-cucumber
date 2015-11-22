@@ -1,7 +1,7 @@
-#created by Alan Kwok at 11/6/2015
-#needs to be completed
+# Created by Alan Kwok on 11/6/2015
+# needs to be completed
 
-@intake
+@recordsprimarytab
 Feature: Intake Page Testing
 
   Scenario: Error on no Intake Entry Number
