@@ -366,5 +366,10 @@ public class StepDefs {
         driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
         wait.until(textToBePresentInElementLocated(By.className("header-name"), "Find and Edit"));
     }
-}
 
+    @Then("^the message \"([^\"]*)\" should be displayed$")
+    public void message_should_be_displayed(String message) throws Throwable {
+        WebElement element = wait.until(presenceOfElementLocated(By.className("content")));
+        assertTrue(element.getText().equals(message));
+    }
+}
