@@ -366,5 +366,16 @@ public class StepDefs {
         driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
         wait.until(textToBePresentInElementLocated(By.className("header-name"), "Find and Edit"));
     }
-}
 
+    @Then("^the message \"([^\"]*)\" should be displayed$")
+    public void message_should_be_displayed(String message) throws Throwable {
+        WebElement element = wait.until(presenceOfElementLocated(By.className("content")));
+        assertTrue(element.getText().equals(message));
+    }
+
+    @And("^user selects the \"([^\"]*)\" tab$")
+    public void user_selects_tab(String tab) throws Throwable {
+        String xpath = "//li[@class='csc-tabs-tab-link cs-tabs-tab-link']/span[text()='" + tab + "']";
+        driver.findElement(By.xpath(xpath)).click();
+    } 
+}
