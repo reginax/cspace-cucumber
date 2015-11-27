@@ -185,7 +185,85 @@ Feature: Search Results and Pagination
 
   Scenario: Search for a user
       Given user is on the "Administration" page
-          And user clicks the
+  # No Stepdef
+          And user clicks the "+ User" button
+          And user enters "Mary Poppins" in the "Full Name" field
+          And user enters "fakeemail@fakeaddress.com" in the "Email Address" field
+          And user enters "12341234" in the "Password" field
+          And user enters "12341234" in the "Confirm Password" field
+          And user clicks on the Save button
+          And user enters "Mary Poppins" in the "find" field
+  # No Stepdef
+          And user clicks the "Find User" button
+  # Find user not exactly a search, so may not be right stepdef
+      Then the search results should contain "Mary Poppins"
+          And user clicks the "Show All Users" button
+  # No Stepdef for all users
+      Then the search results should contain all users
+      Then close the browser
+
+  Scenario: Boolean Keyword Search
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "King size bed q" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11262015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "King size bed qa" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11272015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "King size bed qwa" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11282015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "Queen size bed q" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11292015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "Queen size bed qa" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11302015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "Create New" page
+          And selects the "Loan out" radio button on the Create New page
+          And clicks on the create button
+          And enters "Queen size bed qwa" in the "Loan Out" "Loan Out Conditions" field
+          And enters "11312015" in the "Loan Out" "Loan Out Number" field
+          And the user saves the record
+      Given user is on the "My CollectionSpace" page
+          And user enters "queen and bed" in the top nav search field
+          And selects "loan out" from the top nav search record type select field
+          And clicks on the top nav search submit button
+      Then the search results should contain "11292015"
+      Then the search results should contain "11302015"
+      Then the search results should contain "11312015"
+      Given user is on the "My CollectionSpace" page
+          And user enters "king and bed not queen" in the top nav search field
+          And selects "loan out" from the top nav search record type select field
+          And clicks on the top nav search submit button
+      Then the search results should contain "11262015"
+      Then the search results should contain "11272015"
+      Then the search results should contain "11282015"
+      Given user is on the "My CollectionSpace" page
+          And user enters "king or queen" in the top nav search field
+          And selects "loan out" from the top nav search record type select field
+          And clicks on the top nav search submit button
+      Then the search results should contain "11292015"
+      Then the search results should contain "11302015"
+      Then the search results should contain "11312015"
+      Then the search results should contain "11262015"
+      Then the search results should contain "11272015"
+      Then the search results should contain "11282015"
+      Then close the browser
 
 
 
@@ -196,11 +274,6 @@ Feature: Search Results and Pagination
 
 
 
-
-
-
-
-      "
 
 
 
