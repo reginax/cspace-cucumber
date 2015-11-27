@@ -133,34 +133,79 @@ Feature: Structured Objects- QA Test Plan
 	###################
 	##### BEGIN 2A#####
 	###################
+	Scenario: User searches for a "family" member and makes sure hierarchy is correct
+		Given user is on the "Create New" page
+		And selects the "Cataloging" radio button on the Create New page
+		And clicks on the "Create" button
+		And enters "00002012.12.1a" in the "Identification Number" field
 
-	###################
-	##### BEGIN 2B#####
-	###################
+		And enters "2012.12.1a.2b" in the "Object component" field
+		And user selects "2012.12.1a.2b" from dropdown # needs stepdef
+		Then a dialog containing the message "Warning: null currently has broader term 2012.12.1a.2. Change broader term?" should be displayed
 
-	###################
-	##### BEGIN 2C#####
-	###################
+	## 2B
+		And user clicks the "No" button
+		Then the dialogue should be dismissed
+		Then the "Object component" field should contain "" # this means nothing. # might not work
 
-	###################
-	##### BEGIN 2D#####
-	###################
+	## 2c
+		And enters "2012.12.1a.2b" in the "Object component" field
+		And user selects "2012.12.1a.2b" from dropdown # needs stepdef
+		Then a dialog containing the message "Warning: null currently has broader term 2012.12.1a.2. Change broader term?" should be displayed
+		And user clicks the "Close" button # symbol == button?
+		Then the dialogue should be dismissed
+		Then the "Object component" field should contain "" # this means nothing #might not work
 
-	###################
-	##### BEGIN 2E#####
-	###################
-	
-	###################
-	##### BEGIN 2F#####
-	###################
+	## 2d
+		And enters "2012.12.1a.2b" in the "Object component" field
+		And user selects "2012.12.1a.2b" from dropdown # needs stepdef
+		Then a dialog containing the message "Warning: null currently has broader term 2012.12.1a.2. Change broader term?" should be displayed
 
-	###################
-	##### BEGIN 2G#####
-	###################
+		And user clicks the "Yes" button # symbol == button?
+		And the user saves the record
 
-	###################
-	##### BEGIN 2H#####
-	###################
+		Then the "Object component" field should contain "012.12.1a.2b" 
+		And user goes to the record with Identification Number "012.12.1a.2b" # needs step def
+		Then the "Broader object" field should contain "00002012.12.1a" 
+
+	# 2e
+		And user goes to the record with Identification Number "00002012.12.1a" # needs step def
+		And user clicks on the delete button
+		Then a dialog containing the message "This Cataloging record can not be removed. It has a Narrower Context." should be displayed #stepdef AF
+
+	#2g
+		And user clicks the plus to repeat the "Object component" form #needs stepdef ??
+		And enters "2012.12.1a.2b.0000" in the "Object component" field 
+ 		And clicks on the "Create new" button # might not be specific enough
+		And the user saves the record
+		And user clicks on the delete button
+		Then a dialog containing the message "This Cataloging record can not be removed. It has a Narrower Context." should be displayed #stepdef AF
+
+	# 2h
+		And user clicks the "Delete"  button in the "Object component" field in the row containing "2012.12.1a.2b.0000" 
+		And user clicks the "Delete"  button in the "Object component" field in the row containing "2012.12.1a.2b" 
+		And user clicks on the delete button
+		Then a delete confirmation dialogue should appear #needs Step
+    	And the user clicks the delete button 
+		Then the deletion should be confirmed in a dialogue
+
+		Given the user is on the "My CollectionSpace" page
+		And user enters "00002012.12.1a" in the top nav search field
+		And clicks on the top nav search submit button
+		Then the search results should not contain "00002012.12.1a"
+		Then close the browser
+
+	# TO DO:
+		# DELETE 
+		# 2012.12.1
+		# 2012.12.1a
+		# 2012.12.1a.1
+		# 2012.12.1a.1a
+		# 2012.12.1a.1b
+		# 2012.12.1a.2
+		# 2012.12.1a.2a
+		# 2012.12.1a.2b
+		# 2012.12.1a.2c
 
 	###################
 	##### BEGIN 3 #####
