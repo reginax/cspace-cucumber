@@ -1,10 +1,4 @@
-
-
-
-
-
-
-
+# Created by fy at ___?
 @functionality
 
 Feature: Search Results and Pagination
@@ -477,7 +471,7 @@ Feature: Search Results and Pagination
         And user enters "Remember Me" in the "Cataloging" "Identification Number" field
         And the user saves the record
       Then the record is successfully saved
-  # i think this is a stepdef
+  # i think this is (not) stepdef
         And selects the "Acquisition" tab
   # not a step def
         And clicks "add record"
