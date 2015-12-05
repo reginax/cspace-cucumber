@@ -196,25 +196,150 @@ Feature: Structured Objects- QA Test Plan
 		Then close the browser
 
 	# TO DO:
-		# DELETE 
-		# 2012.12.1
-		# 2012.12.1a
-		# 2012.12.1a.1
-		# 2012.12.1a.1a
-		# 2012.12.1a.1b
-		# 2012.12.1a.2
-		# 2012.12.1a.2a
-		# 2012.12.1a.2b
-		# 2012.12.1a.2c
+	Scenario: The user deletes all the previously made records
+		Given user is on the "Create New" page
+		And user goes to the record with Identification Number "012.12.1" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.1" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.1a" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.1b" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.2" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.2a" # needs step def
+		And the user clicks the delete button
+    	Then a delete confirmation dialogue should appear #needs Stepdef
+    	And the user clicks the delete button 
+    	Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.2b" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.2c" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+		And user goes to the record with Identification Number "2012.12.1a.2b.0000" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+
+	    And user goes to the record with Identification Number "00002012.12.1a" # needs step def
+		And the user clicks the delete button
+	    Then a delete confirmation dialogue should appear #needs Stepdef
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue
+	    Then close the browser
+
 
 	###################
 	##### BEGIN 3 #####
 	###################
+	Scenario: User _____
+		Given user is on the "Create New" page
+		And selects the "Cataloging" radio button on the Create New page
+		And clicks on the "Create" button
+		And enters "2013.12.1a" in the "Identification Number" field
+		And enters "test" in the "Brief Description" field
+		And enters "2013.12.1" in the "Broader object" field
+		And clicks on the "Create new" button # might not be specific enough
+		And the user saves the record
+
+		And clicks on the "Add" button in the "Procedures" box # (to the right) needs stepdef
+		# And the user adds any related procedural record of any kind
+		And enters "2013.12.2" in the "Object component" field
+		And clicks on the "Create new" button
+		And the user saves the record
+		And clicks on the "Go To" button next to the "Broader Object" field #needs Stepdef, RETURN.
+
+		Then the "Identification Number" field should contain "2013.12.2"
+		# then the files should be the same. BUG????
+
+		And user goes to the record with Identification Number "2013.12.1" # needs step def
+		Then the "Identification Number" field should contain "2013.12.1"
+
+		# then the files should be the same. BUG???
+		Then close the browser
+
 
 	###################
 	##### BEGIN 4 #####
 	###################
+		Given user is on the "Create New" page
+		And user goes to the record with Identification Number "2013.12.1a" # needs step def
+		Then the "Identification Number" field should contain "2013.12.1a"
+		And enters "Test 4" in the "Comments" field
+
+		And enters "2013.12.1a.1" in the "Object component" field
+		# then a message will flash saying to not forget --> doesnt happen
+
+		And the user saves the record
+		And clicks on the "Go To" button next to the "Object component" field #needs Stepdef, RETURN.
+
+		Then the "Identification Number" field should contain "2013.12.1a.1"
+		# then te record should match 2013.12.a1 but with ID "2013.12.1a.1" and w/o related records
 
 	###################
 	##### BEGIN 15#####
 	###################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
