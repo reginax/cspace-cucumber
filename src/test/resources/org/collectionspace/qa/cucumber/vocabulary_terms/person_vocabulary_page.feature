@@ -291,16 +291,3 @@ Feature: Person Vocabulary Data Entry
       And user enters "Sally Foo" in the top nav search field
       And selects "Person" from the top nav search record type select field
       And clicks on the top nav search submit button
-
-
-
-
-
-
-
-
-
-
-
-
-
