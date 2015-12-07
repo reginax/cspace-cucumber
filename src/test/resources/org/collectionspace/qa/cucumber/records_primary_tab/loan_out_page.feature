@@ -94,9 +94,9 @@ Feature: Loan Out Page Testing
     And clicks on the Create button
     And user enters "deleteloanouttest123" in the "Loan Out Number" field
     And user clicks on the delete button
-    Then the delete button should not be clickable
+    Then the "delete" button should not be clickable
     When user clicks on the delete button
-    Then the delete button should not be clickable
+    Then the "delete" button should not be clickable
     When user clicks on the Save button
     Then the record is successfully saved
     When user clicks on the delete button

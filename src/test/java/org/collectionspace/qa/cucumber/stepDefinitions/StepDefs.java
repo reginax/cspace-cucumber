@@ -330,13 +330,6 @@ public class StepDefs {
 
     }
 
-    // @Then("^the delete button should not be clickable$")
-    // public void the_button_should_not_be_clickable() throws Throwable {
-    //     WebElement element = driver.findElement(By.className("deleteButton"));
-    //     wait.until(not(elementToBeClickable(element)));
-
-    // }
-
     @And("^user clicks on the delete button$")
     public void user_clicks_on_the_delete_button() throws Throwable {
         driver.findElement(By.className("deleteButton")).click();
