@@ -11,7 +11,7 @@ Feature: Supplementary Manual QA - Acquisition
     And user enters "2015.1.81" in the "Acquisition" "Acquisition Reference Number" field
     And the user saves the record
     Then the "cancel" button should not be clickable
-    Then the delete button should not be clickable
+    Then the "delete" button should not be clickable
     And user selects the "Acquisition" tab
     When user clicks the "Add" button on the "Used By / Cataloging" area to the right
     Then the message "Please save the record you are creating before trying to relate other records to it" should be displayed
