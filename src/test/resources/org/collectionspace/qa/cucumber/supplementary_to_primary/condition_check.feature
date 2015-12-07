@@ -1,8 +1,7 @@
-# Created by xxx on mo/day/2015
+# Created by Jennifer Lynn Be on 11/21/2015
 
 @supplementaryprimary
-Feature: #Enter feature name here
-  # Enter feature description here
+Feature: Supplementary Manual QA - Condition Check
 
-  Scenario: # Enter scenario name here
+  Scenario: User Observes New Record Behavior
     # Enter steps here
