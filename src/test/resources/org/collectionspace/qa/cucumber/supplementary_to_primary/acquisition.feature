@@ -1,73 +1,85 @@
 # Created by Regina Xu on 10/27/15
-# starting to match feature steps w/ stepDefs.java
+# Updated to match step defs; to do: testing
 
 @supplementaryprimary
 Feature: Supplementary Manual QA - Acquisition
   
   Scenario: User Observes New Record Behavior
     Given user is on the "Create New" page
-    And selects the "Acquisition" radio button on the Create New page
-    And clicks on the Create button
-    And user enters "2015.1.81" in the "Acquisition" "Acquisition Reference Number" field
-    And the user saves the record
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user clicks Select number pattern
+      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
+      And the user saves the record
     Then the "cancel" button should not be clickable
     Then the "delete" button should not be clickable
-    And user selects the "Acquisition" tab
-    When user clicks the "Add" button on the "Used By / Cataloging" area to the right
+    When user clicks the "add" button on the "Cataloging" area to the right
     Then the message "Please save the record you are creating before trying to relate other records to it" should be displayed
-    When user clicks the "Add" button on the "Used By / Procedures" area to the right
+    When user clicks the "add" button on the "Procedures" area to the right
     Then the message "Please save the record you are creating before trying to relate other records to it" should be displayed
+    Then close the browser
 
   Scenario: User Chooses a Number
-    And selects the "Place" radio button on the Create New page
+    Given user is on the "Create New" page
+      And selects the "Place" radio button on the Create New page
     Then a drop down list should appear in the "Place" row
     Then the list in the "Place" row should contain "Local Places, Thesaurus of Geographic Names (TGN)"
-    And clicks on the "Create" button
+      And clicks on the Create button
     Then the titlebar should contain "Local Places"
-    And enters "New York" in the "Place" "Display Name" field
-    And the user saves the record
+      And enters "New York" in the "Place" "Display Name" field
+      And the user saves the record
     Then the record is successfully saved
     Then "New York" should be in the "Place" "Display Name" field
     Then the titlebar should contain "Local Places"
     Then close the browser
 
   Scenario: User Records Title
-    And writes "testing" in the "Acquisition Source" field
-    And clicks on the "add" button
-    Then the "Acquisition Reference Number" and "Acquisition Source" should now be displayed above the tabs
-    When user adds another field "sample" to the "Acquisition Source"
-    And sets this new field as "primary"
-    Then the title should now reflect the new primary "Acquisition Source"
-    When user writes "test" in the "Owner" field 
-    And clicks on the "add" button
-    Then the title should still display the "Reference Number" and "Source"
-    When user deletes all the values from the "Acquisition Source" field
-    Then the title should now contain the value of the "Owner" field instead of "Source" field 
-
-  Scenario: Behavior after save
-    # fill out all required fields
-    And clicks on the "save" button
-    And "disables" top and bottom "cancel" buttons
-    And "enables" top and bottom "Delete" buttons
-    Then "timestamp" appears to the right of the top "save" button
-
-  Scenario: Fold/Unfolding boxes
     Given user is on the "Create New" page
-    And click the "fold" symbol
-    Then the boxed area should fold and symbol should change to folded
-    And click the "unfold" symbol
-    Then the boxed area should unfold and symbol should change to unfolded
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user clicks Select number pattern
+      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
+      And user enters "testing" in the "Acquisition" "Acquisition Source" field
+      And user selects "Local Organizations" from dropdown in "Acquisition Source" row
+      And the user saves the record
+    Then the record is successfully saved
+    Then the titlebar should contain "2015.1.89"
+    Then the titlebar should contain "testing"
+      And user enters "sample" in the "Acquisition" "Acquisition Source" field
+      And user selects "Local Organizations" from dropdown in "Acquisition Source" row
+    Then the titlebar should contain "sample"
+      And user enters "test" in the "Acquisition" "Owner" field
+      And user selects "bobby test" from dropdown in "Owner" row
+    Then the titlebar should contain "2015.1.89"
+    Then the titlebar should contain "sample"
 
   Scenario: Docking Title Bar
     # fill out all required fields
-    And clicks on the "save" button
-    And "disables" top and bottom "cancel" buttons
-    And "enables" top and bottom "Delete" buttons
-    Then "timestamp" appears to the right of the top "save" button
+    Given user is on the "Create New" page
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user clicks Select number pattern
+      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
+      And the user saves the record
+    Then disables top and bottom "cancel" buttons
+    Then enables top and bottom "deleteButton" buttons
+    Then "GMT-0800 (PST)" should be displayed in the message bar
+
+  Scenario: Folding and Unfolding boxes
+    Given user is on the "Create New" page
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user clicks on the "Fold" symbol next to "Acquisition Information"
+    Then the "Object Collection Information" section should fold
+      And the "Fold" symbol next to "Object Collection Information" should be a folded symbol
+    When user clicks on the "Fold" symbol next to "Acquisition Information"
+    Then the "Object Collection Information" section should unfold
+      And the "Fold" symbol next to "Object Collection Information" should be a unfolded symbol
+      And close the browser
 
   Scenario: Vocabulary pivoting
     When user adds "test" to the "authority" field
-    And the user saves the record
+      And the user saves the record
     Then the record is successfully saved
     Then the cancel button should not be clickable
     Then both top and bottom "Delete" buttons should be "enabled"
