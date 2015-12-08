@@ -107,7 +107,7 @@ public class StepDefs {
         String selector = record.getFieldSelectorByLabel(fieldName);
         fillVocabFieldLocatedByID(selector, value, driver);
     }
-
+    
     @And("^the user saves the record$")
     public void the_user_saves_the_record() throws Throwable {
         driver.findElement(By.id("save")).click();
@@ -215,6 +215,14 @@ public class StepDefs {
             assertFalse(autocomplete.findElements(By.xpath(xpath)).isEmpty());
         }
     }
+
+    @When("^user clicks the \"([^\"]*)\" button on the \"([^\"]*)\" area to the right$")
+    public void user_clicks_on_button_on_right(String button, String category) throws Throwable {
+        String xpath = "//div[@class='csc-right-sidebar']//td/a[contains(text(), '" + button +"')]";
+        if (category == "procedures")
+            xpath = "//div[@class='csc-right-sidebar']//td/a[contains(text(), '" + button + "-2')]";
+        driver.findElement(By.xpath(xpath)).click();
+    } 
 
     @And("^user fills in required fields for \"([^\"]*)\" record$")
     public void user_fills_in_required_fields_for_record(String recordType) throws Throwable {
@@ -327,7 +335,24 @@ public class StepDefs {
     public void the_button_should_not_be_clickable(String button) throws Throwable {
         WebElement element = driver.findElement(By.className(button + "Button"));
         wait.until(not(elementToBeClickable(element)));
+    }
 
+    @Then("^disables top and bottom \"([^\"]*)\" buttons$") 
+    public void top_bottom_buttons_should_not_be_clickable(String button) throws Throwable {
+        String xpath = "//input[@type='button'][@id='" + button + "']";
+        WebElement element = driver.findElement(By.xpath(xpath));
+        wait.until(not(elementToBeClickable(element)));
+        element = driver.findElement(By.xpath("//input[@type='button'][@id='" + button + "-1']"));
+        wait.until(not(elementToBeClickable(element)));
+    }
+
+    @Then("^enables top and bottom \"([^\"]*)\" buttons$") 
+    public void top_bottom_buttons_should_be_clickable(String button) throws Throwable {
+        String xpath = "//input[@type='button'][@id='" + button + "']";
+        WebElement element = driver.findElement(By.xpath(xpath));
+        wait.until(elementToBeClickable(element));
+        element = driver.findElement(By.xpath("//input[@type='button'][@id='" + button + "-1']"));
+        wait.until(elementToBeClickable(element));
     }
 
     @And("^user clicks on the delete button$")
@@ -373,9 +398,21 @@ public class StepDefs {
         assertTrue(element.getText().equals(message));
     }
 
+    @And("^user clicks Select number pattern$")
+    public void user_clicks_given_button() throws Throwable {
+        driver.findElement(By.className("csc-numberPatternChooser-button")).click();
+    }
+
     @And("^user selects the \"([^\"]*)\" tab$")
     public void user_selects_tab(String tab) throws Throwable {
         String xpath = "//li[@class='csc-tabs-tab-link cs-tabs-tab-link']/span[text()='" + tab + "']";
         driver.findElement(By.xpath(xpath)).click();
     } 
+
+    @Then("^\"([^\"]*)\" should be displayed in the message bar$")
+    public void content_should_be_displayed_in_message_bar(String message) throws Throwable {
+        WebElement element = wait.until(presenceOfElementLocated(By.className("csc-messageBar cs-messageBar")));
+        assertTrue(element.getText().equals(message));
+    }
+
 }

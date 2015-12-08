@@ -5,7 +5,7 @@ Feature: Cataloging Page Test Plan
 
 Scenario: Identification number
     Given user creates a new Cataloging record
-    And the user saves the record
+      And the user saves the record
     Then the message "Please specify an Identification Number" should be displayed in the bottom message bar
     When user clicks "Select number pattern" and select one of the patterns from the drop down
     Then the number pattern should be displayed in the identification number field, with the proper values
@@ -14,11 +14,11 @@ Scenario: Identification number
 
 Scenario: Correct Display of header on new
     When user enters "test" in the "Object Identification Information, Object Name, Object Name" field
-    And the user saves the record
+      And the user saves the record
     Then the identification number should now be displayed above the tabs
     Then the object name should be displayed following the identification number
     When user enters something in the "Object Identification Information, Title, Title" field
-    And the user saves the record
+      And the user saves the record
     Then the identification number should be displayed above the tabs
     Then the title should be displayed following the identification number
 
@@ -72,64 +72,64 @@ Expected:
 Scenario: Structured Date
     Given user creates a new Cataloging record
     When user enters an Identification number "xxx"
-    And user clicks inside the "Production Date" field
+      And user clicks inside the "Production Date" field
     # Fill in all fields
-    And the user saves the record
+      And the user saves the record
     Then "Display Date" should appear in the "Production Date" field
-    And user clicks inside the "Production Date" field
+      And user clicks inside the "Production Date" field
     Then all fields should display as entered
 
 Scenario: Removing values from all fields
     # if you have not done Scenario 5: open or create a Cataloging record with all fields filled in and save it
     When user removes the values from all the fields in the formula, except the Identification number
-    And the user saves the record
+      And the user saves the record
     Then a success message from save should appear
     Then the header above the tabs should show only identification number and no title for object record
     Then the "Terms Used" area in the right sidebar should be empty.
     All the fields should be saved as empty (check by browsing to the object record via find and edit)
     When user Deletes the Identification Number
-    And the user saves the record
+      And the user saves the record
     Then the message "Please specify an Identification Number" should be displayed above object formula
     Then Object should not be saved
 
 Scenario: Deletion of Record
     When user creates a new object record and fills in at least the identification number
     # Take note of the identification number of the record
-    And user clicks on the delete button 
+      And user clicks on the delete button 
     Then the delete button should be disabled and nothing should happen
     And the user saves the record
-    And user clicks on the delete button
+      And user clicks on the delete button
     Then a dialog should appear asking you to confirm deletion
-    And user clicks cancel button
+      And user clicks cancel button
     Then Dialog should be dismissed
     Then no other changes should occur
-    And user clicks on the delete button
-    And user clicks close button
+      And user clicks on the delete button
+      And user clicks close button
     Then Dialog should be dismissed
     Then no other changes should occur
-    And user clicks on the delete button
-    And user clicks on the delete button # in appearing catalog
+      And user clicks on the delete button
+      And user clicks on the delete button # in appearing catalog
     Then user should be redirected to the "Find and Edit" page
     When using the top right search area, select "Object" from the drop down and enter the identification number of the deleted record
     Then the Object should not be found.
     When user creates a new cataloging record and fill in at least the identification number
-    And take note of the identification number of the record
-    And the user saves the record
-    And user clicks on the "Add" button # + a related Loan In record
-    And the user saves the record
-    And user clicks on the "Delete" button 
+      And take note of the identification number of the record
+      And the user saves the record
+      And user clicks on the "Add" button # + a related Loan In record
+      And the user saves the record
+      And user clicks on the "Delete" button 
     Then a dialog should appear asking you to delete this record and its relationships
-    And user clicks on the "cancel button
+      And user clicks on the "cancel button
     Then the "Dialog" should be dismissed
     Then no other changes should occur.
-    And user clicks on the "delete" button
-    And cuser licks oclosebutton
+      And user clicks on the "delete" button
+      And cuser licks oclosebutton
     Then "Dialog" should be dismissed
     Then no other changes should occur.
-    And user clicks on the "delete" button
+      And user clicks on the "delete" button
     Then user is redirected to the Find and Edit page
-    And selects Object from the drop down
-    And enters the identification number of the deleted record 
+      And selects Object from the drop down
+      And enters the identification number of the deleted record 
     Then Object should not be found.
 
 Scenario 11: Fold/Unfolding boxes
@@ -156,7 +156,7 @@ Actions:
     Variation B: Click Cancel changes button at the bottom of the page
     Then Cancel changes button should be active
     Then "Record" should be reverted to before changes were made
-    And the user saves the record
+      And the user saves the record
     Variation A: After successful save, click the Cancel changes button at the top of the page
     Variation B: After successful save, click the Cancel changes button at the bottom of the page
 Expected:
