@@ -54,12 +54,12 @@ Feature: Permission Enforcement
       And user fills out required fields
       And user assigns an existing Role
       And user clicks on the Save button
-    Then then the User is saved successfully
+    Then then the User is successfully saved
     Then a confirmation message should appear
       And user clicks the recently created User
       And user assigns a different Role
       And user clicks on the Save button
-    Then the User is not saved successfully
+    Then the User is not successfully saved
     Then an error message containing "You do not have permission to edit user roles" should appear
 
   #Continued from above: Test8: Write access to Roles & Permissions
@@ -72,12 +72,12 @@ Feature: Permission Enforcement
       And user fills out required fields
       And user changes a Permission
       And user clicks on the Save button
-    Then the Role is saved successfully
+    Then the Role is successfully save
     Then a confirmation message should appear
       And user clicks the recently created Role
       And user changes a Role
       And user clicks on the Save button
-    Then the Role is not saved successfully
+    Then the Role is not successfully saved
     Then an error message containing "You do not have permission to edit roles" should appear
 
   #Continued from above: Test10: Write access to Term List Management
@@ -93,7 +93,7 @@ Feature: Permission Enforcement
       And user clicks the "+" button
       And user fills out required fields
       And user clicks on the Save button
-    Then the Termlist is saved successfully
+    Then the Termlist is successfully saved
     Then close the browser
 
   #Test11
@@ -104,7 +104,7 @@ Feature: Permission Enforcement
       And user clicks the "+ Role" button
       And user fills out required fields
       And user clicks on the Save button
-    Then the Role is saved successfully
+    Then the Role is successfully saved
       And user clicks the recently created Role
       And user clicks the "Delete" button
     Then the Role should be deleted
@@ -118,7 +118,7 @@ Feature: Permission Enforcement
       And user enters "test@collectionspace.org" in the "Confirm Password" field
       And user assigns an existing Role
       And user clicks on the Save button
-    Then the User is saved successfully
+    Then the User is successfully saved
       And user opens a different browser
     Given user is logged in as "test@collectionspace.org" with the password "test@collectionspace.org" on the second browser
       And user clicks the "test@collectionspace.org" user
