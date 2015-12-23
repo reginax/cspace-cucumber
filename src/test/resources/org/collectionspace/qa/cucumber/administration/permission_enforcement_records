@@ -1,0 +1,13 @@
+@administration
+#Created by Forest Yang on 12/22/2015
+Feature: Permission Enforcement
+
+  #There will probably not be sufficient stepdefs for this one for a long time...
+
+  #Test31
+  Scenario: Create New Page
+    Given user is logged in as "User I" 
+    Given user is on the "Create New" page
+    Then Radio button for Record Type A is not present
+    Then Radio button for Record Type B is not present
+    Then Radio button for Record Type C is present 
