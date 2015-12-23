@@ -1,6 +1,8 @@
 @administration
-@author FY
+#created by Forest Yang
 Feature: General Administration
+
+  #Crippling lack of stepdefs
 
   #Test1
   Scenario: Administration is available for administrative account
@@ -36,3 +38,15 @@ Feature: General Administration
       And user enters "12341234" in the "Password" field
       And user clicks the "Sign In" button
     Then the Adminstration tab should not appear
+
+  #Test 21
+  Scenario: Navigation to Administration tab possible with keys
+    Given user is on "My CollectionSpace" page
+      And user tabs to "Administration" tab
+      And user presses enter
+    Then the titlebar should contain "Administration"
+      And user presses spacebar
+    Then nothing should happen
+    Then the url should contain "collectionspace/ui/core/html/administration.html"
+
+
