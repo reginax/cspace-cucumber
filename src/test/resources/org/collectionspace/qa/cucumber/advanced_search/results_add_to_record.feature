@@ -4,6 +4,7 @@
 Feature: Advanced Search Results Add to Record
   # Enter feature description here
 
+  #Test 1
   Scenario: User creates a new group and adds related catalog records to it
   		Given user is on the "Create New" page
   		And selects the "Group" radio button on the Create New page
@@ -26,6 +27,7 @@ Feature: Advanced Search Results Add to Record
 		Then close the browser
 		# remember to delete groupCQA86
 
+  #Test 2
   Scenario: User searches for related group records
   	Given user is on the "My CollectionSpace" page
 	And user enters "groupCQA86" in the top nav search field
@@ -45,7 +47,7 @@ Feature: Advanced Search Results Add to Record
 	And enters "CQA" in the "query" field
 	And clicks on the "Search" button
 	And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
-    And the user presses the "Enter" key #needs Stepdef
+    And the user presses the "Enter" key #needs Stepdefg
     Then a pop up with the title "Add Search Results to Record" should appear
 
     And user goes to the record with Identification Number "groupCQA86" # needs step def
@@ -56,7 +58,8 @@ Feature: Advanced Search Results Add to Record
     Then close the browser
 
 
-
+  #Test 7
+  	# to do
 
 
 
