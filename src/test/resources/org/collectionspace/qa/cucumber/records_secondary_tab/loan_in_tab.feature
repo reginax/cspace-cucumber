@@ -1,7 +1,7 @@
 # Created by Cesar Villalobos on 12/27/2015
 
 @recordssecondarytab
-Feature: #Enter feature name here
+Feature: Loan In Tab 
   # Enter feature description here
 
 #UI Layer
@@ -125,8 +125,7 @@ Feature: #Enter feature name here
 	#Listing and consistency
 	Scenario: Test 21-->
 			# skip?
-	Scenario: Test 23-->
-	 Testing links and "Go To Record" works
+	Scenario: Test 23--> Testing links and "Go To Record" works
 		Given the user is in the "My CollectionSpace" page
 		And user goes to the record with identification number "04131995"
 		And user selects the "Loan In" tab
@@ -137,8 +136,7 @@ Feature: #Enter feature name here
 		Then the titlebar should contain "SOMETHINGx"
 	    Then close the browser
 
-	Scenario: Test 25-->
-	 Deleting relation via list
+	Scenario: Test 25--> Deleting relation via list
 	    Given the user is in the "My CollectionSpace" page
 	    And user goes to the record with identification number "SOMETHING"
 	    And user selects the "Loan In" tab 
@@ -180,8 +178,7 @@ Feature: #Enter feature name here
 		    # Then the deletion should be confirmed in a dialogue
 	    Then close the browser
 
-	Scenario: Test 27-->
-	 Deledting relation via record editor
+	Scenario: Test 27--> Deleting relation via record editor
 
 	    Given the user is in the "My CollectionSpace" page
 	    And user goes to the record with identification number "SOMETHING"
