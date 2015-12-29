@@ -5,8 +5,29 @@ Feature: Valuation Tab
   # Enter feature description here
 
   Scenario: Working Valuation Control Secondary Tab #1
+		Given the user is in the "My CollectionSpace" page
+		And user goes to the record with identification number "CQA116_NE"
+	    And user selects the "Valuation Control" tab
+	    # Then the Object Exit records should be listed in a table
+	    And user goes to the record with identification number "CQA116_E" #empty
+	    # If no related records exist, a "No related records yet" message should appear
+	    Then close the browser
 
   Scenario: Dismissing the dialog #3
+  		Given the user is in the "My CollectionSpace" page
+		And user goes to the record with identification number "CQA116_NE"
+
+		#Variation A
+		And the user clicks on the "Add record" button #needs step def
+	    # Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
+	    And the user clicks the "close" button 
+	    Then no changes to the record will occur #StepDefs
+
+	    #Variation B
+	    And the user clicks on the "Add record" button
+	  	# Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
+	    And the user presses the "ESC" key # Needs StepDef
+	    Then No changes to the record will occur #Needs stepDef
 
   Scenario: Searching and adding multiple Valuation Control records #5
 
