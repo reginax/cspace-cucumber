@@ -4,19 +4,43 @@
 Feature: #Enter feature name here
   # Enter feature description here
 
-  Scenario: Working Acquisition Secondary Tab
-  	Given user is on the "My CollectionSpace" page 
-    And user enters "04131995" in the top nav search field
-    And selects "Cataloging" from the top nav search record type select field
-    And clicks on the top nav search submit button
-    Then the search results should contain "04131995"
-    And the user clicks on result with text "04131995"
-    Then "04131995" should be in the "Identification Number" field
-    And user selects the "Acquisition" tab 
 
-    # Then related acq records should be listed in a table
-    # if none, then "no related records yet"
+    Scenario: Working Acquisition Secondary Tab #1 
 
-    # Begin test 3:
     
+    Scenario: Dismissing the dialog #3 
 
+    
+    Scenario: Searching and adding multiple Acquisition records #5 
+
+    
+    Scenario: Warning when navigating away from new Acquisition record #7 
+
+    
+    Scenario: Cancel changes button #9 
+
+    
+    Scenario: Create new from Used By/ Procedures area #10 
+
+    
+    Scenario: Check Acquisition Reference Number and successful save #11 
+
+    
+    Scenario: All fields saved on edited Acquisition record #13 
+
+    
+    Scenario: Listing displays correct fields #21 
+
+    
+    Scenario: Testing links and "Go To Record" works #23 
+
+    
+    Scenario: Deleting Relation via List #25 
+
+    
+    Scenario: Deleting Relation via record editor #27 
+
+    
+    Scenario: Testing Functional Accessibility #31 
+
+    
