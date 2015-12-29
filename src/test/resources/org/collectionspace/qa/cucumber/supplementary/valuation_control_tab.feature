@@ -1,4 +1,4 @@
-@records
+@secondary
 #created by Forest Yang on Christmas Day 2015
 Feature: Valuation Control Secondary Tab
 

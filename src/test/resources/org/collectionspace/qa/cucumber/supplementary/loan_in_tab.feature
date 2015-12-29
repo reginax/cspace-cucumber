@@ -1,4 +1,4 @@
-@records
+@secondary
 #created by Forest Yang on Christmas Day 2015
 Feature: Loan In Secondary Tab
 
@@ -19,7 +19,7 @@ Feature: Loan In Secondary Tab
     Then the "Delete Relation" button at the top of the page should not be clickable
     Then the "Delete Relation" button at the bottom of the page should not be clickable
       And user clicks the "Select number pattern" button
-      And user selects something from dropdown in "Loan In Reference Number" row
+      And user selects something from dropdown in "Loan In Number" row
     Then the "Cancel changes" button at the top of the page should be clickable
     Then the "Cancel changes" button at the bottom of the page should be clickable
     Then the "Delete Relation" button at the top of the page should be clickable

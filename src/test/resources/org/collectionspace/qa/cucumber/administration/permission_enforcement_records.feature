@@ -311,7 +311,6 @@ Feature: Permission Enforcement
     Then the record is succesfully saved
     Then the "Used Terms" list should not contain the vocabulary term
       And the user enters "Jam" in the deleted vocab field
-    Then the vocabulary autocomplete should not contain "Vocabulary A" terms
     Then the vocabulary autocomplete should contain the option to add a new term
       And user clicks on something from autocomplete options
       And the user saves the record
