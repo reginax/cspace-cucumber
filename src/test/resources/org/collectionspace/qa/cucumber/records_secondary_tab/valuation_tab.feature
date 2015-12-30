@@ -13,7 +13,7 @@ Feature: Valuation Tab
 	    # If no related records exist, a "No related records yet" message should appear
 	    Then close the browser
 
-  Scenario: Dismissing the dialog #3
+  Scenario: Dismissing the dialog #3 
   		Given the user is in the "My CollectionSpace" page
 		And user goes to the record with identification number "CQA116_NE"
 
@@ -240,7 +240,7 @@ Feature: Valuation Tab
 
 	Scenario: Testing Functional Accessibility #31
 	    Given the user is in the "My CollectionSpace" page
-	    And user goes to the record with identification number "CQA115_NE"
+	    And user goes to the record with identification number "CQA116_NE"
 	    And user selects the "Object Exit" tab 
 
 	    And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
