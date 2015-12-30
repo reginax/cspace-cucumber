@@ -25,8 +25,6 @@ Feature: Intake Tab
     Then the "Related Intake Records" area should be empty
 
 
-
-
   # Begin Test 3:
     And the user clicks on the "Add record" button #needs step def
     And the user clicks the "close" button 
@@ -51,7 +49,7 @@ Feature: Intake Tab
     Then "041319951.3" should appear in the "Related Intake Records" area 
     Then "041319951.2" should appear in the "Procedures" area 
     Then "041319951.3" should appear in the "Procedures" area
-    A
+    A ----- CONFLICT 
     nd the user clicks on result with text "041319951.2"
     Then an "Edit Intake Record" form should be displayed 
     Then the "Intake Entry Number" field should contain "041319951.2"
@@ -292,19 +290,20 @@ Feature: Intake Tab
     And clicks on the Create button
     And user enters "0413199527" in the "Intake Entry Number" field
     And the user saves the record
-    And the user clicks the result that contains "0413199527" in the "Entry Number" field
+    And the user clicks on result with text "0413199527"
+
     
     And the user clicks the "Delete this relation." button
     Then a delete confirmation dialogue should appear #needs Stepdef
     And user clicks cancel button 
     Then the dialog should be dismissed 
-    Then the "Related Intake Records" are should contain "0413199527"
+    Then the "Related Intake Records" area should contain "0413199527"
 
     And the user clicks the "Delete this relation." button
     Then a delete confirmation dialogue should appear #needs Stepdef
     And user clicks close button 
     Then the dialog should be dismissed 
-    Then the "Related Intake Records" are should contain "0413199527"
+    Then the "Related Intake Records" area should contain "0413199527"
 
     And the user clicks the "Delete this relation." button
     Then a delete confirmation dialogue should appear
