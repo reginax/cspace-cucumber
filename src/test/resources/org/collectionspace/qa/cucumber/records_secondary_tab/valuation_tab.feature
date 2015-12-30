@@ -97,7 +97,7 @@ Feature: Valuation Tab
  	Scenario: Cancel changes button #9
     	Given the user is in the "My CollectionSpace" page
 		And user goes to the record with identification number "CQA116_NE"
-		And user selects the "Exit Object" tab
+		And user selects the "Valuation Control" tab
 	    And the user clicks on the "Add record" button #needs step def
 	    And clicks on the "Create new" button
 
@@ -108,7 +108,7 @@ Feature: Valuation Tab
 	    Then the "cancel changes" button at the top of the page should be clickable
 	    And the user clicks the "cancel changes" button at the top of the page 
 	    Then the "SOMETHING FIELD" should be empty # makes sure it reverted
-	    # Enter a Exit Object number
+	    # Enter a Valuation Control number
 	    # Click the save Button
 	    # After a successful save, click the cancel changes button at the bottom/top of the page
 	    Then the "cancel changes" button should not be clickable 
@@ -121,7 +121,7 @@ Feature: Valuation Tab
 	    Then the "cancel changes" button at the bottom of the page should be clickable
 	   	Then the "SOMETHING FIELD" should be empty # makes sure it reverted
 	    # Then the related record should be reverted to before changes were made
-	    # Enter a Exit Object number
+	    # Enter a Valuation Control number
 	    # Click the save Button
 	    # After a successful save, click the cancel changes button at the bottom/top of the page
 	    Then the "cancel changes" button should not be clickable 
@@ -139,11 +139,11 @@ Feature: Valuation Tab
 	Scenario: Testing links and "Go To Record" works #23
 		Given the user is in the "My CollectionSpace" page
 		And user goes to the record with identification number "CQA116_NE"
-		And user selects the "Exit Object" tab
+		And user selects the "Valuation Control" tab
 	    Then "SOMETHINGx" should appear in the "Related Intake Records" area  #needs Stepdef
 	    And the user clicks on result with text "SOMETHINGx"
 	    Then "SOMETHINGx" should be in the "Identification Number" field   #needs Stepdef
-		And the user clicks the "Go To Record" button #above the Exit Object form
+		And the user clicks the "Go To Record" button #above the Valuation Control form
 		Then the titlebar should contain "SOMETHINGx" 
 		# everything else must be intact too
 	    Then close the browser
@@ -241,7 +241,7 @@ Feature: Valuation Tab
 	Scenario: Testing Functional Accessibility #31
 	    Given the user is in the "My CollectionSpace" page
 	    And user goes to the record with identification number "CQA115_NE"
-	    And user selects the "Object Exit" tab 
+	    And user selects the "Valuation Control" tab 
 
 	    And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
 	    And the user presses the "Enter" key #needs Stepdef
