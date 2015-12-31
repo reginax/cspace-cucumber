@@ -22,11 +22,11 @@ Feature: Loan In Tab
 		And the user clicks on the "Add record" button #needs step def
 	    # Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
 	    And the user clicks the "close" button 
-	    Then the "Related Loan In Records" area should only contain
+	    Then the "Related Loan In Records" area should only contain "CQA111.1"
 
 	    And the user clicks on the "Add record" button
 	    And the user presses the "ESC" key # Needs StepDef
-	    Then the "Related Loan In Records" area should only contain
+	    Then the "Related Loan In Records" area should only contain "CQA111.1"
 	
 	Scenario: Test 5-> Searching and ading multiple Loan In records. Continued from Test 3
 		And the user clicks on the "Add record" button #NeedsStepDef
@@ -59,14 +59,15 @@ Feature: Loan In Tab
 	    Then a delete confirmation dialogue should appear
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue
-	    Then "041319951.3" should not appear in the "Related Loan In Records" area 
+	    Then "CQA111.3" should not appear in the "Related Loan In Records" area 
 
-	    And the user clicks on result with text "041319951.2"
+	    And the user clicks on result with text "CQA111.2"
 	    And the user clicks the "Delete this relation." button
 	    Then a delete confirmation dialogue should appear 
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue
-	    Then "041319951.2" should not appear in the "Related Loan In Records" area 
+	    Then "CQA111.2" should not appear in the "Related Loan In Records" area 
+
 	    Then close the browser
 
 	Scenario: Test 7--> Warning when navigating away from new Loan In record
