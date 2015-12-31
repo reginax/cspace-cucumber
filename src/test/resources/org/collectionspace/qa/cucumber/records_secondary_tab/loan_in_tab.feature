@@ -7,25 +7,26 @@ Feature: Loan In Tab
 #UI Layer
 	Scenario: Test 1
 	    Given user is on the "My CollectionSpace" page 
+	   	
+	   	And user goes to the record with identification number "CQA111_E"
+	    And user selects the "Loan In" tab 
+	    Then the "Related Loan In Records" area should be empty
+
 	    And user goes to the record with identification number "CQA111_NE"
 	    And user selects the "Loan In" tab 
 	    Then "CQA111.1" should appear in the "Related Loan In Records" area
 
-	    And user goes to the record with identification number "CQA111_E"
-	    And user selects the "Loan In" tab 
-	    Then the "Related Loan In Records" area should be empty
 
 
 	Scenario: Test 3 -> Continued from Test 1
 		And the user clicks on the "Add record" button #needs step def
 	    # Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
 	    And the user clicks the "close" button 
-	    Then no changes to the record will occur #StepDefs
+	    Then the "Related Loan In Records" area should only contain
 
 	    And the user clicks on the "Add record" button
-	  # Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
 	    And the user presses the "ESC" key # Needs StepDef
-	    Then No changes to the record will occur #Needs stepDef
+	    Then the "Related Loan In Records" area should only contain
 	
 	Scenario: Test 5-> Searching and ading multiple Loan In records. Continued from Test 3
 		And the user clicks on the "Add record" button #NeedsStepDef
@@ -66,7 +67,7 @@ Feature: Loan In Tab
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue
 	    Then "041319951.2" should not appear in the "Related Loan In Records" area 
-
+	    Then close the browser
 
 	Scenario: Test 7--> Warning when navigating away from new Loan In record
 	    Given the user is in the "My CollectionSpace" page
@@ -215,7 +216,6 @@ Feature: Loan In Tab
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue
 	    Then close the browser
-
 
 	 
 
