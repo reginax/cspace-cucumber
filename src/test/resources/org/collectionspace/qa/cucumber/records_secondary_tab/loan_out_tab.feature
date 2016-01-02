@@ -44,8 +44,8 @@ Feature: Loan Out Tab
 
 	    #Expected, Group #1
 	    Then the dialog should be dismissed 
-	    Then "CQA112.3" should appear in the "Related Records" area
-	    Then "CQA112.2" should appear in the "Related Records" area 
+	    Then "CQA112.3" should appear in the "Related Loan Out Records" area
+	    Then "CQA112.2" should appear in the "Related Loan Out Records" area 
 	    Then "CQA112.3" should appear in the "Procedures" area 
 	    Then "CQA112.2" should appear in the "Procedures" area 
 
