@@ -5,243 +5,250 @@ Feature: #Enter feature name here
   # Enter feature description here
 
 	Scenario: Working cataloging tab #1 
-		Given the user is in the "My CollectionSpace" page
-		And user goes to the record with identification number "CQA99_NE"
-	    And user selects the "Cataloging" tab
-	    # Then the Cataloging records should be listed in a table
-	    And user goes to the record with identification number "CQA99_E" #empty
-	    # If no related records exist, a "No related records yet" message should appear
-	    Then close the browser
+        Given the user is in the "My CollectionSpace" page
+       
+        And user goes to the record with identification number "CQA99_E" #not empty
+        And user selects the "Cataloging" tab     
+        Then the "Related Cataloging Records" area should be empty
+       
+        And user goes to the record with identification number "CQA99_NE"
+        And user selects the "Cataloging" tab
+        Then "CQA99.1" should appear in the "Related Cataloging Records" area
+        Then close the browser
 
 	Scenario: Dismissing the dialog #3 
-		Given the user is in the "My CollectionSpace" page
-		And user goes to the record with identification number "CQA99_NE"
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
 
-		#Variation A
-		And the user clicks on the "Add record" button
-		# Then a pop up window will appear with the option to add a relationship to an existing record or create a new record
-		And the user clicks the "close" button
-		Then no changes to the record will occur
+        #Variation A
+        And the user clicks on the "Add record" button 
+        And the user clicks the "close" button 
+        Then the "Related Cataloging Records" area should only contain "CQA99.1"
 
-		#Variation B
-		And the user clicks on the "Add record" button
-	  	# Then  a pop-up window will appear with the option to add a relationship to an existing record or create a new record
-	  	And the user presses the "ESC" key 
-	  	Then no changes to the record will occur
+        #Variation B
+        And the user clicks on the "Add record" button
+        And the user presses the "ESC" key 
+        Then the "Related Cataloging Records" area should only contain "CQA99.1"
 
 
 	Scenario: Searching and adding multiple cataloging records #5 
-  		And the user clicks on the "Add record" button #NeedsStepDef
-	    And the user clicks the "search" button #needs StepDef maybe? 
-	    Then the search results should contain "CQA99.1" 
-	    Then the search results should contain "CQA99.2" 
+        And the user clicks on the "Add record" button 
+        And the user clicks the "search" button 
+        Then the search results should contain "CQA99.3" 
+        Then the search results should contain "CQA99.2" 
 
-	    And the user selects the box with result "CQA99.1" 
-	    And the user selects the box with result "CQA99.2"  
-	    And the user clicks the "Add to current record" button #needs Step def #7
+        And the user selects the box with result "CQA99.3" 
+        And the user selects the box with result "CQA99.2"  
+        And the user clicks the "Add to current record" button #needs Step def #7
 
-	    #Expected, Group #1
-	    Then the dialog should be dismissed 
-	    Then "CQA99.1" should appear in the "Related Records" area  #needs Stepdef
-	    Then "CQA99.2" should appear in the "Related Records" area  #needs Stepdef
-	    Then "CQA99.1" should appear in the "Procedures" area  #needs Stepdef
-	    Then "CQA99.2" should appear in the "Procedures" area  #needs Stepdef
+        #Expected, Group #1
+        Then the dialog should be dismissed 
+        Then "CQA99.3" should appear in the "Related Cataloging Records" area
+        Then "CQA99.2" should appear in the "Related Cataloging Records" area 
+        Then "CQA99.3" should appear in the "Procedures" area 
+        Then "CQA99.2" should appear in the "Procedures" area 
 
+        And the user clicks on result with text "CQA99.3" 
+        Then an "Edit Cataloging Record" form should be displayed 
+        Then the "Identification Number" field should contain "CQA99.3"
+        And the user clicks the "Delete this relation." button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then "CQA99.3" should not appear in the "Related Cataloging Records" area 
 
-	    And the user clicks on result with text "CQA99.1" # Might not work. #Change num?
-	    Then an "Edit Cataloging" form should be displayed # Be more specific? #Needs Stepdef
-	    And the user clicks on result with text "CQA99.2" # Might not work. #Change num?
-	    Then an "Edit Cataloging" form should be displayed # Be more specific? #Needs Stepdef #be different?
-	    # This second form should be different somehow
-	    # Delete relations: CQA99.1 and CQA99.2
-	    Then close the browser
+        And the user clicks on result with text "CQA99.2" 
+        Then an "Edit Cataloging Record" form should be displayed 
+        Then the "Identification Number" field should contain "CQA99.2"
+        And the user clicks the "Delete this relation." button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then "CQA99.2" should not appear in the "Related Cataloging Records" area 
+        Then close the browser
 
 	Scenario: Warning when navigating away from new cataloging records #7 
-    	Given the user is in the "My CollectionSpace" page
-		And user goes to the record with identification number "CQA99_NE"
-	    Then "CQA99_NE" should be in the "Identification Number" field
-	    And user selects the "Cataloging" tab 
-	    And the user clicks on the "Add record" button #needs step def
-		And clicks on the "Create New" button
-		Then the dialog should be dismissed
-		Then the message "________" should be displayed # needs StepDef
-	    # Then an empty Intake record form should be displayed below the listing of records
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
+        Then "CQA99_NE" should be in the "Identification Number" field
+        And user selects the "Cataloging" tab 
+        
+        And the user clicks on the "Add record" button
+        And clicks on the "Create New" button
+        
+        Then the dialog should be dismissed
+        Then the message "Creating new record..." should be displayed
+        
+        Then the "Identification Number" field should be empty
+        And user enters "CQA99.4" in the "Identification Number" field
 
-	    #Variation A
-			And user enters "CQA99.3" in the "Cataloging Number" field 
-			# And the user clicks any link/item to navigate away from the current page (use the back button?)
-		    Then a leave confirmation dialogue should appear #needs StepDef
-		    And the user clicks the "close" button  #might not work
-		    Then the dialogue should be dismissed
+        #Variation A
+        And user selects the "Current Record" tab
+        Then a leave confirmation dialogue should appear 
+        And the user clicks the5e "close" button  
+        Then the "Identification Number" field should contain "CQA99.4"
 
-		#Variation B
-			# And the user clicks any link/item to navigate away from the current page
-		    Then a leave confirmation dialogue should appear #needs StepDef
-		    And the user clicks the "cancel" button  #might not work
-		    Then the dialogue should be dismissed
+        #Variation B
+        And user selects the "Current Record" tab
+        Then a leave confirmation dialogue should appear #needs StepDef
+        And the user clicks the "cancel" button  #might not work
+        Then the "Identification Number" field should contain "CQA99.4"
 
-		#Variation C
-			# And the user clicks any link/item to navigate away from the current page
-			And the user clicks the "save" button
-			# Then you should be navigated to the page you clicked
-			# Then confirm that it was saved! by searching for record
+        ## Variation D
+        And user selects the "Current Record" tab
+        And the user clicks the "Don't save" button 
+        And user selects the "Cataloging" tab 
+        Then "CQA99.4" should not appear in the "Related Cataloging Records" area
 
-		#Variation D
-			And user enters "CQA99.4" in the "Cataloging Number" field
-			# And the user clicks any link/item to navigate away from the current page
-			And the user clicks the "don't save" button
-			# Then you should be navigated to the page you clicked
-			# Then confirm that it WASN'T saved by searching for record
-			Then close the browser
+        #Variation C
+        And the user clicks on the "Add record" button
+        And clicks on the Create button
+        And user enters "CQA99.4" in the "Identification Number" field 
+        And user selects the "Current Record" tab
+        And the user clicks the "save" button
+
+        And user selects the "Cataloging" tab 
+        Then "CQA99.4" should appear in the "Related Cataloging Records" area 
+
+        And user goes to the record with identification number "CQA99.4"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then close the browser
 
 	Scenario: Cancel changes button #9 
-    	Given the user is in the "My CollectionSpace" page
-		And user goes to the record with identification number "CQA99_NE"
-		And user selects the "Cataloging" tab
-	    And the user clicks on the "Add record" button #needs step def
-	    And clicks on the "Create new" button
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
+        And user selects the "Cataloging" tab
+        And the user clicks on the "Add record" button #needs step def
+        And clicks on the "Create new" button
 
-	    # Variation A
-	    And clicks on the "cancel changes" button # at the top of the page
-	    Then the "cancel changes" button at the top of the page should not be clickable #needs Stepdef
-	    And user enters "CQA99.5" in the "SOMETHING FIELD" field #might not work
-	    Then the "cancel changes" button at the top of the page should be clickable
-	    And the user clicks the "cancel changes" button at the top of the page 
-	    Then the "SOMETHING FIELD" should be empty # makes sure it reverted
-	    # Enter a Cataloging number
-	    # Click the save Button
-	    # After a successful save, click the cancel changes button at the bottom/top of the page
-	    Then the "cancel changes" button should not be clickable 
+        # Variation A
+        Then the message "Creating new record..." should be displayed
+        Then the "cancel changes" button at the bottom of the page should not be clickable
+        Then the "cancel changes" button at the top of the page should not be clickable
+        
+        And user enters "CQA99.5" in the "Identification Number" field
+        And the user clicks the "cancel changes" button 
+        Then the "Identification Number" field should be empty
 
-
-	    # Variation B
-	    And clicks on the "cancel changes" button # at the bottom of the page
-	    Then the "cancel changes" button at the bottom of the page should not be clickable #needs Stepdef
-	    And user enters "CQA99.6" in the "SOMETHING FIELD" field #might not work
-	    Then the "cancel changes" button at the bottom of the page should be clickable
-	   	Then the "SOMETHING FIELD" should be empty # makes sure it reverted
-	    # Then the related record should be reverted to before changes were made
-	    # Enter a Cataloging number
-	    # Click the save Button
-	    # After a successful save, click the cancel changes button at the bottom/top of the page
-	    Then the "cancel changes" button should not be clickable 
-	    Then close the browser
+        # Variation B
+        And user enters "CQA99.5" in the "Identification Number" field
+        And the user clicks the "save" button 
+        Then the "cancel changes" button at the top of the page should not be clickable 
+        Then the "cancel changes" button at the bottom of the page should not be clickable 
+   
+        And the user clicks the "Go to record" button
+        And the user clicks the "Delete" button 
+        Then a delete confirmation dialogue should appear
+        And the user clicks the confirmation delete button
+        Then a deletion should be confirmed in a dialogue
+        Then close the browser
 
 	Scenario: Ensure all fields are properly saved #13 
 		#skip?
 
-
 	Scenario: Listing displays correct fields #21 
 		#skip?
 
-
 	Scenario: Testing links and "Go To Record" works #23 
-		Given the user is in the "My CollectionSpace" page
-		And user goes to the record with identification number "CQA99_NE"
-		And user selects the "Cataloging" tab
-	    Then "SOMETHINGx" should appear in the "Related Intake Records" area  #needs Stepdef
-	    And the user clicks on result with text "SOMETHINGx"
-	    Then "SOMETHINGx" should be in the "Identification Number" field   #needs Stepdef
-		And the user clicks the "Go To Record" button #above the Cataloging form
-		Then the titlebar should contain "SOMETHINGx" 
-		# everything else must be intact too
-	    Then close the browser
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
+        And user selects the "Cataloging" tab
+        And the user clicks on result with text "CQA99.1"
+        Then the "Identification Number" field should contain "CQA99.1"
+        And the user clicks the "Go to record" button
+        Then the titlebar should contain "CQA99.1"
+        Then the "Identification Number" field should contain "CQA99.1"
+        Then close the browser
 
 	Scenario: Deleting relation via list #25 
-		Given the user is in the "My CollectionSpace" page
-	    And user goes to the record with identification number "CQA99_NE"
-	    And user selects the "Cataloging" tab 
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
+        And user selects the "Cataloging" tab 
 
-	    And the user clicks on the "Add record" button #needs step def
-	    And clicks on the Create button
-	    And user enters "CQA99.7" in the "Intake Entry Number" field #might not work 
-	    And the user saves the record
-	    And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def
-	    Then delete confirmation dialogue should appear # Then the dialog should appear asking you to delete this relation
-	    And user clicks cancel button
-	    Then the dialog should be dismissed #needs Step def
-	    Then no changes should occur #needs step def
+        And the user clicks on the "Add record" button
+        And clicks on the Create button
+        And user enters "CQA99.7" in the "Identification Number" field
+        And the user saves the record
+        
+        And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def
+        Then delete confirmation dialogue should appear 
+        And user clicks cancel button
+        Then the dialog should be dismissed
+        Then the "Related Cataloging Records" area should contain "CQA99.7"
 
-	    And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def. Again
-	    Then delete confirmation dialogue should appear
-	    And user clicks the "close" button # close button == close symbol? #Needs stepdef???
-	    Then the dialog should be dismissed
-	    Then no changes should occur #needs step def
+        And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def. Again
+        Then delete confirmation dialogue should appear
+        And user clicks the "close" button
+        Then the dialog should be dismissed
+        Then the "Related Cataloging Records" area should contain "CQA99.7"
 
-	    And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def. Last time.
-	    Then delete confirmation dialogue should appear
-	    And user clicks on the delete button
-	    Then "CQA99.7" should not appear in the "Procedures" sidebar #needs StepDef #notlogged
-	    Then "CQA99.7" should not appear in the "Related Cataloging Records" area #needs Stepdef #not logged
+        And user clicks the "Delete Relation" button on the row that reads "CQA99.7" #Green "X" button. Needs step def. Last time.
+        Then delete confirmation dialogue should appear
+        And user clicks on the delete button
+        Then "CQA99.7" should not appear in the "Procedures" sidebar #needs StepDef #notlogged
+        Then "CQA99.7" should not appear in the "Related Cataloging Records" area #needs Stepdef #not logged
 
-	    And selects "Cataloging" from the top nav search record type select field # And using the top right search area, select intake from the drop down
-	    And user enters "CQA99.7" in the top nav search field
-	    Then the search results should contain "CQA99.7"
-	    And the user clicks on result with text "CQA99.7"
-	    Then "CQA99.7" should be in the "Identification Number" field   #needs Stepdef
-	    And user selects the "Cataloging" tab 
-	    Then "CQA99_NE" should not appear in the "Related Cataloging Records" area  #needs Stepdef
-		    # Do i really need to do this
-		    # And user selects the "Current Record" tab 
-		    # And the user clicks the delete button
-		    # Then a delete confirmation dialogue should appear #needs Stepdef
-		    # And the user clicks the delete button 
-		    # Then the deletion should be confirmed in a dialogue
-	    Then close the browser
+        And user goes to the record with identification number "CQA99.7"
+        And user selects the "Cataloging" tab 
+        Then "CQA99_NE" should not appear in the "Related Cataloging Records" area  #needs Stepdef
+        And user selects the "Current Record" tab
+
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then close the browser
 
 	Scenario: Deleting relation ia record editor #27 
-		Given the user is in the "My CollectionSpace" page
-	    And user goes to the record with identification number "CQA99_NE"
-	    Then "CQA99_NE" should be in the "Identification Number" field
+        Given the user is in the "My CollectionSpace" page
+        And user goes to the record with identification number "CQA99_NE"
+        Then "CQA99_NE" should be in the "Identification Number" field
 
-	    And user selects the "Cataloging" tab 
-	    And the user clicks on the "Add record" button #needs step def
-	    And clicks on the Create button
-	    And user enters "CQA99.8" in the "Intake Entry Number" field #might not work 
-	    And the user saves the record
-	    And the user clicks the result that contains "CQA99.8" in the "Entry Number" field
-	    
-	    And the user clicks the "Delete this relation" button
-	    Then a delete confirmation dialogue should appear #needs Stepdef
-	    And user clicks cancel button # click cancel
-	    Then the dialog should be dismissed #needs stepdef
-	    Then no changes should occur #needs step def
+        And user selects the "Cataloging" tab 
+        And the user clicks on the "Add record" button
+        And clicks on the Create button
+        And user enters "CQA99.8" in the "Identification Number" field
+        And the user saves the record
+        And the user clicks on result with text "CQA99.8"
+        
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear
+        And user clicks cancel button
+        Then the dialog should be dismissed
+        Then the "Related Cataloging Records" area should contain "CQA99.8"
 
-	    And the user clicks the "Delete this relation" button
-	    Then a delete confirmation dialogue should appear #needs Stepdef
-	    And user clicks close button # close button == close symbol?
-	    Then the dialog should be dismissed #needs stepdef
-	    Then no changes should ocurr #needs stepdef
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear #needs Stepdef
+        And user clicks close button # close button == close symbol?
+        Then the dialog should be dismissed #needs stepdef
+        Then the "Related Cataloging Records" area should contain "CQA99.8"
 
-	    And the user clicks the "Delete this relation" button
-	    Then a delete confirmation dialogue should appear #needs Step
-	    And the user clicks the delete button 
-	    Then the deletion should be confirmed in a dialogue
-	    # Then the record editor should no longer be displayed (below list)
-	    Then "CQA99.8" should not appear in the "Procedures" area  #needs Stepdef
-		Then the deleted relation should not be shown in the right "Related Procedures" area
-		# ^ one of the above??
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear #needs Step
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        # Then the record editor should no longer be displayed (below list)
+        Then "CQA99.8" should not appear in the "Procedures" area  #needs Stepdef
+        Then "CQA99.8" should not appear in the "Related Cataloging Records" area
 
-	    And selects "Cataloging" from the top nav search record type select field # And using the top right search area, select Cataloging from the drop down
-	    And user enters "CQA99.8" in the top nav search field
-	    Then the search results should contain "CQA99.8"
-	    And the user clicks on result with text "CQA99.8"
-	    Then "CQA99.8" should be in the "Identification Number" field   #needs Stepdef
-	    And user selects the "Cataloging" tab 
-	    Then "CQA99_NE" should not appear in the "Related Cataloging Records" area  #needs Stepdef
-	    #Necessary?:
-		    # And user selects the "Current Record" tab 
-		    # And the user clicks the delete button
-		    # Then a delete confirmation dialogue should appear #needs Stepdef
-		    # And the user clicks the delete button 
-		    # Then the deletion should be confirmed in a dialogue
-	    Then close the browser 
-
+        And user goes to the record with identification number "CQA99.8"
+        And user selects the "Cataloging" tab 
+        Then the "Related Cataloging Records" area should be empty
+        
+        And user selects the "Current Record" tab 
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then close the browser 
 
 	Scenario: Testing functional Accessibility #31 
 	    Given the user is in the "My CollectionSpace" page
 	    And user goes to the record with identification number "CQA99_NE"
-	    And user selects the "Object Exit" tab 
+	    And user selects the "Cataloging" tab 
 
 	    And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
 	    And the user presses the "Enter" key #needs Stepdef
@@ -249,7 +256,7 @@ Feature: #Enter feature name here
 	    And the user presses the "Enter" key #needs Stepdef
 	    And the user presses the "Tab" key until reaching the "Run" button #needs Stepdef
 	    Then everything should have been clickable #needs Stepdef
-	    And user enters "CQA99.9" in the "Intake Entry Number" field #might not work 
+	    And user enters "CQA99.9" in the "Identification Number" field #might not work 
 	    And the user saves the record
 	    And the user presses the "Tab" key until reaching the text field containing "CQA99.9" #needs Stepdef
 	    Then the text field should be clickable  #needs Stepdef
@@ -264,10 +271,4 @@ Feature: #Enter feature name here
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue
 	    Then close the browser 
-
-
-
-	Scenario: Free bug hunt #33 
-
-
-
+	    
