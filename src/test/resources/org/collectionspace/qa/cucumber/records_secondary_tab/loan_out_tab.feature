@@ -10,7 +10,6 @@ Feature: Loan Out Tab
 	    And user goes to the record with identification number "CQA112_E" #not empty
    	    And user selects the "Loan Out" tab
 	    Then the "Related Loan Out Records" area should be empty
-	    Then close the browser
 
 		And user goes to the record with identification number "CQA112_NE"
 	    And user selects the "Loan Out" tab
