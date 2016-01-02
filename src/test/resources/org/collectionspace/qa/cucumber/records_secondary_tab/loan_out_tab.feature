@@ -8,6 +8,7 @@ Feature: Loan Out Tab
 		Given the user is in the "My CollectionSpace" page
 	   
 	    And user goes to the record with identification number "CQA112_E" #not empty
+   	    And user selects the "Loan Out" tab
 	    Then the "Related Loan Out Records" area should be empty
 	    Then close the browser
 
