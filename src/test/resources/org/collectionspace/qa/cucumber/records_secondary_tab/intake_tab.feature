@@ -163,13 +163,13 @@ Feature: Intake Tab
 
 
     # Test 10: Does not seem to be a feature of the current CollectionSpace build...
-  Scenario: Create new from Used By/ Procedures area
-    Given the user is in the "My CollectionSpace" page
-    And user enters "04131995" in the top nav search field
-    And clicks on the top nav search submit button
-    Then the search results should contain "04131995"
-    And the user clicks on result with text "04131995"
-    Then "04131995" should be in the "Identification Number" field
+  # Scenario: Create new from Used By/ Procedures area
+    # Given the user is in the "My CollectionSpace" page
+    # And user enters "04131995" in the top nav search field
+    # And clicks on the top nav search submit button
+    # Then the search results should contain "04131995"
+    # And the user clicks on result with text "04131995"
+    # Then "04131995" should be in the "Identification Number" field
 
     # Given that the user is on any existing record
     # And the user clicks the "Add" button in the "Used By"/Procedures area in the right side of the page
@@ -182,29 +182,72 @@ Feature: Intake Tab
 
 
     # Test 11 
-  Scenario: Check Intake Entry Number and successful save
-    # Given the user is in the "Secondary Intake Tab" of any record
-    # And the user clicks on the "+ Add Record" button
-    # And the user selects any kind of relationshop 
-    And clicks on the Create button
-    And the user saves the record # click the save button
-    # Then you should get an error mesage telling you to fill out the Intake Entry Number
+    Scenario: Check Intake Entry Number and successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "04131995"
+        And user selects the "Intake" tab 
 
-    # And the user fills in at least the intake entry number fiele  
-    And the user saves the record # click the save button
-    # Then a successful saved message should be displayed
-    # Then the "New related Record" line in the list above the form should change to display the information of the newly created record
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "Please specify an Intake Entry Number" should appear 
 
-    # And the user fills out the entire form based on the following
-    # In the authority fields either enter existing authorities or add new authorities
-        # Try to use as many different types of aurhorities as possible
-    # In the select boxes (drop downs) select something other than the first
-    # In the text area (multi text fields) write a multiline text
-    # In the regular text area write regular text
-    And the user saves the record # click the BOTTOM save button 
-    # And the user clicks the Save button # might be the same as above
-    # And a successful save message appears
-    # Then all fields should display the values you entered
+        And user enters "CQA110_11" in the "Intake Entry Number" field
+        And the user clicks on the "Save" button
+
+        Then the message "Relation successfully created." should appear
+        Then "CQA110_11" should appear in the "Related Intake Records" area
+
+        And user enters "2016-01-31" in the "Entry Date" field
+        And user selects "Enquiry" from the "Entry Reason" drop down box
+        And user selects "Found on doorstep" from the "Entry Method" drop down box
+        And user enters "Cesar Villalobos" in the "Depositor" field
+        And user selects "Cesar Villalobos" from the "Depositor" drop down box
+        And user enters "None" in the "Depositor Requirements" field
+        And user enters "Cesar Villalobos" in the "Current Owner" field
+        And user selects "Cesar Villalobos" from the "Current Owner" drop down box
+        And user enters "Testing CQA_110" in the "Entry Note" field
+        And user enters "Testing testing" in the "Packing Note" field
+        And user enters "2016-02-31" in the "Return Date" field
+        And user enters "2015-12-31" in the "Field Collection Date" field
+        And user enters "California" in the "Field collection place" field
+        And user selects "commissioned" from the "Entry Method" drop down box
+        And user enters "This is a test for CQA-110" in the "Field collection note" field
+        And user enters "110" in the "Field collection number" field
+        And user enters "CQA-110 Testing" in the "Field collection event name"
+        And user enters "Cesar Villalobos" in the "Field collection source" field
+        And user selects "Cesar Villalobos" from the "Field collection source" drop down box
+        And user enters "Cesar Villalobos" in the "Field collector" field
+        And user selects "Cesar Villalobos" from the "Field collector" drop down box
+        And user enters "Cesar Villalobos" in the "Valuer" field
+        And user selects "Cesar Villalobos" from the "Valuer" drop down box
+        And user enters "Cesar Inc" in the "Insurer" field
+        And user selects "Cesar Inc" from the "Insurer" drop down box
+        And user enters "110.1" in the "Reference Number" field #there are more than 1!
+        And user enters "110110110" in the "Policy Number" field
+        And user enters "2016-01-04" in the "Renewal Date" field
+        And user enters "Taking care of CQA-110" in the "Insurance Note" field
+        And user selects "Observed" from the "Condition Check Method" drop down box
+        And user selects "Condition Check Reason" from the "Condition Check" drop down box
+        And user enters "Jennifer Be" in the "Condition Check Assessor" field
+        And user selects "Jennifer Be" from the "Condition Check Assessor" drop down box
+        And user enters "This is \n a test \n for 110" in the "Condition Check Note" field
+        And user enters "2016-01-06" in the "Condition Check Date" field
+        And user enters "04131995" in the "Condition Check Reference Number" field
+        And user enters "CQA113.2" in the "Current Location" field
+        And user selects "CQA113.2" from the "Current Location" drop down box
+        And user selects "Dangerous" from the " Current Location Fitness" drop down box
+        And user enters "For CQA-110" in the "Current Location Note" field
+        And user enters "2016-01-22" in the "Location Date" field
+        And user enters "California" in the "Normal Location" field
+        And user selects "California" from the "Normal Location" drop down box    
+        And user clicks the "Save" button
+
+        Then the message "Intake successfully saved" should appear
+
+        # Then now make sure everything remains intact
+
+        Then close the browser
 
 
   # Test 13, 21
