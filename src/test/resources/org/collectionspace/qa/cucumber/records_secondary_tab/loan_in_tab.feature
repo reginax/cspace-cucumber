@@ -156,16 +156,135 @@ Feature: Loan In Tab
 	    Then close the browser
 
 
-	Scenario: Test 10-->
-			# skip?
-	Scenario: Test 11-->
-			# skip?
-	Scenario: Test 13-->
-			# skip?
 
-	#Listing and consistency
-	Scenario: Test 21-->
-			# skip?
+	# Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "04131995"
+        And user selects the "Loan In" tab 
+
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "Please specify a Loan In Number" should appear 
+
+        And user enters "CQA111.11" in the "Loan In Number" field
+        And the user clicks on the "Save" button
+
+        Then the message "Relation successfully created." should appear
+        Then "CQA111.11" should appear in the "Related Loan In Records" area
+
+
+        And user selects "Exhibition" from the "Loan Purpose" drop down box        
+        And user enters "2016-01-27" in the "Loan Status Date" field
+        And user enters "CQA-111: Loan Status" in the "Loan Status Note" field
+        And user selects "Agreed" from the "Loan Status" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender" field
+        And user selects "Cesar Villalobos" from the "Lender" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender's Contact" field
+        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
+        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
+
+        And user enters "2016-01-01" in the "Authorization Date" field
+
+
+        And user enters "Cesar Villalobos" in the "Borrower's Contact" field
+        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
+
+        And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
+        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
+  
+        And user enters "2016-02-02" in the "Borrower's Authorization Date" field
+
+        And user enters "This \n Is \n A test \n for CQA-111" in the "Loan In Conditions" field
+        And user enters "CQA-111" in the "Loan In Note" field
+
+        And user enters "2015-03-05" in the "Loan In Date" field
+        And user enters "2016-05-03" in the "Loan Return Date" field
+        And user enters "2017-06-01" in the "Loan Renewal Application Date" field
+        And user clicks the "Save" button
+
+        Then the message "Loan In successfully saved" should appear
+
+
+        Then the "Loan In Number" field should contain "CQA111.11"
+        Then the "Loan In Purpose" field should contain "Exhibition"
+        Then the "Loan Status Date" field should contain "2016-01-27"
+        Then the "Loan Status Note" field should contain "CQA-111: Loan Status"
+        Then the "Loan Status" field should contain "Agreed"
+        Then the "Lender" field should contain "Cesar Villalobos"
+        Then the "Lender's Contact" field should contain "Cesar Villalobos"
+        Then the "Lender's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Authorization Date" field should contain "2016-01-01"
+        Then the "Borrower's Contact" field should contain "Cesar Villalobos"
+        Then the "Borrower's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Borrower's Authorization Date" field should contain "2016-02-02"
+        Then the "Loan In Conditions" field should contain "This \n Is \n A test \n for CQA-111"
+        Then the "Loan In Note" field should contain "CQA-111"
+        Then the "Loan In Date" field should contain "2015-03-05"
+        Then the "Loan Return Date" field should contain "2016-05-03"
+        Then the "Loan Renewal Application Date" field should contain "2017-06-01"
+
+        
+	Scenario: Test 13-->
+        And user selects "Research" from the "Loan Purpose" drop down box        
+        And user enters "2016-02-22" in the "Loan Status Date" field
+        And user enters "CQA-111: Loan Status Test 13" in the "Loan Status Note" field
+        And user selects "Authorized" from the "Loan Status" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender" field
+        And user selects "Cesar Villalobos" from the "Lender" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender's Contact" field
+        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
+
+        And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
+        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
+
+        And user enters "2002-02-02" in the "Authorization Date" field
+
+
+        And user enters "Cesar Villalobos" in the "Borrower's Contact" field
+        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
+
+        And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
+        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
+  
+        And user enters "2016-03-03" in the "Borrower's Authorization Date" field
+
+        And user enters "This \n Is \n A test \n for CQA-111 Test 13" in the "Loan In Conditions" field
+        And user enters "CQA-111 Test 13" in the "Loan In Note" field
+
+        And user enters "2015-03-08" in the "Loan In Date" field
+        And user enters "2018-05-03" in the "Loan Return Date" field
+        And user enters "2017-06-01" in the "Loan Renewal Application Date" field
+        And user clicks the "Save" button
+
+        Then the message "Loan In successfully saved" should appear
+
+
+        Then the "Loan In Number" field should contain "CQA111.11"
+        Then the "Loan In Purpose" field should contain "Research"
+        Then the "Loan Status Date" field should contain "2016-02-22"
+        Then the "Loan Status Note" field should contain "CQA-111: Loan Status Test 13"
+        Then the "Loan Status" field should contain "Authorized"
+        Then the "Lender" field should contain "Cesar Villalobos"
+        Then the "Lender's Contact" field should contain "Cesar Villalobos"
+        Then the "Lender's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Authorization Date" field should contain "2002-02-02"
+        Then the "Borrower's Contact" field should contain "Cesar Villalobos"
+        Then the "Borrower's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Borrower's Authorization Date" field should contain "2016-03-03"
+        Then the "Loan In Conditions" field should contain "This \n Is \n A test \n for CQA-111 Test 13"
+        Then the "Loan In Note" field should contain "CQA-111 Test 13"
+        Then the "Loan In Date" field should contain "2015-03-08"
+        Then the "Loan Return Date" field should contain "2018-05-03"
+        Then the "Loan Renewal Application Date" field should contain "2017-06-01"
+
+        Then close the browser
 
 
 	Scenario: Test 23--> Testing links and "Go To Record" works
