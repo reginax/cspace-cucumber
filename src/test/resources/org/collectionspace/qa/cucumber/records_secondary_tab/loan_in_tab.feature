@@ -159,7 +159,7 @@ Feature: Loan In Tab
 
 	# Scenario: Test 11--> Successful save
         Given user is on the "My CollectionSpace" page 
-        And user goes to the record with identification number "04131995"
+        And user goes to the record with identification number "CQA111_NE"
         And user selects the "Loan In" tab 
 
         And the user clicks on the "+ Add Record" button
