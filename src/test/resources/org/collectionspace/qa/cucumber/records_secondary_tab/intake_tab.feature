@@ -211,7 +211,7 @@ Feature: Intake Tab
         And user enters "2016-02-31" in the "Return Date" field
         And user enters "2015-12-31" in the "Field Collection Date" field
         And user enters "California" in the "Field collection place" field
-        And user selects "commissioned" from the "Entry Method" drop down box
+        And user selects "commissioned" from the "Field collection Method" drop down box
         And user enters "This is a test for CQA-110" in the "Field collection note" field
         And user enters "110" in the "Field collection number" field
         And user enters "CQA-110 Testing" in the "Field collection event name"
@@ -228,7 +228,7 @@ Feature: Intake Tab
         And user enters "2016-01-04" in the "Renewal Date" field
         And user enters "Taking care of CQA-110" in the "Insurance Note" field
         And user selects "Observed" from the "Condition Check Method" drop down box
-        And user selects "Condition Check Reason" from the "Condition Check" drop down box
+        And user selects "Consideration" from the "Condition Check Reason" drop down box
         And user enters "Jennifer Be" in the "Condition Check Assessor" field
         And user selects "Jennifer Be" from the "Condition Check Assessor" drop down box
         And user enters "This is \n a test \n for 110" in the "Condition Check Note" field
@@ -247,29 +247,131 @@ Feature: Intake Tab
 
         # Then now make sure everything remains intact
 
+        Then the "Entry Date" field should contain "2016-01-31"
+        Then the "Entry Reason" field should contain "Enquiry"
+        Then the "Entry Method" field should contain "Found on doorstep"
+        Then the "Depositor" field should contain "Cesar Villalobos"
+        Then the "Depositor Requirements" field should contain "None"
+        Then the "Current Owner" field should contain "Cesar Villalobos"
+        Then the "Entry Note" field should contain "Testing CQA_110"
+        Then the "Packing Note" field should contain "Testing testing"
+        Then the "Return Date" field should contain "2016-02-31"
+        Then the "Field Collection Date" field should contain "2015-12-31"
+        Then the "Entry Method" field should contain "commissioned"
+        Then the "Field collection place" field should contain "California"
+        Then the "Field collection Note" field should contain "This is a test for CQA-110"
+        Then the "Field collection Number" field should contain "110"
+        Then the "Field collection event name" field should contain "CQA-110 Testing"
+        Then the "Field collection source" field should contain "Cesar Villalobos"
+        Then the "Field collector" field should contain "Cesar Villalobos"
+        Then the "Valuer" field should contain "Cesar Villalobos"
+        Then the "Insurer" field should contain "Cesar Inc"
+        Then the "Reference Number" field should contain "110.1"
+        Then the "Policy Number" field should contain "110110110"
+        Then the "Renewal Date" field should contain "2016-01-04"
+        Then the "Insurance Note" field should contain "Taking care of CQA-110"
+        Then the "Condition Check Method" field should contain "Observed"
+        Then the "Condition Check Reason" field should contain "Consideration"
+        Then the "Condition Check Assessor" field should contain "Jennifer Be"
+        Then the "Condition Check Note" field should contain "This is \n a test \n for 110"
+        Then the "Condition Check Date" field should contain "2016-01-06"
+        Then the "Condition Check Reference Number" field should contain "04131995"
+        Then the "Current Location" field should contain "CQA113.2"
+        Then the "Current Location Fitness" field should contain "Dangerous"
+        Then the "Current Location Note" field should contain "For CQA-110"
+        Then the "Location Date" field should contain "2016-01-22"
+        Then the "Normal Location" field should contain "California"
+        Then the "Field collection method" field should contain "commissioned"
+        
+
         Then close the browser
 
+    #Test 13: Editing a saved record
+        And user enters "2016-01-27" in the "Entry Date" field
+        And user selects "Consideration" from the "Entry Reason" drop down box
+        And user selects "In person" from the "Entry Method" drop down box
+        And user enters "Cesar Villalobos" in the "Depositor" field
+        And user selects "Cesar Villalobos" from the "Depositor" drop down box
+        And user enters "Take care of CQA110-13" in the "Depositor Requirements" field
+        And user enters "Cesar Villalobos" in the "Current Owner" field
+        And user selects "Cesar Villalobos" from the "Current Owner" drop down box
+        And user enters "Testing CQA_110 Test 13" in the "Entry Note" field
+        And user enters "Testing testing Test 13" in the "Packing Note" field
+        And user enters "2017-02-31" in the "Return Date" field
+        And user enters "2016-12-31" in the "Field Collection Date" field
+        And user enters "California" in the "Field collection place" field
+        And user selects "netted" from the "Field collection Method" drop down box
+        And user enters "This is a test for CQA-110 Test 13" in the "Field collection note" field
+        And user enters "110_13" in the "Field collection number" field
+        And user enters "CQA-110 Testing Test 13" in the "Field collection event name"
+        And user enters "Cesar Villalobos" in the "Field collection source" field
+        And user selects "Cesar Villalobos" from the "Field collection source" drop down box
+        And user enters "Cesar Villalobos" in the "Field collector" field
+        And user selects "Cesar Villalobos" from the "Field collector" drop down box
+        And user enters "Cesar Villalobos" in the "Valuer" field
+        And user selects "Cesar Villalobos" from the "Valuer" drop down box
+        And user enters "Cesar Inc" in the "Insurer" field
+        And user selects "Cesar Inc" from the "Insurer" drop down box
+        And user enters "110.1.13" in the "Reference Number" field #there are more than 1!
+        And user enters "110110110.13" in the "Policy Number" field
+        And user enters "2016-01-06" in the "Renewal Date" field
+        And user enters "Taking care of CQA-110 Test 13" in the "Insurance Note" field
+        And user selects "X-Rayed" from the "Condition Check Method" drop down box
+        And user selects "Damaged in transit" from the "Condition Check Reason" drop down box
+        And user enters "Jennifer Be" in the "Condition Check Assessor" field
+        And user selects "Jennifer Be" from the "Condition Check Assessor" drop down box
+        And user enters "This is \n a test \n for 110 \n Test 13." in the "Condition Check Note" field
+        And user enters "2016-01-07" in the "Condition Check Date" field
+        And user enters "04131995.13" in the "Condition Check Reference Number" field
+        And user enters "CQA113.2" in the "Current Location" field
+        And user selects "CQA113.2" from the "Current Location" drop down box
+        And user selects "Reasonable" from the " Current Location Fitness" drop down box
+        And user enters "For CQA-110 Test 13" in the "Current Location Note" field
+        And user enters "2016-07-22" in the "Location Date" field
+        And user enters "California" in the "Normal Location" field
+        And user selects "California" from the "Normal Location" drop down box    
+        And user clicks the "Save" button
 
-  # Test 13, 21
-  Scenario: All fields saved on edited Intake record. 
-      After this, We check if the Listing displaus correct values
-      Then we test the links and make sure that the "Go To Record" works
-    # Go to any existing record with a related intake record by clicking its id/entry nymber
-      And the user clicks the "Intake" tab    # Click the intake tab
-    # Select an existing intake record
-    # Modify the information in the form based on the following:
-      # In the authority fields, enter either existing authorities or create new ones
-      # try to create as many new ones as you can
-      # In the select boxes (drop downs) select something other than the first
-      # In the text area (multi text fields) write a multiline text
-      # In the regular text area write regular text   
-    And the user saves the record # click the BOTTOM save button 
-    # And a successful save message appears
-    # Then all fields should display the values you entered  
+        Then the message "Intake successfully saved" should appear
 
-  # Test 21  (Continued from 13)
-    # Take note of the time stamp of the last save
-    # Then in the listing of the Used By/Procedures in the right frame, the entry of the newly create record should be displayed with: Intake Entry #, Record Type and Last edit date
+        # Then now make sure everything remains intact
+
+        Then the "Entry Date" field should contain "2016-01-27"
+        Then the "Entry Reason" field should contain "Consideration"
+        Then the "Entry Method" field should contain "In person"
+        Then the "Depositor" field should contain "Cesar Villalobos"
+        Then the "Depositor Requirements" field should contain "Take care of CQA110-13"
+        Then the "Current Owner" field should contain "Cesar Villalobos"
+        Then the "Entry Note" field should contain "Testing CQA_110 Test 13"
+        Then the "Packing Note" field should contain "Testing testing Test 13"
+        Then the "Return Date" field should contain "2017-02-31"
+        Then the "Field Collection Date" field should contain "2016-12-31"
+        Then the "Entry Method" field should contain "commissioned"
+        Then the "Field collection place" field should contain "California"
+        Then the "Field collection Note" field should contain "This is a test for CQA-110 Test 13"
+        Then the "Field collection Number" field should contain "110_13"
+        Then the "Field collection event name" field should contain "CQA-110 Testing Test 13"
+        Then the "Field collection source" field should contain "Cesar Villalobos"
+        Then the "Field collector" field should contain "Cesar Villalobos"
+        Then the "Valuer" field should contain "Cesar Villalobos"
+        Then the "Insurer" field should contain "Cesar Inc"
+        Then the "Reference Number" field should contain "110.1.13"
+        Then the "Policy Number" field should contain "110110110.13"
+        Then the "Renewal Date" field should contain "2016-01-06"
+        Then the "Insurance Note" field should contain "Taking care of CQA-110 Test 13"
+        Then the "Condition Check Method" field should contain "X-Rayed"
+        Then the "Condition Check Reason" field should contain "Damaged in transit"
+        Then the "Condition Check Assessor" field should contain "Jennifer Be"
+        Then the "Condition Check Note" field should contain "This is \n a test \n for 110 \n Test 13."
+        Then the "Condition Check Date" field should contain "2016-01-07"
+        Then the "Condition Check Reference Number" field should contain "04131995.13"
+        Then the "Current Location" field should contain "CQA113.2"
+        Then the "Current Location Fitness" field should contain "Reasonable"
+        Then the "Current Location Note" field should contain "For CQA-110 Test 13"
+        Then the "Location Date" field should contain "2016-07-22"
+        Then the "Normal Location" field should contain "California"
+        Then the "Field collection method" field should contain "netted"
+        Then close the browser
 
 
   # Test 23
