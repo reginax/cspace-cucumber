@@ -4,96 +4,121 @@
 @supplementaryprimary
 Feature: Supplementary Manual QA - Acquisition
   
-  Scenario: User Observes New Record Behavior
+  Scenario: New Record Behavior
     Given user is on the "Create New" page
       And selects the "Acquisition" radio button on the Create New page
       And clicks on the Create button
-      And user clicks Select number pattern
-      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
-      And the user saves the record
     Then the "cancel" button should not be clickable
     Then the "delete" button should not be clickable
     When user clicks the "add" button on the "Cataloging" area to the right
-    Then the message "Please save the record you are creating before trying to relate other records to it" should be displayed
+    Then the message "Please save the record you are creating before trying to relate other records to it." should be displayed
     When user clicks the "add" button on the "Procedures" area to the right
-    Then the message "Please save the record you are creating before trying to relate other records to it" should be displayed
+    Then the message "Please save the record you are creating before trying to relate other records to it." should be displayed
     Then close the browser
 
-  Scenario: User Chooses a Number
-    Given user is on the "Create New" page
-      And selects the "Place" radio button on the Create New page
-    Then a drop down list should appear in the "Place" row
-    Then the list in the "Place" row should contain "Local Places, Thesaurus of Geographic Names (TGN)"
-      And clicks on the Create button
-    Then the titlebar should contain "Local Places"
-      And enters "New York" in the "Place" "Display Name" field
-      And the user saves the record
-    Then the record is successfully saved
-    Then "New York" should be in the "Place" "Display Name" field
-    Then the titlebar should contain "Local Places"
-    Then close the browser
-
-  Scenario: User Records Title
+  Scenario: Number Chooser
     Given user is on the "Create New" page
       And selects the "Acquisition" radio button on the Create New page
       And clicks on the Create button
       And user clicks Select number pattern
-      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
-      And user enters "testing" in the "Acquisition" "Acquisition Source" field
-      And user selects "Local Organizations" from dropdown in "Acquisition Source" row
+      And user selects "Accession" from dropdown in "Acquisition Reference Number" row
+    Then enables top and bottom "cancel" buttons
+      And user clicks Select number pattern
+      And user selects "Accession" from dropdown in "Acquisition Reference Number" row
+    # cannot detect incrementing numbers (next line)
+    Then the number pattern incremented by one should be in the "Acquisition" "Acquisition Reference Number" field
+    Then enables top and bottom "cancel" buttons
+    Then close the browser
+
+  Scenario: Record Title
+    Given user is on the "Create New" page
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user enters "1234" in the "Acquisition" "Acquisition Reference Number" field
+      And user enters "Berkley Publishing Group" in the "Acquisition" "Acquisition Source" vocab field
+    Then the titlebar should contain "1234"
+    Then the titlebar should contain "Berkley Publishing Group"
+      And user clicks the plus to repeat the "Acquisition Source" form
+      And user adds "Chemtoy Corporation" in the "Acquisition Source" field of the second "Acquisition Source" form
+      And user selects the additional "Acquisition Source" as primary
+    Then the titlebar should contain "1234"
+    Then the titlebar should contain "Chemtoy Corporation"
+      And user enters "John Doe" in the "Acquisition" "Owner" vocab field
+    Then the titlebar should contain "Chemtoy Corporation"
+      And user clears all fields of the "Acquisition" record
+      And user enters "John Doe" in the "Acquisition" "Owner" vocab field
+    Then the titlebar should contain "John Doe"
+    Then close the browser
+
+  Scenario: Behavior After Save
+    Given user is on the "Create New" page
+      And selects the "Acquisition" radio button on the Create New page
+      And clicks on the Create button
+      And user enters "1234" in the "Acquisition" "Acquisition Reference Number" field
       And the user saves the record
     Then the record is successfully saved
-    Then the titlebar should contain "2015.1.89"
-    Then the titlebar should contain "testing"
-      And user enters "sample" in the "Acquisition" "Acquisition Source" field
-      And user selects "Local Organizations" from dropdown in "Acquisition Source" row
-    Then the titlebar should contain "sample"
-      And user enters "test" in the "Acquisition" "Owner" field
-      And user selects "bobby test" from dropdown in "Owner" row
-    Then the titlebar should contain "2015.1.89"
-    Then the titlebar should contain "sample"
+    Then "GMT-0800 (PST)" should be displayed in the message bar
+    Then disables top and bottom "cancel" buttons
+    Then enables top and bottom "delete" buttons
+    Then close the browser
 
   Scenario: Docking Title Bar
-    # fill out all required fields
     Given user is on the "Create New" page
       And selects the "Acquisition" radio button on the Create New page
       And clicks on the Create button
-      And user clicks Select number pattern
-      And user selects "2009.1" from dropdown in "Acquisition Reference Number" row
-      And the user saves the record
-    Then disables top and bottom "cancel" buttons
-    Then enables top and bottom "deleteButton" buttons
-    Then "GMT-0800 (PST)" should be displayed in the message bar
+      And user enters "1234" in the "Acquisition" "Acquisition Reference Number" field
+      # following line does not exist
+      And user clicks on the "Field collection event name" field
+    # not sure if titlebar term works for docking bar
+    Then the titlebar should contain "1234"
+    Then the titlebar should contain "Acquisition"
+    Then close the browser
 
-  Scenario: Folding and Unfolding boxes
+  Scenario: Fold/Unfolding Boxes
+    # folding steps do not exist
     Given user is on the "Create New" page
       And selects the "Acquisition" radio button on the Create New page
       And clicks on the Create button
-      And user clicks on the "Fold" symbol next to "Acquisition Information"
+    Given user clicks on the "Fold" symbol next to "Acquisition Information"
+    Then the "Acquisition Information" section should fold
+    Then the "Fold" symbol next to "Acquisition Information" should be a folded symbol
+    Given user clicks on the "Fold" symbol next to "Acquisition Information"
+    Then the "Acquisition Information" section should unfold
+    Then the "Fold" symbol next to "Acquisition Information" should be an unfolded symbol
+    Given user clicks on the "Fold" symbol next to "Object Collection Information"
     Then the "Object Collection Information" section should fold
-      And the "Fold" symbol next to "Object Collection Information" should be a folded symbol
-    When user clicks on the "Fold" symbol next to "Acquisition Information"
+    Then the "Fold" symbol next to "Object Collection Information" should be a folded symbol
+    Given user clicks on the "Fold" symbol next to "Object Collection Information"
     Then the "Object Collection Information" section should unfold
-      And the "Fold" symbol next to "Object Collection Information" should be a unfolded symbol
-      And close the browser
+    Then the "Fold" symbol next to "Object Collection Information" should be an unfolded symbol
+    Then close the browser
 
-  Scenario: Vocabulary pivoting
-    When user adds "test" to the "authority" field
+  Scenario: Vocabulary Pivoting
+    Given user is on the "Create New" page
+      And clicks on the Create button
+      And user enters "1.2.3.4.5" in the "Acquisition" "Identification Number" field
+      And user adds "John Doe" to the "Acquisition" "Owner" vocab field
       And the user saves the record
     Then the record is successfully saved
-    Then the cancel button should not be clickable
-    Then both top and bottom "Delete" buttons should be "enabled"
-    Then the vocabulary terms associated with the current record should be displayed in the "Terms Used" list on the right
-    Then the "Term" column should contain "xxx" # the display name of the vocabulary term
-    Then "Type" column should display "xxx" # type of vocabulary it is
-    Then the "Field" column should equal "xxx" # the name of the field the vocabulary term is listed in
-    When user clicks on one of the vocabulary terms in the listing in the sidebar
-    Then user sees the edit page of "xxx" # the vocabulary term you clicked
-    Then the page should have the record you came from listed in the "Used By" area
-    When user clicks on the link to the record they  came from # "Used By" list in the right sidebar, 
-    Then the record should be loaded
+    Then disables top and bottom "cancel" buttons
+    Then enables top and bottom "delete" buttons
+    # not sure if types should be specified
+    Then "John Doe" should appear in the Terms Used sidebar
+    Then "person" should appear in the Terms Used sidebar
+    Then "owner" should appear in the Terms Used sidebar
+      And user clicks on "John Doe" in the Terms Used sidebar
+    Then the titlebar should contain "John Doe"
+    # Used By steps do not exist
+    Then "1.2.3.4.5" should appear in the Used By sidebar
+      And user clicks on "1.2.3.4.5" in the Used By sidebar
+    Then the titlebar should contain "1.2.3.4.5"
+      And user clicks on the delete button
+      And user clicks the confirmation delete button
+      And user clicks delete confirmation OK button
+    Then close the browser
 
   Scenario: Keyboard Accessibility
+    # doesn't work, need to do later
     When user uses tab through the entire formula
     Then each of the fields should be reachable
     Then the two save buttons and Cancel button should be reachable
