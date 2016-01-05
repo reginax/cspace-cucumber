@@ -155,21 +155,72 @@ Feature: Object Exit Page Tab
 	    Then a deletion should be confirmed in a dialogue
 	    Then close the browser
 
-  Scenario: Create new from Used By/ Procedures area #10
-    # Enter steps here
-    # SKIIIIIIP???
+	Scenario: Check Exit Number and successful save and All fields saved on edited Object Exit record #13
 
-  Scenario: Check Exit Number and successful save #11
-    # Enter steps here
-    # SKIIIIIIP???
+        # Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "CQA115_NE"
+        And user selects the "Object Exit" tab 
 
-  Scenario: All fields saved on edited Object Exit record #13
-    # Enter steps here
-    # SKIIIIIIP???
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "___" should appear
+        And user enters "CQA115.11" in the "Exit Number" field
+        And user saves the record
+        Then the message "______" should appear #success!
 
-  Scenario: Listing displays correct fields #21
-    # Enter steps here
-    # SKIIIIIIP???
+        And user enters "2016-01-05" in the "Exit Date" field
+        And user enters "Cesar Villalobos" in the "Current Owner" field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user enters "Jennifer Be" in the "Depositor" field
+        And user clicks on "Jennifer Be" from the autocomplete options
+        And user selects "Courier" from the "Exit Method" drop down box
+        And user selects "Deaccession" from the "Exit Reason" drop down box
+        And user enters "This \n is \n CQA115" in the "Exit Note" field
+        And user enters "Packing for CQA115" in the "Packing Note" field
+
+        And user saves the record
+        Then the message "______" should appear #success!
+
+
+
+        Then the "Exit Number" field should contain "CQA115.11"
+        Then the "Current Owner" field should contain "Cesar Villalobos"
+        Then the "Depositor" field should contain "Jennifer Be"
+        Then the "Exit Method" field should contain "Courier"
+        Then the "Exit Reason" field should contain "Deaccession"
+        Then the "Exit Date" field should contain "2016-01-05"
+        Then the "Exit Note" field should contain "This \n is \n CQA115"
+        Then the "Packing Note" field should contain "Packing for CQA115"
+
+        ## Test 13
+
+        And user enters "2016-01-10" in the "Exit Date" field
+        And user enters "Jennifer Be" in the "Current Owner" field
+        And user clicks on "Jennifer Be" from autocomplete options
+        And user enters "Cesar Villalobos" in the "Depositor" field
+        And user clicks on "Cesar Villalobos" from the autocomplete options
+        And user selects "Post" from the "Exit Method" drop down box
+        And user selects "Disposal" from the "Exit Reason" drop down box
+        And user enters "This \n is \n CQA115 \n Test 13" in the "Exit Note" field
+        And user enters "Packing for CQA115 Test 13" in the "Packing Note" field
+
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        Then the "Exit Number" field should contain "CQA115.11"
+        Then the "Current Owner" field should contain "Jennifer Be"
+        Then the "Depositor" field should contain "Cesar Villalobos"
+        Then the "Exit Method" field should contain "Post"
+        Then the "Exit Reason" field should contain "Disposal"
+        Then the "Exit Date" field should contain "2016-01-10"
+        Then the "Exit Note" field should contain "This \n is \n CQA115 \n Test 13"
+        Then the "Packing Note" field should contain "Packing for CQA115 Test 13"
+        Then close the browser
+
+
+
 
   Scenario: Testing links and "Go To Record" works #23
 	    Given the user is in the "My CollectionSpace" page
