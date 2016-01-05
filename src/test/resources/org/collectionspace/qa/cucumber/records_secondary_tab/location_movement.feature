@@ -206,7 +206,7 @@ Feature: Location/Movement/Inventory Control Tab
         And user saves the record
         Then the message "______" should appear #success!
 
-        Then The "Reference Number" field should contain "CQA113.11"
+        Then the "Reference Number" field should contain "CQA113.11"
         Then the "Normal Location" field should contain "CQA113_Loc"
         Then the "Fitness" field should contain "Dangerous"
         Then the "Note" field should contain "CQA113 Test"
@@ -223,8 +223,7 @@ Feature: Location/Movement/Inventory Control Tab
         Then the "Inventory Date" field should contain "2016-01-11"
         Then the "Next Inventory Date" field should contain "2016-01-12"
         Then the "Note" field should contain "CQA113 Third Note Box" 
-        And user saves the record
-        Then the message "______" should appear #success!
+
 
         # Test 13
 
@@ -268,8 +267,6 @@ Feature: Location/Movement/Inventory Control Tab
         Then the "Inventory Date" field should contain "2016-02-11"
         Then the "Next Inventory Date" field should contain "2016-02-12"
         Then the "Note" field should contain "CQA113 Third Note Box Test 13" 
-        And user saves the record
-        Then the message "______" should appear #success!
         Then close the browser
 
 
