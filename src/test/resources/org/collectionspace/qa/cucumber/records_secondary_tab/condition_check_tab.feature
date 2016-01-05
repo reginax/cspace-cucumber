@@ -146,14 +146,188 @@ Feature: Condition Check Tab Test Plan
         Then a deletion should be confirmed in a dialogue
         Then close the browser
 
-	Scenario: Check Condition Check/Assessment Reference Number and successful save #11
-		#skip?
+	Scenario: Check Condition Check/Assessment Reference Number and successful save and fields saved on edited Condition Check record #13
 
-	Scenario: All fields saved on edited Condition Check record #13
-		#skip?
+        # Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "CQA103_NE" 
+        And user selects the "Condition" tab 
 
-	Scenario: Listing displays correct fields #21
-		#skip?
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "___" should appear #fail
+        And user enters "CQA103.11" in the "Condition Check/Assessment Reference Number" field
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        And user selects "Medium" from the "Object Audit Category" drop down box
+        And user selects "Medium" from the "Conservation Treatment Priority" drop down box
+        And user enters "2016-01-01" in the "Next Condition Check/Assessment Date" field
+        And user selects "Complete" from the "Completeness" drop down box
+        And user enters "2016-02-02" in the "Completeness Date" field  
+        And user enters "This is complete" in the "Completeness Note" field
+
+        And user selects "Needs no work" from the "Condition" drop down box
+        And user enters "2016-03-03" in the "Condition Date" field
+        And user enters "This needs no work" in the "Condition Note" field
+        
+        And user selects "Poisonous" from the "Hazard" drop down box
+        And user enters "2016-04-04" in the "Hazard Date" field
+        And user enters "This is Poisonous" in the "Hazard Note" field
+        And user enters "2016-05-05" in the "Environmental Condition Date" field
+        And user enters "This is Environmental yay" in the "Environmental Condition Note" field
+        And user enters "2016-06-06" in the "Technical Assessment Date" field
+        And user enters "This needs no tech sssessment yay" in the "Technical Assessment Note" field
+        And user enters "2016-07-07" in the "Condition Check/Assessment Date" field
+        And user selects "Observed" from the "Condition Check/Assessment Method" drop down box
+        And user selects "Damaged in transit" from the "Condition Check/Assessment Reason" drop down box
+        And user enters "Cesar Villalobos" in the "Condition Checker/Assessor" field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user enters "Note for \n CQA-103" in the "Condition Check/Assessment Note" field
+        And user enters "CQA-103 first text box" in the "Display Recommendations" field
+        And user enters "CQA-103 second text box" in the "Handling Recommendations" field
+        And user enters "CQA-103 third text box" in the "Security Recommendations" field
+        And user enters "CQA-103 fourth text box" in the "Storage Requirements" field
+        And user enters "CQA-103 fifth text box" in the "Environmental Recommendations" field
+        And user enters "CQA-103 sixth text box" in the "Packing Recommendations" field
+        And user enters "CQA-103 seventh text box" in the "Special Requirements" field
+        And user enters "CQA-103 eigth text box" in the "Legal/License Requirements" field
+        And user enters "None" in the "Legal/License Requirements Held" field
+        And user enters "2016-08-08" in the "Legal/License Requirements Held Begin Date" field
+        And user enters "2016-09-09" in the "Legal/License Requirements Held End Date" field
+        And user enters "1032" in the "Legal/License Requirements Held Number" field
+        And user enters "2016-10-10" in the "Legal/License Requirements Held Renew Date" field
+        And user enters "2016-11-11" in the "Salvage Priority Code Date" field
+        And user enters "103103" in the "Salvage Priority Code" field
+        And user saves the record
+        Then the message "______" should appear #success!        
+        
+        ## test 11 thens
+
+        Then the "Object Audit Category" field should contain "Medium"
+        Then the "Conservation Treatment Priority" field should contain "Medium"
+        Then the "Next Condition Check/Assessment Date" field should contain "2016-01-01"
+        Then the "Completeness" field should contain "Complete"
+        Then the "Completeness Date" field should contain "2016-02-02"
+        Then the "Completeness Note" field should contain "This is complete"
+        Then the "Condition" field should contain "Needs no work"
+        Then the "Condition Date" field should contain "2016-03-03"
+        Then the "Condition Note" field should contain "This needs no work"
+        Then the "Hazard" field should contain "Poisonous"
+        Then the "Hazard Date" field should contain "2016-04-04"
+        Then the "Hazard Note" field should contain "This is Poisonous"
+        Then the "Environmental Condition Date" field should contain "2016-05-05"
+        Then the "Environmental Condition Note" field should contain "This is Environmental yay"
+        Then the "Technical Assessment Date" field should contain "2016-06-06"
+        Then the "Technical Assessment Note" field should contain "This needs no tech sssessment yay"
+        Then the "Condition Check/Assessment Date" field should contain "2016-07-07"
+        Then the "Condition Check/Assessment Method" field should contain "Observed"
+        Then the "Condition Check/Assessment Reason" field should contain "Damaged in transit"
+        Then the "Condition Checker/Assessor" field should contain "Cesar Villalobos"
+        Then the "Condition Check/Assessment Note" field should contain "Note for \n CQA-103"
+        Then the "Display Recommendations" field should contain "CQA-103 first text box"
+        Then the "Handling Recommendations" field should contain "CQA-103 second text box"
+        Then the "Security Recommendations" field should contain "CQA-103 third text box"
+        Then the "Storage Requirements" field should contain "CQA-103 fourth text box"
+        Then the "Environmental Recommendations" field should contain "CQA-103 fifth text box"
+        Then the "Packing Recommendations" field should contain "CQA-103 sixth text box"
+        Then the "Special Requirements" field should contain "CQA-103 seventh text box"
+        Then the "Legal/License Requirements" field should contain "CQA-103 eigth text box"
+        Then the "Legal/License Requirements Held" field should contain "None"
+        Then the "Legal/License Requirements Held Begin Date" field should contain "2016-08-08"
+        Then the "Legal/License Requirements Held End Date" field should contain "2016-09-09"
+        Then the "Legal/License Requirements Held Number" field should contain "1032"
+        Then the "Legal/License Requirements Held Renew Date" field should contain "2016-10-10"
+        Then the "Salvage Priority Code Date" field should contain "2016-11-11"
+        Then the "Salvage Priority Code" field should contain "103103"
+
+        
+
+        #### Test 13
+
+        And user selects "High" from the "Object Audit Category" drop down box
+        And user selects "High" from the "Conservation Treatment Priority" drop down box
+        And user enters "2017-01-01" in the "Next Condition Check/Assessment Date" field
+        And user selects "Fragmented" from the "Completeness" drop down box
+        And user enters "2017-02-02" in the "Completeness Date" field  
+        And user enters "This is fragmented" in the "Completeness Note" field
+
+        And user selects "In jeopardy" from the "Condition" drop down box
+        And user enters "2017-03-03" in the "Condition Date" field
+        And user enters "This In jeopardy" in the "Condition Note" field
+        
+        And user selects "Radioactive" from the "Hazard" drop down box
+        And user enters "2017-04-04" in the "Hazard Date" field
+        And user enters "This is Radioactive" in the "Hazard Note" field
+        And user enters "2017-05-05" in the "Environmental Condition Date" field
+        And user enters "This is so radioactive" in the "Environmental Condition Note" field
+        And user enters "2017-06-06" in the "Technical Assessment Date" field
+        And user enters "This needs no tech sssessment yay except it's radioactive" in the "Technical Assessment Note" field
+        And user enters "2017-07-07" in the "Condition Check/Assessment Date" field
+        And user selects "X-Rayed" from the "Condition Check/Assessment Method" drop down box
+        And user selects "Loan in" from the "Condition Check/Assessment Reason" drop down box
+        And user enters "Jennifer Be" in the "Condition Checker/Assessor" field
+        And user clicks on "Jennifer Be" from autocomplete options
+        And user enters "Note for \n CQA-103 Test 13" in the "Condition Check/Assessment Note" field
+        And user enters "CQA-103 first text box Test 13" in the "Display Recommendations" field
+        And user enters "CQA-103 second text box Test 13" in the "Handling Recommendations" field
+        And user enters "CQA-103 third text box Test 13" in the "Security Recommendations" field
+        And user enters "CQA-103 fourth text box Test 13" in the "Storage Requirements" field
+        And user enters "CQA-103 fifth text box Test 13" in the "Environmental Recommendations" field
+        And user enters "CQA-103 sixth text box Test 13" in the "Packing Recommendations" field
+        And user enters "CQA-103 seventh text box Test 13" in the "Special Requirements" field
+        And user enters "CQA-103 eigth text box Test 13" in the "Legal/License Requirements" field
+        
+        And user enters "Some" in the "Legal/License Requirements Held" field
+        And user enters "2017-08-08" in the "Legal/License Requirements Held Begin Date" field
+        And user enters "2017-09-09" in the "Legal/License Requirements Held End Date" field
+        And user enters "10333" in the "Legal/License Requirements Held Number" field
+        And user enters "2017-10-10" in the "Legal/License Requirements Held Renew Date" field
+        And user enters "2017-11-11" in the "Salvage Priority Code Date" field
+        And user enters "102" in the "Salvage Priority Code" field
+        And user saves the record
+        Then the message "______" should appear #success!  
+
+        ## test 11 thens
+
+        Then the "Object Audit Category" field should contain "High"
+        Then the "Conservation Treatment Priority" field should contain "High"
+        Then the "Next Condition Check/Assessment Date" field should contain "2017-01-01"
+        Then the "Completeness" field should contain "Fragmented"
+        Then the "Completeness Date" field should contain "2017-02-02"
+        Then the "Completeness Note" field should contain "This is fragmented"
+        Then the "Condition" field should contain "In jeopardy"
+        Then the "Condition Date" field should contain "2017-03-03"
+        Then the "Condition Note" field should contain "This In jeopardy"
+        Then the "Hazard" field should contain "Radioactive"
+        Then the "Hazard Date" field should contain "2017-04-04"
+        Then the "Hazard Note" field should contain "This is Radioactive"
+        Then the "Environmental Condition Date" field should contain "2017-05-05"
+        Then the "Environmental Condition Note" field should contain "This is so radioactive"
+        Then the "Technical Assessment Date" field should contain "2017-06-06"
+        Then the "Technical Assessment Note" field should contain "This needs no tech sssessment yay except it's radioactive"
+        Then the "Condition Check/Assessment Date" field should contain "2017-07-07"
+        Then the "Condition Check/Assessment Method" field should contain "X-Rayed"
+        Then the "Condition Check/Assessment Reason" field should contain "Loan in"
+        Then the "Condition Checker/Assessor" field should contain "Jennifer Be"
+        Then the "Condition Check/Assessment Note" field should contain "Note for \n CQA-103 Test 13"
+        Then the "Display Recommendations" field should contain "CQA-103 first text box Test 13"
+        Then the "Handling Recommendations" field should contain "CQA-103 second text box Test 13"
+        Then the "Security Recommendations" field should contain "CQA-103 third text box Test 13"
+        Then the "Storage Requirements" field should contain "CQA-103 fourth text box Test 13"
+        Then the "Environmental Recommendations" field should contain "CQA-103 fifth text box Test 13"
+        Then the "Packing Recommendations" field should contain "CQA-103 sixth text box Test 13"
+        Then the "Special Requirements" field should contain "CQA-103 seventh text box Test 13"
+        Then the "Legal/License Requirements" field should contain "CQA-103 eigth text box Test 13"
+        Then the "Legal/License Requirements Held" field should contain "Some"
+        Then the "Legal/License Requirements Held Begin Date" field should contain "2017-08-08"
+        Then the "Legal/License Requirements Held End Date" field should contain "2017-09-09"
+        Then the "Legal/License Requirements Held Number" field should contain "10333"
+        Then the "Legal/License Requirements Held Renew Date" field should contain "2017-10-10"
+        Then the "Salvage Priority Code Date" field should contain "2017-11-11"
+        Then the "Salvage Priority Code" field should contain "102"
+        Then close the browser
 
 
 	Scenario: Testing links and "Go To Record" works #23
