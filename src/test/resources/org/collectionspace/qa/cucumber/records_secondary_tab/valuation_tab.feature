@@ -166,7 +166,7 @@ Feature: Valuation Tab
         And clicks on the Create button
         And the user saves the record # click the save button
         Then the message "___" should appear #fail
-        And user enters "CQA116.11" in the "EValuation Control Reference Number" field
+        And user enters "CQA116.11" in the "Evaluation Control Reference Number" field
         And user saves the record
         Then the message "______" should appear #success!
 
