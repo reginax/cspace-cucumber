@@ -165,21 +165,115 @@ Feature: Location/Movement/Inventory Control Tab
 	    Then a deletion should be confirmed in a dialogue
 	    Then close the browser
 
-  	Scenario: Create new Used By/ Procedures area #10
-    	# Enter steps here
-    	# skip?
 
-  	Scenario: Check current location and successful save #11
-    	# Enter steps here 
-    	#skip? 
+  	Scenario: Check current location and successful save and All fields saved on edited Location/Movement/Inventory record #13
 
-  	Scenario: All fields saved on edited Location/Movement/Inventory record #13
-    	# Enter steps here 
-    	#skip?
+        # Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "CQA113_NE"
+        And user selects the "Location/Movement/Inventory" tab 
 
-  	Scenario: Listing displays correct fields #21
-    	# Enter steps here 
-    	#skip?
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "Please specify a Current Location" should appear 
+        And user enters "CQA113.2" in the "Current Location" field
+        And user clicks on "CQA113.2" from autocomplete options
+        And user saves the record
+        Then the message "______" should appear #success!
+
+
+        And user enters "CQA113.11" in the "Reference Number" field
+        And user enters "CQA113_Loc" in the "Normal Location" field
+        And user clicks on "CQA113_Loc" from autocomplete options
+        And user selects "Dangerous" from the "Fitness" drop down box
+        And user enters "CQA113 Test" in the "Note" field
+        And user enters "2016-01-04" in the "Location Date" field
+        And user selects "Conservation" from the "Reason for move" drop down box
+        And user enters "Cesar Villalobos" in the "Contact" field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user selects "Forklift" from the "Method" drop down box
+        And user enters "2016-01-05" in the "Planned removal date" field
+        And user enters "2016-01-06" in the "Removal date" field
+        And user enters "Test for CQA113 note box 2" in the "Note" field #This is the second note box
+        And user selects "Conservation" from the "Inventory Action Required" drop down box
+        And user selects "Monthly" from the "Inventory Frequency" drop down box
+        And user enters "Cesar Villalobos" in the "Contact" field #second contact field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user enters "2016-01-11" in the "Inventory Date" field
+        And user enters "2016-01-12" in the "Next Inventory Date" field
+        And user enters "CQA113 Third Note Box" in the "Note" field #third note field!
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        Then The "Reference Number" field should contain "CQA113.11"
+        Then the "Normal Location" field should contain "CQA113_Loc"
+        Then the "Fitness" field should contain "Dangerous"
+        Then the "Note" field should contain "CQA113 Test"
+        Then the "Location Date" field should contain "2016-01-04"
+        Then the "Reason for move" field should contain "Conservation"
+        Then the "Contact" field should contain "Cesar Villalobos"
+        Then the "Method" field should contain "Forklift"
+        Then the "Planned removal date" field should contain "2016-01-05"
+        Then the "Removal date" field should contain "2016-01-06"
+        Then the "Note" field should contain "Test for CQA113 note box 2"
+        Then the "Inventory Action Required" field should contain "Conservation"
+        Then the "Inventory Frequency" field should contain "Monthly" 
+        Then the "Contact" field should contain "Cesar Villalobos"
+        Then the "Inventory Date" field should contain "2016-01-11"
+        Then the "Next Inventory Date" field should contain "2016-01-12"
+        Then the "Note" field should contain "CQA113 Third Note Box" 
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        # Test 13
+
+        And user enters "CQA113.11" in the "Reference Number" field
+        And user enters "CQA113_Loc_2" in the "Normal Location" field
+        And user clicks on "CQA113_Loc_2" from autocomplete options
+        And user selects "Suitable" from the "Fitness" drop down box
+        And user enters "CQA113 Test 13" in the "Note" field
+        And user enters "2016-01-05" in the "Location Date" field
+        And user selects "Preservation" from the "Reason for move" drop down box
+        And user enters "Cesar Villalobos" in the "Contact" field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user selects "Trolley" from the "Method" drop down box
+        And user enters "2016-02-05" in the "Planned removal date" field
+        And user enters "2016-02-06" in the "Removal date" field
+        And user enters "Test for CQA113 note box 2, Test 13" in the "Note" field #This is the second note box
+        And user selects "Preservation" from the "Inventory Action Required" drop down box
+        And user selects "Daily" from the "Inventory Frequency" drop down box
+        And user enters "Cesar Villalobos" in the "Contact" field #second contact field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user enters "2016-02-11" in the "Inventory Date" field
+        And user enters "2016-02-12" in the "Next Inventory Date" field
+        And user enters "CQA113 Third Note Box Test 13" in the "Note" field #third note field!
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        Then The "Reference Number" field should contain "CQA113.11"
+        Then the "Normal Location" field should contain "CQA113_Loc_2"
+        Then the "Fitness" field should contain "Suitable"
+        Then the "Note" field should contain "CQA113 Test 13"
+        Then the "Location Date" field should contain "2016-02-05"
+        Then the "Reason for move" field should contain "Preservation"
+        Then the "Contact" field should contain "Cesar Villalobos"
+        Then the "Method" field should contain "Trolley"
+        Then the "Planned removal date" field should contain "2016-01-05"
+        Then the "Removal date" field should contain "2016-02-06"
+        Then the "Note" field should contain "Test for CQA113 note box 2, Test 13"
+        Then the "Inventory Action Required" field should contain "Preservation"
+        Then the "Inventory Frequency" field should contain "Daily" 
+        Then the "Contact" field should contain "Cesar Villalobos"
+        Then the "Inventory Date" field should contain "2016-02-11"
+        Then the "Next Inventory Date" field should contain "2016-02-12"
+        Then the "Note" field should contain "CQA113 Third Note Box Test 13" 
+        And user saves the record
+        Then the message "______" should appear #success!
+        Then close the browser
+
+
+
 
   	Scenario: Testing links and "Go To Record" works #23
 		Given the user is in the "My CollectionSpace" page
