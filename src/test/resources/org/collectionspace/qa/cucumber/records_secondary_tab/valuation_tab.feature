@@ -156,14 +156,70 @@ Feature: Valuation Tab
 	    Then a deletion should be confirmed in a dialogue
 	    Then close the browser
 
-	Scenario: Check Valuation Control Reference Number and successful save #11
-		#skip?
+	Scenario: Check Valuation Control Reference Number and successful save  And All fields saved on edited Valuation Control record #13
+        # Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "CQA116_NE"
+        And user selects the "Valuation" tab 
 
-	Scenario: All fields saved on edited Valuation Control record #13
-		#skip?
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "___" should appear #fail
+        And user enters "CQA116.11" in the "EValuation Control Reference Number" field
+        And user saves the record
+        Then the message "______" should appear #success!
 
-	Scenario: Listing displays correct fields #21
-		#skip?
+        And user selects "Danish Krone" from the "Currency" drop down box
+        And user enters "116" in the "Amount" field
+        And user enters "Cesar Villalobos" in the "Source" field
+        And user clicks on "Cesar Villalobos" from autocomplete options
+        And user enters "2016-01-01" in the "Date" field
+        And user enters "2016-01-02" in the "Renewal Date" field
+        And user selects "Current Value" from the "Type" drop down box
+        And user enters "CQA116 \n Test" in the "Note" field
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        Then the "Currency" field should contain "Danish Krone"
+        Then the "Amount" field should contain "116"
+        Then the "Source" field should contain "Cesar Villalobos"
+        Then the "Date" field should contain "2016-01-01"
+        Then the "Renewal Date" field should contain "2016-01-02"
+        Then the "Type" field should contain "Current Value"
+        Then the "Note" field should contain "CQA116 \n Test"
+
+        Then the "Depositor" field should contain "Jennifer Be"
+        Then the "Exit Method" field should contain "Courier"
+        Then the "Exit Reason" field should contain "Deaccession"
+        Then the "Exit Date" field should contain "2016-01-05"
+        Then the "Exit Note" field should contain "This \n is \n CQA115"
+        Then the "Packing Note" field should contain "Packing for CQA115"
+
+        ## Test 13
+        And user selects "Euro" from the "Currency" drop down box
+        And user enters "120" in the "Amount" field
+        And user enters "Jennifer Be" in the "Source" field
+        And user clicks on "Jennifer Be" from autocomplete options
+        And user enters "2016-01-10" in the "Date" field
+        And user enters "2017-01-02" in the "Renewal Date" field
+        And user selects "Original Value" from the "Type" drop down box
+        And user enters "CQA116 \n Test \n for subtest Test 13" in the "Note" field
+        
+        And user saves the record
+        Then the message "______" should appear #success!
+
+        Then the "Currency" field should contain "Euro"
+        Then the "Amount" field should contain "120"
+        Then the "Source" field should contain "Cesar Villalobos"
+        Then the "Date" field should contain "2016-01-10"
+        Then the "Renewal Date" field should contain "2017-01-02"
+        Then the "Type" field should contain "Original Value"
+        Then the "Note" field should contain "CQA116 \n Test \n for subtest Test 13"
+
+        Then close the browser
+
+
 
 	Scenario: Testing links and "Go To Record" works #23
 	    Given the user is in the "My CollectionSpace" page
