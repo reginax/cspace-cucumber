@@ -178,30 +178,20 @@ Feature: Loan In Tab
         And user enters "2016-01-27" in the "Loan Status Date" field
         And user enters "CQA-111: Loan Status" in the "Loan Status Note" field
         And user selects "Agreed" from the "Loan Status" drop down box
-
         And user enters "Cesar Villalobos" in the "Lender" field
-        And user selects "Cesar Villalobos" from the "Lender" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Contact" field
-        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2016-01-01" in the "Authorization Date" field
-
-
         And user enters "Cesar Villalobos" in the "Borrower's Contact" field
-        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
-  
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2016-02-02" in the "Borrower's Authorization Date" field
-
         And user enters "This \n Is \n A test \n for CQA-111" in the "Loan In Conditions" field
         And user enters "CQA-111" in the "Loan In Note" field
-
         And user enters "2015-03-05" in the "Loan In Date" field
         And user enters "2016-05-03" in the "Loan Return Date" field
         And user enters "2017-06-01" in the "Loan Renewal Application Date" field
@@ -234,30 +224,20 @@ Feature: Loan In Tab
         And user enters "2016-02-22" in the "Loan Status Date" field
         And user enters "CQA-111: Loan Status Test 13" in the "Loan Status Note" field
         And user selects "Authorized" from the "Loan Status" drop down box
-
-        And user enters "Cesar Villalobos" in the "Lender" field
-        And user selects "Cesar Villalobos" from the "Lender" drop down box
-
-        And user enters "Cesar Villalobos" in the "Lender's Contact" field
-        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
-
-        And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
-
+        And user enters "Jennifer Be" in the "Lender" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "Jennifer Be" in the "Lender's Contact" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "Jennifer Be" in the "Lender's Authorizer" field
+        And user selects "Jennifer Be" from autocomplete options
         And user enters "2002-02-02" in the "Authorization Date" field
-
-
-        And user enters "Cesar Villalobos" in the "Borrower's Contact" field
-        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
-
-        And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
-  
+        And user enters "Jennifer Be" in the "Borrower's Contact" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "Jennifer Be" in the "Borrower's Authorizer" field
+        And user selects "Jennifer Be" from autocomplete options
         And user enters "2016-03-03" in the "Borrower's Authorization Date" field
-
         And user enters "This \n Is \n A test \n for CQA-111 Test 13" in the "Loan In Conditions" field
         And user enters "CQA-111 Test 13" in the "Loan In Note" field
-
         And user enters "2015-03-08" in the "Loan In Date" field
         And user enters "2018-05-03" in the "Loan Return Date" field
         And user enters "2017-06-01" in the "Loan Renewal Application Date" field
@@ -271,12 +251,12 @@ Feature: Loan In Tab
         Then the "Loan Status Date" field should contain "2016-02-22"
         Then the "Loan Status Note" field should contain "CQA-111: Loan Status Test 13"
         Then the "Loan Status" field should contain "Authorized"
-        Then the "Lender" field should contain "Cesar Villalobos"
-        Then the "Lender's Contact" field should contain "Cesar Villalobos"
-        Then the "Lender's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Lender" field should contain "Jennifer Be"
+        Then the "Lender's Contact" field should contain "Jennifer Be"
+        Then the "Lender's Authorizer" field should contain "Jennifer Be"
         Then the "Authorization Date" field should contain "2002-02-02"
-        Then the "Borrower's Contact" field should contain "Cesar Villalobos"
-        Then the "Borrower's Authorizer" field should contain "Cesar Villalobos"
+        Then the "Borrower's Contact" field should contain "Jennifer Be"
+        Then the "Borrower's Authorizer" field should contain "Jennifer Be"
         Then the "Borrower's Authorization Date" field should contain "2016-03-03"
         Then the "Loan In Conditions" field should contain "This \n Is \n A test \n for CQA-111 Test 13"
         Then the "Loan In Note" field should contain "CQA-111 Test 13"
