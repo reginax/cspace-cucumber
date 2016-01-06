@@ -202,10 +202,10 @@ Feature: Intake Tab
         And user selects "Enquiry" from the "Entry Reason" drop down box
         And user selects "Found on doorstep" from the "Entry Method" drop down box
         And user enters "Cesar Villalobos" in the "Depositor" field
-        And user selects "Cesar Villalobos" from the "Depositor" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "None" in the "Depositor Requirements" field
         And user enters "Cesar Villalobos" in the "Current Owner" field
-        And user selects "Cesar Villalobos" from the "Current Owner" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Testing CQA_110" in the "Entry Note" field
         And user enters "Testing testing" in the "Packing Note" field
         And user enters "2016-02-31" in the "Return Date" field
@@ -216,13 +216,13 @@ Feature: Intake Tab
         And user enters "110" in the "Field collection number" field
         And user enters "CQA-110 Testing" in the "Field collection event name"
         And user enters "Cesar Villalobos" in the "Field collection source" field
-        And user selects "Cesar Villalobos" from the "Field collection source" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Field collector" field
-        And user selects "Cesar Villalobos" from the "Field collector" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Valuer" field
-        And user selects "Cesar Villalobos" from the "Valuer" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Inc" in the "Insurer" field
-        And user selects "Cesar Inc" from the "Insurer" drop down box
+        And user selects "Cesar Inc" from autocomplete options
         And user enters "110.1" in the "Reference Number" field #there are more than 1!
         And user enters "110110110" in the "Policy Number" field
         And user enters "2016-01-04" in the "Renewal Date" field
@@ -230,7 +230,7 @@ Feature: Intake Tab
         And user selects "Observed" from the "Condition Check Method" drop down box
         And user selects "Consideration" from the "Condition Check Reason" drop down box
         And user enters "Jennifer Be" in the "Condition Check Assessor" field
-        And user selects "Jennifer Be" from the "Condition Check Assessor" drop down box
+        And user selects "Jennifer Be" from autocomplete options
         And user enters "This is \n a test \n for 110" in the "Condition Check Note" field
         And user enters "2016-01-06" in the "Condition Check Date" field
         And user enters "04131995" in the "Condition Check Reference Number" field
@@ -240,7 +240,7 @@ Feature: Intake Tab
         And user enters "For CQA-110" in the "Current Location Note" field
         And user enters "2016-01-22" in the "Location Date" field
         And user enters "California" in the "Normal Location" field
-        And user selects "California" from the "Normal Location" drop down box    
+        And user selects "California" from autocomplete options
         And user clicks the "Save" button
 
         Then the message "Intake successfully saved" should appear
@@ -291,10 +291,10 @@ Feature: Intake Tab
         And user selects "Consideration" from the "Entry Reason" drop down box
         And user selects "In person" from the "Entry Method" drop down box
         And user enters "Cesar Villalobos" in the "Depositor" field
-        And user selects "Cesar Villalobos" from the "Depositor" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Take care of CQA110-13" in the "Depositor Requirements" field
         And user enters "Cesar Villalobos" in the "Current Owner" field
-        And user selects "Cesar Villalobos" from the "Current Owner" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Testing CQA_110 Test 13" in the "Entry Note" field
         And user enters "Testing testing Test 13" in the "Packing Note" field
         And user enters "2017-02-31" in the "Return Date" field
@@ -305,13 +305,13 @@ Feature: Intake Tab
         And user enters "110_13" in the "Field collection number" field
         And user enters "CQA-110 Testing Test 13" in the "Field collection event name"
         And user enters "Cesar Villalobos" in the "Field collection source" field
-        And user selects "Cesar Villalobos" from the "Field collection source" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Field collector" field
-        And user selects "Cesar Villalobos" from the "Field collector" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Valuer" field
-        And user selects "Cesar Villalobos" from the "Valuer" drop down box
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Inc" in the "Insurer" field
-        And user selects "Cesar Inc" from the "Insurer" drop down box
+        And user selects "Cesar Inc" from autocomplete options
         And user enters "110.1.13" in the "Reference Number" field #there are more than 1!
         And user enters "110110110.13" in the "Policy Number" field
         And user enters "2016-01-06" in the "Renewal Date" field
@@ -319,7 +319,7 @@ Feature: Intake Tab
         And user selects "X-Rayed" from the "Condition Check Method" drop down box
         And user selects "Damaged in transit" from the "Condition Check Reason" drop down box
         And user enters "Jennifer Be" in the "Condition Check Assessor" field
-        And user selects "Jennifer Be" from the "Condition Check Assessor" drop down box
+        And user selects "Jennifer Be" from autocomplete options
         And user enters "This is \n a test \n for 110 \n Test 13." in the "Condition Check Note" field
         And user enters "2016-01-07" in the "Condition Check Date" field
         And user enters "04131995.13" in the "Condition Check Reference Number" field
@@ -329,7 +329,7 @@ Feature: Intake Tab
         And user enters "For CQA-110 Test 13" in the "Current Location Note" field
         And user enters "2016-07-22" in the "Location Date" field
         And user enters "California" in the "Normal Location" field
-        And user selects "California" from the "Normal Location" drop down box    
+        And user selects "California" from autocomplete options
         And user clicks the "Save" button
 
         Then the message "Intake successfully saved" should appear
