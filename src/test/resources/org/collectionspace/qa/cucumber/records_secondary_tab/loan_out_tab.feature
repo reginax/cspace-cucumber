@@ -180,27 +180,18 @@ Feature: Loan Out Tab
         And user enters "2016-01-27" in the "Loan Status Date" field
         And user enters "CQA112: Loan Status" in the "Loan Status Note" field
         And user selects "Agreed" from the "Loan Status" drop down box
-
         And user enters "Cesar Villalobos" in the "Lender" field
-        And user selects "Cesar Villalobos" from the "Lender" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Contact" field
-        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2016-01-01" in the "Authorization Date" field
-
-
         And user enters "Cesar Villalobos" in the "Borrower's Contact" field
-        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
-  
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2016-02-02" in the "Borrower's Authorization Date" field
-
         And user enters "This \n Is \n A test \n for CQA112" in the "Loan Out Conditions" field
         And user enters "CQA112" in the "Loan Out Note" field
 
@@ -236,30 +227,20 @@ Feature: Loan Out Tab
         And user enters "2016-02-22" in the "Loan Status Date" field
         And user enters "CQA112: Loan Status Test 13" in the "Loan Status Note" field
         And user selects "Authorized" from the "Loan Status" drop down box
-
         And user enters "Cesar Villalobos" in the "Lender" field
-        And user selects "Cesar Villalobos" from the "Lender" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Contact" field
-        And user selects "Cesar Villalobos" from the "Lender's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Lender's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Lender's Authorizer" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2002-02-02" in the "Authorization Date" field
-
-
         And user enters "Cesar Villalobos" in the "Borrower's Contact" field
-        And user selects "Cesar Villalobos" from the "Borrower's Contact" drop down box
-
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Borrower's Authorizer" field
-        And user selects "Cesar Villalobos" from the "Borrower's Authorizer" drop down box
-  
+        And user selects "Cesar Villalobos" from autocomplete options
         And user enters "2016-03-03" in the "Borrower's Authorization Date" field
-
         And user enters "This \n Is \n A test \n for CQA112 Test 13" in the "Loan Out Conditions" field
         And user enters "CQA112 Test 13" in the "Loan Out Note" field
-
         And user enters "2015-03-08" in the "Loan Out Date" field
         And user enters "2018-05-03" in the "Loan Return Date" field
         And user enters "2017-06-01" in the "Loan Renewal Application Date" field
