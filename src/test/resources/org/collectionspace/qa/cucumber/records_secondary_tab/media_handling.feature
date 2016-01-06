@@ -161,10 +161,7 @@ Feature: Media Handling Page Tab
         Then the message "___" should appear #fail
         And user enters "CQA114.11" in the "Identification Number" field
         And user saves the record
-        Then the message "______" should appear #success!
-
-        And user saves the record
-        Then the message "______" should appear #success!        
+        Then the message "______" should appear #success!  
         
         And user enters "CQA114 Form Filling" in the "Title" 
         And user selects "base" from the "Part" drop down box
