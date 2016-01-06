@@ -163,22 +163,22 @@ Feature: Media Handling Page Tab
         And user saves the record
         Then the message "______" should appear #success!  
         
-        And user enters "CQA114 Form Filling" in the "Title" 
+        And user enters "CQA114 Form Filling" in the "Title" field
         And user selects "base" from the "Part" drop down box
         And user selects "area" from the "Dimension" drop down box
         And user selects "Ruler" from the "Method" drop down box
         And user selects "carats" from the "Dimension Unit" drop down box
-        And user enters "Cesar Villalobos" in the "Measured By" area
+        And user enters "Cesar Villalobos" in the "Measured By" field
         And user selects "Cesar Villalobos" from autocomplete options
         And user enters "114.2" in the "Value" field
         And user enters "114.3" in the "Value Quantifier" field
         And user enters "2016-01-01" in the "Date" field
         And user enters "CQA114 Summary box" in the "Summary" field
-        And user enters "Cesar Villalobos" in the "Contributor" area
+        And user enters "Cesar Villalobos" in the "Contributor" field
         And user selects "Cesar Villalobos" from autocomplete options
-        And user enters "Cesar Villalobos" in the "Creator" area
+        And user enters "Cesar Villalobos" in the "Creator" field
         And user selects "Cesar Villalobos" from autocomplete options
-        And user enters "Cesar Villalobos" in the "Publisher" area
+        And user enters "Cesar Villalobos" in the "Publisher" field
         And user selects "Cesar Villalobos" from autocomplete options
         And user selects "Dataset" from the "Types" drop down box
         And user enters "CQA114 Coverage Box" in the "Coverage" field
@@ -226,17 +226,17 @@ Feature: Media Handling Page Tab
         And user selects "base" from the "Dimension" drop down box
         And user selects "Odometers" from the "Method" drop down box
         And user selects "feet" from the "Dimension Unit" drop down box
-        And user enters "Jennifer Be" in the "Measured By" area
+        And user enters "Jennifer Be" in the "Measured By" field
         And user selects "Jennifer Be" from autocomplete options
         And user enters "114.2.2" in the "Value" field
         And user enters "114.3.3" in the "Value Quantifier" field
         And user enters "2017-01-01" in the "Date" field
         And user enters "CQA114 Summary box Pt 2" in the "Summary" field
-        And user enters "Jennifer Be" in the "Contributor" area
+        And user enters "Jennifer Be" in the "Contributor" field
         And user selects "Jennifer Be" from autocomplete options
-        And user enters "Jennifer Be" in the "Creator" area
+        And user enters "Jennifer Be" in the "Creator" field
         And user selects "Jennifer Be" from autocomplete options
-        And user enters "Jennifer Be" in the "Publisher" area
+        And user enters "Jennifer Be" in the "Publisher" field
         And user selects "Jennifer Be" from autocomplete options
         And user selects "Dataset" from the "Types" drop down box
         And user enters "CQA114 Coverage Box edited" in the "Coverage" field
