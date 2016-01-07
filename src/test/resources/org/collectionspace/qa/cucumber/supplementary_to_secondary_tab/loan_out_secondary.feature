@@ -1,6 +1,5 @@
+@secondary
 #created by Forest Yang on Christmas Day 2015
-
-@supplementarysecondary
 Feature: Loan Out Secondary Tab
 
   #Test 1
