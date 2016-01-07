@@ -158,29 +158,29 @@ Feature: Exhibition Planning Tab
 
         # Scenario: Test 11--> Successful save
         Given user is on the "My CollectionSpace" page 
-        And user goes to the record with identification number "CQA115_NE" 
+        And user goes to the record with identification number "CQA105_NE" 
         And user selects the "Media Handling" tab 
 
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
         Then the message "___" should appear #fail
-        And user enters "CQA115.11" in the "Exhibition Number" field
+        And user enters "CQA105.11" in the "Exhibition Number" field
         And user saves the record
         Then the message "______" should appear #success!
       
-        
-        And user enters "CQA115_Test_11" in the "Exhibition Title" field
+
+        And user enters "CQA105_Test_11" in the "Exhibition Title" field
         And user selects "Permanent" from the "Exhibition Type" drop down box
 
-        And user enters "CQA115_Room" in the "Venues" field
-        And user selects "CQA115_Room" from autocomplete options
+        And user enters "CQA105_Room" in the "Venues" field
+        And user selects "CQA105_Room" from autocomplete options
         And user enters "2016-01-01" in the "Opening Date" field
         And user enters "2016-02-02" in the "Closing Date" field
         And user enters "115" in the "Attendance" field
         And user enters "www.CollectionSpace.org" in the "Web Address" field
-        And user enters "CQA115 Working Group" in the "Working Group Title" field
-        And user enters "CQA115 Notes Field" in the "Notes" field 
+        And user enters "CQA105 Working Group" in the "Working Group Title" field
+        And user enters "CQA105 Notes Field" in the "Notes" field 
         And user enters "Cesar Villalobos" in the "Sponsor" field
         And user selects "Cesar Villalobos" from autocomplete options
         And user enters "Cesar Villalobos" in the "Organizer" field
@@ -188,90 +188,90 @@ Feature: Exhibition Planning Tab
         And user enters "Cesar Villalobos" in the "Person" field
         And user selects "Cesar Villalobos" from autocomplete options
         And user selects "Curator" from the "Role" drop down box
-        And user enters "CQA-115 Planning Notes" in the "Planning Notes" field
-        And user enters "CQA-115 Curatorial Notes" in the "Curatorial Notes" field
-        And user enters "CQA-115 Boilerplate Text" in the "Boilerplate Text" field
-        And user enters "CQA-115 General Notes" in the "General Notes" field
-        And user enters "CQA115.11.2" in the "Rotation Name" field
+        And user enters "CQA-105 Planning Notes" in the "Planning Notes" field
+        And user enters "CQA-105 Curatorial Notes" in the "Curatorial Notes" field
+        And user enters "CQA-105 Boilerplate Text" in the "Boilerplate Text" field
+        And user enters "CQA-105 General Notes" in the "General Notes" field
+        And user enters "CQA105.11.2" in the "Rotation Name" field
         And user enters "2016-03-03" in the "Start Date" field
         And user enters "2016-04-04" in the "End Date" field        
-        And user enters "CQA115 Notes Field" in the "Notes" field
+        And user enters "CQA105 Notes Field" in the "Notes" field
         And user enters "Cesar Villalobos" in the "Reference" field
         And user selects "Cesar Villalobos" from autocomplete options
         And user selects "Catalog" from the "Reference Type" drop down box
-        And user enters "CQA115 Ref Box" in the "Reference Note" field
-        And user enters "CQA115.11.3" in the "Section" field
-        And user enters "CQA115.11.4" in the "Location" field
-        And user enters "CQA115.11.5" in the "Objects" field
-        And user enters "CQA115.11.6" in the "Remarks" field
+        And user enters "CQA105 Ref Box" in the "Reference Note" field
+        And user enters "CQA105.11.3" in the "Section" field
+        And user enters "CQA105.11.4" in the "Location" field
+        And user enters "CQA105.11.5" in the "Objects" field
+        And user enters "CQA105.11.6" in the "Remarks" field
         And user selects "Labels written" from the "Status" drop down box #Conflicting status boxes?
         And user enters "2016-05-05" in the "Status Date" field
-        And user enters "CQA115.11.6" in the "Remarks" field
+        And user enters "CQA105.11.6" in the "Remarks" field
         And user enters "Yes" in the "Object" field
-        And user enters "CQA115" in the "Name" field
+        And user enters "CQA105" in the "Name" field
         And user enters "2016-06-06" in the "Cons. Check" field
         And user selects "Needed" from the "Cons. Treatment" field
         And user selects "Done" from the "Mount?" field
-        And user enters "CQA115.11.3" in the "Section" field
-        And user enters "CQA115.11.9" in the "Case" field
-        And user enters "CQA115.11.10" in the "Seq. #" field
-        And user enters "CQA115.11.11" in the "Rotation" field
-        And user enters "CQA115.11.12" in the "Note" field
+        And user enters "CQA105.11.3" in the "Section" field
+        And user enters "CQA105.11.9" in the "Case" field
+        And user enters "CQA105.11.10" in the "Seq. #" field
+        And user enters "CQA105.11.11" in the "Rotation" field
+        And user enters "CQA105.11.12" in the "Note" field
 
         And user saves the record
         Then the message "______" should appear #succes
 
-        Then the "Exhibition Title" field should contain "CQA115_Test_11"
+        Then the "Exhibition Title" field should contain "CQA105_Test_11"
         Then the "Exhibition Type" field should contain "Permanent"
-        Then the "CQA115_Room" field should contain "CQA115_Room"
+        Then the "CQA105_Room" field should contain "CQA105_Room"
         Then the "Opening Date" field should contain "2016-01-01"
         Then the "Closing Date" field should contain "2016-02-02"
         Then the "Attendance" field should contain "115"
         Then the "Web Address" field should contain "www.CollectionSpace.org"
-        Then the "Working Group Title" field should contain "CQA115 Working Group"
-        Then the "Notes" field should contain "CQA115 Notes Field"
+        Then the "Working Group Title" field should contain "CQA105 Working Group"
+        Then the "Notes" field should contain "CQA105 Notes Field"
         Then the "Sponsor" field should contain "Cesar Villalobos"
         Then the "Organizer" field should contain "Cesar Villalobos"
         Then the "Person" field should contain "Cesar Villalobos"
         Then the "Role" field should contain "Curator"
-        Then the "Planning Notes" field should contain "CQA-115 Planning Notes"
-        Then the "Curatorial Notes" field should contain "CQA-115 Curatorial Notes"
-        Then the "Boilerplate Text" field should contain "CQA-115 Boilerplate Text"
-        Then the "General Notes" field should contain "CQA-115 General Notes"
-        Then the "Rotation Name" field should contain "CQA115.11.2"
+        Then the "Planning Notes" field should contain "CQA-105 Planning Notes"
+        Then the "Curatorial Notes" field should contain "CQA-105 Curatorial Notes"
+        Then the "Boilerplate Text" field should contain "CQA-105 Boilerplate Text"
+        Then the "General Notes" field should contain "CQA-105 General Notes"
+        Then the "Rotation Name" field should contain "CQA105.11.2"
         Then the "Start Date" field should contain "2016-03-03"
         Then the "End Date" field should contain "2016-04-04"
         Then the "Reference" field should contain "Cesar Villalobos"
         Then the "Reference Type" field should contain "Catalog"
-        Then the "Reference Note" field should contain "CQA115 Ref Box"
-        Then the "Section" field should contain "CQA115.11.3"
-        Then the "Location" field should contain "CQA115.11.4"
-        Then the "Objects" field should contain "CQA115.11.5"
-        Then the "Remarks" field should contain "CQA115.11.6"
+        Then the "Reference Note" field should contain "CQA105 Ref Box"
+        Then the "Section" field should contain "CQA105.11.3"
+        Then the "Location" field should contain "CQA105.11.4"
+        Then the "Objects" field should contain "CQA105.11.5"
+        Then the "Remarks" field should contain "CQA105.11.6"
         Then the "Status" field should contain "Labels written"
         Then the "Status Date" field should contain "2016-05-05"
         Then the "Object" field should contain "Yes"
-        Then the "Name" field should contain "CQA115"
+        Then the "Name" field should contain "CQA105"
         Then the "Cons. Check" field should contain "2016-06-06"
         Then the "Cons. Treatment" field should contain "Needed"
         Then the "Mount?" field should contain "Done"
-        Then the "Seq. #" field should contain "CQA115.11.10"
-        Then the "Rotation" field should contain "CQA115.11.11"
-        Then the "Note" field should contain "CQA115.11.12"
-        Then the "Case" field should contain "CQA115.11.9"
+        Then the "Seq. #" field should contain "CQA105.11.10"
+        Then the "Rotation" field should contain "CQA105.11.11"
+        Then the "Note" field should contain "CQA105.11.12"
+        Then the "Case" field should contain "CQA105.11.9"
 
         ###Test 13
         
-        And user enters "CQA115_Test_11 Test 13" in the "Exhibition Title" field
+        And user enters "CQA105_Test_11 Test 13" in the "Exhibition Title" field
         And user selects "Temporary" from the "Exhibition Type" drop down box
-        And user enters "CQA115_Room" in the "Venues" field
-        And user selects "CQA115_Room" from autocomplete options
+        And user enters "CQA105_Room" in the "Venues" field
+        And user selects "CQA105_Room" from autocomplete options
         And user enters "2017-01-01" in the "Opening Date" field
         And user enters "2017-02-02" in the "Closing Date" field
         And user enters "115_13" in the "Attendance" field
         And user enters "www.CollectionSpace.org" in the "Web Address" field
-        And user enters "CQA115 Working Group 13" in the "Working Group Title" field
-        And user enters "CQA115 Notes Field 13" in the "Notes" field 
+        And user enters "CQA105 Working Group 13" in the "Working Group Title" field
+        And user enters "CQA105 Notes Field 13" in the "Notes" field 
         And user enters "Jennifer Be" in the "Sponsor" field
         And user selects "Jennifer Be" from autocomplete options
         And user enters "Jennifer Be" in the "Organizer" field
@@ -279,77 +279,77 @@ Feature: Exhibition Planning Tab
         And user enters "Jennifer Be" in the "Person" field
         And user selects "Jennifer Be" from autocomplete options
         And user selects "Educator" from the "Role" drop down box
-        And user enters "CQA-115_13 Planning Notes" in the "Planning Notes" field
-        And user enters "CQA-115_13 Curatorial Notes" in the "Curatorial Notes" field
-        And user enters "CQA-115_13 Boilerplate Text" in the "Boilerplate Text" field
-        And user enters "CQA-115_13 General Notes" in the "General Notes" field
-        And user enters "CQA115.11.13.2" in the "Rotation Name" field
+        And user enters "CQA-105_13 Planning Notes" in the "Planning Notes" field
+        And user enters "CQA-105_13 Curatorial Notes" in the "Curatorial Notes" field
+        And user enters "CQA-105_13 Boilerplate Text" in the "Boilerplate Text" field
+        And user enters "CQA-105_13 General Notes" in the "General Notes" field
+        And user enters "CQA105.11.13.2" in the "Rotation Name" field
         And user enters "2017-03-03" in the "Start Date" field
         And user enters "2017-04-04" in the "End Date" field        
-        And user enters "CQA115 Notes Field 13" in the "Notes" field
+        And user enters "CQA105 Notes Field 13" in the "Notes" field
         And user enters "Jennifer Be" in the "Reference" field
         And user selects "Jennifer Be" from autocomplete options
         And user selects "Catalog" from the "Reference Type" drop down box
-        And user enters "CQA115 Ref Box Test 13" in the "Reference Note" field
-        And user enters "CQA115.11.13.3" in the "Section" field
-        And user enters "CQA115.11.13.4" in the "Location" field
-        And user enters "CQA115.11.13.5" in the "Objects" field
-        And user enters "CQA115.11.13.6" in the "Remarks" field
+        And user enters "CQA105 Ref Box Test 13" in the "Reference Note" field
+        And user enters "CQA105.11.13.3" in the "Section" field
+        And user enters "CQA105.11.13.4" in the "Location" field
+        And user enters "CQA105.11.13.5" in the "Objects" field
+        And user enters "CQA105.11.13.6" in the "Remarks" field
         And user selects "Labels written" from the "Status" drop down box #Conflicting status boxes?
         And user enters "2017-05-05" in the "Status Date" field
-        And user enters "CQA115.11.13.6" in the "Remarks" field
+        And user enters "CQA105.11.13.6" in the "Remarks" field
         And user enters "No" in the "Object" field
-        And user enters "CQA115" in the "Name" field
+        And user enters "CQA105" in the "Name" field
         And user enters "2017-06-06" in the "Cons. Check" field
         And user selects "Not needed" from the "Cons. Treatment" field
         And user selects "Needed" from the "Mount?" field
-        And user enters "CQA115.11.13.3" in the "Section" field
-        And user enters "CQA115.11.13.9" in the "Case" field
-        And user enters "CQA115.11.13.10" in the "Seq. #" field
-        And user enters "CQA115.11.13.11" in the "Rotation" field
-        And user enters "CQA115.11.13.12" in the "Note" field
+        And user enters "CQA105.11.13.3" in the "Section" field
+        And user enters "CQA105.11.13.9" in the "Case" field
+        And user enters "CQA105.11.13.10" in the "Seq. #" field
+        And user enters "CQA105.11.13.11" in the "Rotation" field
+        And user enters "CQA105.11.13.12" in the "Note" field
 
         And user saves the record
         Then the message "______" should appear #succes
 
-        Then the "Exhibition Title" field should contain "CQA115_Test_11 Test 13"
+        Then the "Exhibition Title" field should contain "CQA105_Test_11 Test 13"
         Then the "Exhibition Type" field should contain "Temporary"
-        Then the "CQA115_Room" field should contain "CQA115_Room"
+        Then the "CQA105_Room" field should contain "CQA105_Room"
         Then the "Opening Date" field should contain "2017-01-01"
         Then the "Closing Date" field should contain "2017-02-02"
         Then the "Attendance" field should contain "115_13"
         Then the "Web Address" field should contain "www.CollectionSpace.org"
-        Then the "Working Group Title" field should contain "CQA115 Working Group 13"
-        Then the "Notes" field should contain "CQA115 Notes Field 13"
+        Then the "Working Group Title" field should contain "CQA105 Working Group 13"
+        Then the "Notes" field should contain "CQA105 Notes Field 13"
         Then the "Sponsor" field should contain "Jennifer Be"
         Then the "Organizer" field should contain "Jennifer Be"
         Then the "Person" field should contain "Jennifer Be"
         Then the "Role" field should contain "Educator"
-        Then the "Planning Notes" field should contain "CQA-115_13 Planning Notes"
-        Then the "Curatorial Notes" field should contain "CQA-115_13 Curatorial Notes"
-        Then the "Boilerplate Text" field should contain "CQA-115_13 Boilerplate Text"
-        Then the "General Notes" field should contain "CQA-115_13 General Notes"
-        Then the "Rotation Name" field should contain "CQA115.11.13.2"
+        Then the "Planning Notes" field should contain "CQA-105_13 Planning Notes"
+        Then the "Curatorial Notes" field should contain "CQA-105_13 Curatorial Notes"
+        Then the "Boilerplate Text" field should contain "CQA-105_13 Boilerplate Text"
+        Then the "General Notes" field should contain "CQA-105_13 General Notes"
+        Then the "Rotation Name" field should contain "CQA105.11.13.2"
         Then the "Start Date" field should contain "2017-03-03"
         Then the "End Date" field should contain "2017-04-04"
         Then the "Reference" field should contain "Jennifer Be"
         Then the "Reference Type" field should contain "Catalog"
-        Then the "Reference Note" field should contain "CQA115 Ref Box Test 13"
-        Then the "Section" field should contain "CQA115.11.13.3"
-        Then the "Location" field should contain "CQA115.11.13.4"
-        Then the "Objects" field should contain "CQA115.11.13.5"
-        Then the "Remarks" field should contain "CQA115.11.13.6"
+        Then the "Reference Note" field should contain "CQA105 Ref Box Test 13"
+        Then the "Section" field should contain "CQA105.11.13.3"
+        Then the "Location" field should contain "CQA105.11.13.4"
+        Then the "Objects" field should contain "CQA105.11.13.5"
+        Then the "Remarks" field should contain "CQA105.11.13.6"
         Then the "Status" field should contain "Labels written"
         Then the "Status Date" field should contain "2017-05-05"
         Then the "Object" field should contain "No"
-        Then the "Name" field should contain "CQA115"
+        Then the "Name" field should contain "CQA105"
         Then the "Cons. Check" field should contain "2017-06-06"
         Then the "Cons. Treatment" field should contain "Not needed"
         Then the "Mount?" field should contain "Needed"
-        Then the "Seq. #" field should contain "CQA115.11.13.10"
-        Then the "Rotation" field should contain "CQA115.11.13.11"
-        Then the "Note" field should contain "CQA115.11.13.12"
-        Then the "Case" field should contain "CQA115.11.13.9"
+        Then the "Seq. #" field should contain "CQA105.11.13.10"
+        Then the "Rotation" field should contain "CQA105.11.13.11"
+        Then the "Note" field should contain "CQA105.11.13.12"
+        Then the "Case" field should contain "CQA105.11.13.9"
         Then close the browser
 
 
