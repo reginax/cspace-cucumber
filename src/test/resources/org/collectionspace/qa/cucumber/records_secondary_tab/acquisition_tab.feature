@@ -195,7 +195,7 @@ Feature: Acquisition Tab
         And user enters "CQA93 Digging Event" in the "Field collection event name" field
         
         And user saves the record
-        Then the message "Relation successfully created." should appear #success!
+        Then the message "Acquisition successfully saved" should appear #success!
 
         Then the "Accession Date" field should contain "2016-01-01"
         Then the "Acquisition Authorizer" field should contain "Cesar Villalobos"
@@ -249,7 +249,7 @@ Feature: Acquisition Tab
         And user enters "93.13.8" in the "Credit Line" field
         And user enters "CQA93 Digging Event" in the "Field collection event name" field
         And user saves the record
-        Then the message "Relation successfully created." should appear #success!
+        Then the message "Acquisition successfully saved" should appear #success!
 
         Then the "Accession Date" field should contain "2017-01-01"
         Then the "Acquisition Authorizer" field should contain "Jennifer Be"
