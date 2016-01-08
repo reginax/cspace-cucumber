@@ -274,7 +274,7 @@ Feature: Acquisition Tab
         Then the "Credit Line" field should contain "93.13.8"
         Then the "Field collection event name" field should contain "CQA93 Digging Event"
         And the user clicks the "Go To Record" button
-        And the user clicks the "Delete this relation" button
+        And the user clicks the "Delete" button
         Then a delete confirmation dialogue should appear #needs Step
         And the user clicks the delete button        
         Then close the browser
