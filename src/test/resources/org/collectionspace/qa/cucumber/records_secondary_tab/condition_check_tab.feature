@@ -328,7 +328,7 @@ Feature: Condition Check Tab Test Plan
         Then the "Salvage Priority Code Date" field should contain "2017-11-11"
         Then the "Salvage Priority Code" field should contain "102"
         And the user clicks the "Go To Record" button        
-        And the user clicks the "Delete this relation." button
+        And the user clicks the "Delete" button
         Then a delete confirmation dialogue should appear
         And the user clicks the delete button 
         Then the deletion should be confirmed in a dialogue        
