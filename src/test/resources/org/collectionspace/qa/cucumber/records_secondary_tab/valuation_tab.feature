@@ -165,10 +165,10 @@ Feature: Valuation Tab
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear #fail
+        Then the message "Please specify a Valuation Control Reference Number" should appear #fail
         And user enters "CQA116.11" in the "Evaluation Control Reference Number" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
         And user selects "Danish Krone" from the "Currency" drop down box
         And user enters "116" in the "Amount" field
@@ -179,7 +179,7 @@ Feature: Valuation Tab
         And user selects "Current Value" from the "Type" drop down box
         And user enters "CQA116 \n Test" in the "Note" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Valuation Control successfully saved" should appear #success!
 
         Then the "Currency" field should contain "Danish Krone"
         Then the "Amount" field should contain "116"
@@ -207,7 +207,7 @@ Feature: Valuation Tab
         And user enters "CQA116 \n Test \n for subtest Test 13" in the "Note" field
         
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Valuation Control successfully saved" should appear #success!
 
         Then the "Currency" field should contain "Euro"
         Then the "Amount" field should contain "120"
@@ -216,7 +216,11 @@ Feature: Valuation Tab
         Then the "Renewal Date" field should contain "2017-01-02"
         Then the "Type" field should contain "Original Value"
         Then the "Note" field should contain "CQA116 \n Test \n for subtest Test 13"
-
+	    
+	    And user clicks the "Go To Record" button
+	    And user clicks the "Delete" button 
+	    Then delete confirmation dialogue should appear
+	    And user clicks on the delete button
         Then close the browser
 
 
