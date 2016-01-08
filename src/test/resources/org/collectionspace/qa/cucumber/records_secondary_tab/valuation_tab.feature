@@ -215,8 +215,7 @@ Feature: Valuation Tab
         Then the "Date" field should contain "2016-01-10"
         Then the "Renewal Date" field should contain "2017-01-02"
         Then the "Type" field should contain "Original Value"
-        Then the "Note" field should contain "CQA116 \n Test \n for subtest Test 13"
-	    
+        Then the "Note" field should contain "CQA116 \n Test \n for subtest Test 13"	    
 	    And user clicks the "Go To Record" button
 	    And user clicks the "Delete" button 
 	    Then delete confirmation dialogue should appear
