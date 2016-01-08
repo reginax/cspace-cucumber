@@ -241,7 +241,7 @@ Feature: Valuation Tab
 	Scenario: Testing Functional Accessibility #31
 	    Given the user is in the "My CollectionSpace" page
 	    And user goes to the record with identification number "CQA115_NE"
-	    And user selects the "Object Exit" tab 
+	    And user selects the "Valuation Control" tab 
 
 	    And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
 	    And the user presses the "Enter" key #needs Stepdef
