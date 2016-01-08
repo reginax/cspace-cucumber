@@ -351,7 +351,7 @@ Feature: Exhibition Planning Tab
         Then the "Note" field should contain "CQA105.11.13.12"
         Then the "Case" field should contain "CQA105.11.13.9"
         And the user clicks the "Go To Record" button        
-        And the user clicks the "Delete this relation." button
+        And the user clicks the "Delete" button
         Then a delete confirmation dialogue should appear
         And the user clicks the delete button 
         Then the deletion should be confirmed in a dialogue        
