@@ -162,10 +162,10 @@ Feature: Acquisition Tab
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear #fail
+        Then the message "Please specify an Acquisition Reference Number" should appear #fail
         And user enters "CQA93.11" in the "Acquisition Reference Number" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
         
         And user enters "2016-01-01" in the "Accession Date" field
         And user enters "Cesar Villalobos" in the "Acquisition Authorizer" field
@@ -195,7 +195,7 @@ Feature: Acquisition Tab
         And user enters "CQA93 Digging Event" in the "Field collection event name" field
         
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
         Then the "Accession Date" field should contain "2016-01-01"
         Then the "Acquisition Authorizer" field should contain "Cesar Villalobos"
@@ -249,7 +249,7 @@ Feature: Acquisition Tab
         And user enters "93.13.8" in the "Credit Line" field
         And user enters "CQA93 Digging Event" in the "Field collection event name" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
         Then the "Accession Date" field should contain "2017-01-01"
         Then the "Acquisition Authorizer" field should contain "Jennifer Be"
@@ -273,6 +273,9 @@ Feature: Acquisition Tab
         Then the "Source provisos" field should contain "Some"
         Then the "Credit Line" field should contain "93.13.8"
         Then the "Field collection event name" field should contain "CQA93 Digging Event"
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear #needs Step
+        And the user clicks the delete button        
         Then close the browser
         
 
