@@ -266,7 +266,9 @@ Feature: Loan Out Tab
         Then the "Loan Out Date" field should contain "2015-03-08"
         Then the "Loan Return Date" field should contain "2018-05-03"
         Then the "Loan Renewal Application Date" field should contain "2017-06-01"
-
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear #needs Step
+        And the user clicks the delete button
         Then close the browser
 
 	Scenario: Testing links and "Go To Record" works #Test 23
