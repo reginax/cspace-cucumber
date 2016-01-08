@@ -165,10 +165,10 @@ Feature: Object Exit Page Tab
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear
+        Then the message "Please specify an Exit Number" should appear
         And user enters "CQA115.11" in the "Exit Number" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
         And user enters "2016-01-05" in the "Exit Date" field
         And user enters "Cesar Villalobos" in the "Current Owner" field
@@ -181,7 +181,7 @@ Feature: Object Exit Page Tab
         And user enters "Packing for CQA115" in the "Packing Note" field
 
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Object Exit successfully saved" should appear #success!
 
 
 
@@ -207,7 +207,7 @@ Feature: Object Exit Page Tab
         And user enters "Packing for CQA115 Test 13" in the "Packing Note" field
 
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Object Exit successfully saved" should appear #success!
 
         Then the "Exit Number" field should contain "CQA115.11"
         Then the "Current Owner" field should contain "Jennifer Be"
@@ -217,6 +217,11 @@ Feature: Object Exit Page Tab
         Then the "Exit Date" field should contain "2016-01-10"
         Then the "Exit Note" field should contain "This \n is \n CQA115 \n Test 13"
         Then the "Packing Note" field should contain "Packing for CQA115 Test 13"
+	    And the user clicks the "Delete this relation" button
+	    Then a delete confirmation dialogue should appear #needs Step
+	    And the user clicks the delete button 
+	    Then the deletion should be confirmed in a dialogue   
+
         Then close the browser
 
 
