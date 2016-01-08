@@ -327,6 +327,7 @@ Feature: Condition Check Tab Test Plan
         Then the "Legal/License Requirements Held Renew Date" field should contain "2017-10-10"
         Then the "Salvage Priority Code Date" field should contain "2017-11-11"
         Then the "Salvage Priority Code" field should contain "102"
+        And the user clicks the "Go To Record" button        
         And the user clicks the "Delete this relation." button
         Then a delete confirmation dialogue should appear
         And the user clicks the delete button 
