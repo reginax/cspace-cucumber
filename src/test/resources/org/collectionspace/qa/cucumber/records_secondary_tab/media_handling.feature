@@ -158,10 +158,10 @@ Feature: Media Handling Page Tab
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear #fail
+        Then the message "Please specify an Identification Number" should appear #fail
         And user enters "CQA114.11" in the "Identification Number" field
         And user saves the record
-        Then the message "______" should appear #success!  
+        Then the message "Relation successfully created." should appear #success!  
         
         And user enters "CQA114 Form Filling" in the "Title" field
         And user selects "base" from the "Part" drop down box
@@ -192,7 +192,7 @@ Feature: Media Handling Page Tab
         And user selects "Cesar Villalobos" from autocomplete options
         And user enters "CQA114 description box" in the "Description" field   
         And user saves the record
-        Then the message "______" should appear #succes
+        Then the message "Media Handling successfully saved" should appear #succes
 
         ## test 11 thens
 
@@ -250,7 +250,7 @@ Feature: Media Handling Page Tab
         And user selects "Jennifer Be" from autocomplete options
         And user enters "CQA114 description box pt 2" in the "Description" field   
         And user saves the record
-        Then the message "______" should appear #succes
+        Then the message "Media Handling successfully saved" should appear #succes
 
         ## test 13 thens
 
@@ -276,6 +276,9 @@ Feature: Media Handling Page Tab
         Then the "Rights holder" field should contain "Jennifer Be"
         Then the "Description" field should contain "CQA114 description box pt 2"
         Then the "Languages" field should contain "German"
+	    And the user clicks the "Delete this relation" button
+	    Then a delete confirmation dialogue should appear #needs Step
+	    And the user clicks the delete button         
         Then close the browser
 
 	Scenario: Testing links and "Go To Record" works #10
