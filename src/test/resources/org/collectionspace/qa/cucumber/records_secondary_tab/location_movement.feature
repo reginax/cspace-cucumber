@@ -267,7 +267,8 @@ Feature: Location/Movement/Inventory Control Tab
         Then the "Inventory Date" field should contain "2016-02-11"
         Then the "Next Inventory Date" field should contain "2016-02-12"
         Then the "Note" field should contain "CQA113 Third Note Box Test 13" 
-	    And the user clicks the "Delete this relation" button
+        And the user clicks the "Go To Record" button	    
+	    And the user clicks the "Delete" button
 	    Then a delete confirmation dialogue should appear #needs Step
 	    And the user clicks the delete button         
 
