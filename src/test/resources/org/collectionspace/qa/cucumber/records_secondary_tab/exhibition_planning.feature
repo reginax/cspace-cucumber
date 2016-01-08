@@ -164,10 +164,10 @@ Feature: Exhibition Planning Tab
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear #fail
+        Then the message "Please specify an Exhibition Number" should appear #fail
         And user enters "CQA105.11" in the "Exhibition Number" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
       
 
         And user enters "CQA105_Test_11" in the "Exhibition Title" field
@@ -219,7 +219,7 @@ Feature: Exhibition Planning Tab
         And user enters "CQA105.11.12" in the "Note" field
 
         And user saves the record
-        Then the message "______" should appear #succes
+        Then the message "Exhibition successfully saved" should appear #succes
 
         Then the "Exhibition Title" field should contain "CQA105_Test_11"
         Then the "Exhibition Type" field should contain "Permanent"
@@ -310,7 +310,7 @@ Feature: Exhibition Planning Tab
         And user enters "CQA105.11.13.12" in the "Note" field
 
         And user saves the record
-        Then the message "______" should appear #succes
+        Then the message "Exhibition successfully saved" should appear #succes
 
         Then the "Exhibition Title" field should contain "CQA105_Test_11 Test 13"
         Then the "Exhibition Type" field should contain "Temporary"
@@ -350,6 +350,10 @@ Feature: Exhibition Planning Tab
         Then the "Rotation" field should contain "CQA105.11.13.11"
         Then the "Note" field should contain "CQA105.11.13.12"
         Then the "Case" field should contain "CQA105.11.13.9"
+        And the user clicks the "Delete this relation." button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue        
         Then close the browser
 
 
