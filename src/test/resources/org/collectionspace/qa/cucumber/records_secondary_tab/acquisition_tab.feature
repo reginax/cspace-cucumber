@@ -152,19 +152,136 @@ Feature: Acquisition Tab
         Then a deletion should be confirmed in a dialogue
         Then close the browser
 
-    Scenario: Create new from Used By/ Procedures area #10 
-        #skip?
+    Scenario: Check Acquisition Reference Number and successful save and All fields saved on edited Acquisition record 
+
+        # Scenario: Test 11--> Successful save
+        Given user is on the "My CollectionSpace" page 
+        And user goes to the record with identification number "CQA93_NE" 
+        And user selects the "Acquisition" tab 
+
+        And the user clicks on the "+ Add Record" button
+        And clicks on the Create button
+        And the user saves the record # click the save button
+        Then the message "Please specify an Acquisition Reference Number" should appear #fail
+        And user enters "CQA93.11" in the "Acquisition Reference Number" field
+        And user saves the record
+        Then the message "Relation successfully created." should appear #success!
+        
+        And user enters "2016-01-01" in the "Accession Date" field
+        And user enters "Cesar Villalobos" in the "Acquisition Authorizer" field
+        And user selects "Cesar Villalobos" from autocomplete options
+        And user enters "2016-02-02" in the "Acquisition authorizer date" field
+        And user enters "2016-03-03" in the "Acquisition Date" field
+        And user selects "Purchase" from the "Acquisition Method" drop down box
+        And user enters "Cesar Villalobos" in the "Acquisition Source" field
+        And user selects "Cesar Villalobos" from autocomplete options
+        And user enters "Cesar Villalobos" in the "Owner" field
+        And user selects "Cesar Villalobos" from autocomplete options
+        And user enters "93.1" in the "Transfer of Title Number" field
+        And user enters "93.2" in the "Group purchase price value" field
+        And user enters "93.3" in the "Object offer price value" field
+        And user enters "93.4" in the "Object purchaser offer price value" field
+        And user enters "93.5" in the "Object purchase price value" field
+        And user enters "93.6" in the "Original object purchase price" field
+        And user enters "CQA93_11 Reason \n none" in the "Acquisition Reason" field
+        And user enters "CQA93_11 Acquisition Note \n none" in the "Acquisition Note" field
+        And user enters "CQA93_11 Provisos \n none" in the "Acquisition Provisos" field
+        And user selects "Euro" from the "Currency" drop down box
+        And user enters "93.7" in the "Value" field
+        And user enters "CQA93 Fund" in the "Funding source" field
+        And user selects "CQA93 Fund" from autocomplete options
+        And user enters "None" in the "Source provisos" field
+        And user enters "93.8" in the "Credit Line" field
+        And user enters "CQA93 Digging Event" in the "Field collection event name" field
+        
+        And user saves the record
+        Then the message "Acquisition successfully saved" should appear #success!
+
+        Then the "Accession Date" field should contain "2016-01-01"
+        Then the "Acquisition Authorizer" field should contain "Cesar Villalobos"
+        Then the "Acquisition authorizer date" field should contain "2016-02-02"
+        Then the "Acquisition Date" field should contain "2016-03-03"
+        Then the "Acquisition Method" field should contain "Purchase"
+        Then the "Acquisition Source" field should contain "Cesar Villalobos"
+        Then the "Owner" field should contain "Cesar Villalobos"
+        Then the "ransfer of Title Number" field should contain "93.1"
+        Then the "Group purchase price value" field should contain "93.2"
+        Then the "Object offer price value" field should contain "93.3"
+        Then the "Object purchaser offer price value" field should contain "93.4"
+        Then the "Object purchase price value" field should contain "93.5"
+        Then the "Original object purchase price" field should contain "93.6"
+        Then the "Acquisition Reason" field should contain "CQA93_11 Reason \n none"
+        Then the "Acquisition Note" field should contain "CQA93_11 Acquisition Note \n none"
+        Then the "Acquisition provisos" field should contain "CQA93_11 Provisos \n none"
+        Then the "Currency" field should contain "Euro"
+        Then the "Value" field should contain "93.7"
+        Then the "Funding source" field should contain "CQA93 Fund"
+        Then the "Source provisos" field should contain "None"
+        Then the "Credit Line" field should contain "93.8"
+        Then the "Field collection event name" field should contain "CQA93 Digging Event"
+
+        # Test 13 --> Successful save on edited record
+        
+        And user enters "2017-01-01" in the "Accession Date" field
+        And user enters "Jennifer Be" in the "Acquisition Authorizer" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "2017-02-02" in the "Acquisition authorizer date" field
+        And user enters "2017-03-03" in the "Acquisition Date" field
+        And user selects "Purchase" from the "Acquisition Method" drop down box
+        And user enters "Jennifer Be" in the "Acquisition Source" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "Jennifer Be" in the "Owner" field
+        And user selects "Jennifer Be" from autocomplete options
+        And user enters "93.13.1" in the "Transfer of Title Number" field
+        And user enters "93.13.2" in the "Group purchase price value" field
+        And user enters "93.13.3" in the "Object offer price value" field
+        And user enters "93.13.4" in the "Object purchaser offer price value" field
+        And user enters "93.13.5" in the "Object purchase price value" field
+        And user enters "93.13.6" in the "Original object purchase price" field
+        And user enters "CQA93_13 Reason \n none" in the "Acquisition Reason" field
+        And user enters "CQA93_13 Acquisition Note \n none" in the "Acquisition Note" field
+        And user enters "CQA93_13 Provisos \n none" in the "Acquisition Provisos" field
+        And user selects "Euro" from the "Currency" drop down box
+        And user enters "93.13.7" in the "Value" field
+        And user enters "CQA93 Fund" in the "Funding source" field
+        And user selects "CQA93 Fund" from autocomplete options
+        And user enters "Some" in the "Source provisos" field
+        And user enters "93.13.8" in the "Credit Line" field
+        And user enters "CQA93 Digging Event" in the "Field collection event name" field
+        And user saves the record
+        Then the message "Acquisition successfully saved" should appear #success!
+
+        Then the "Accession Date" field should contain "2017-01-01"
+        Then the "Acquisition Authorizer" field should contain "Jennifer Be"
+        Then the "Acquisition authorizer date" field should contain "2017-02-02"
+        Then the "Acquisition Date" field should contain "2017-03-03"
+        Then the "Acquisition Method" field should contain "Purchase"
+        Then the "Acquisition Source" field should contain "Jennifer Be"
+        Then the "Owner" field should contain "Jennifer Be"
+        Then the "ransfer of Title Number" field should contain "93.13.1"
+        Then the "Group purchase price value" field should contain "93.13.2"
+        Then the "Object offer price value" field should contain "93.13.3"
+        Then the "Object purchaser offer price value" field should contain "93.13.4"
+        Then the "Object purchase price value" field should contain "93.13.5"
+        Then the "Original object purchase price" field should contain "93.13.6"
+        Then the "Acquisition Reason" field should contain "CQA93_13 Reason \n none"
+        Then the "Acquisition Note" field should contain "CQA93_13 Acquisition Note \n none"
+        Then the "Acquisition provisos" field should contain "CQA93_13 Provisos \n none"
+        Then the "Currency" field should contain "Euro"
+        Then the "Value" field should contain "93.13.7"
+        Then the "Funding source" field should contain "CQA93 Fund"
+        Then the "Source provisos" field should contain "Some"
+        Then the "Credit Line" field should contain "93.13.8"
+        Then the "Field collection event name" field should contain "CQA93 Digging Event"
+        And the user clicks the "Go To Record" button
+        And the user clicks the "Delete" button
+        Then a delete confirmation dialogue should appear #needs Step
+        And the user clicks the delete button        
+        Then close the browser
+        
 
 
-    Scenario: Check Acquisition Reference Number and successful save #11 
-        #skip?
-
-
-    Scenario: All fields saved on edited Acquisition record #13 
-        #skip?
-
-
-    Scenario: Listing displays correct fields #21 
+    # Scenario: Listing displays correct fields #21 
         #skip?
 
 
