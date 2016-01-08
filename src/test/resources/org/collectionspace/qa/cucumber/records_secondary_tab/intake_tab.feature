@@ -371,6 +371,9 @@ Feature: Intake Tab
         Then the "Location Date" field should contain "2016-07-22"
         Then the "Normal Location" field should contain "California"
         Then the "Field collection method" field should contain "netted"
+        And the user clicks the "Delete this relation" button
+        Then a delete confirmation dialogue should appear #needs Step
+        And the user clicks the delete button        
         Then close the browser
 
 
