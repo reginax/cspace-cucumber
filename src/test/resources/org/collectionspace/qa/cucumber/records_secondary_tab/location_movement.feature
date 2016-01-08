@@ -180,7 +180,7 @@ Feature: Location/Movement/Inventory Control Tab
         And user enters "CQA113.2" in the "Current Location" field
         And user clicks on "CQA113.2" from autocomplete options
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
 
         And user enters "CQA113.11" in the "Reference Number" field
@@ -204,7 +204,7 @@ Feature: Location/Movement/Inventory Control Tab
         And user enters "2016-01-12" in the "Next Inventory Date" field
         And user enters "CQA113 Third Note Box" in the "Note" field #third note field!
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Location/Movement/Inventory successfully saved" should appear #success!
 
         Then the "Reference Number" field should contain "CQA113.11"
         Then the "Normal Location" field should contain "CQA113_Loc"
@@ -248,7 +248,7 @@ Feature: Location/Movement/Inventory Control Tab
         And user enters "2016-02-12" in the "Next Inventory Date" field
         And user enters "CQA113 Third Note Box Test 13" in the "Note" field #third note field!
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Location/Movement/Inventory successfully saved" should appear #success!
 
         Then The "Reference Number" field should contain "CQA113.11"
         Then the "Normal Location" field should contain "CQA113_Loc_2"
@@ -267,6 +267,10 @@ Feature: Location/Movement/Inventory Control Tab
         Then the "Inventory Date" field should contain "2016-02-11"
         Then the "Next Inventory Date" field should contain "2016-02-12"
         Then the "Note" field should contain "CQA113 Third Note Box Test 13" 
+	    And the user clicks the "Delete this relation" button
+	    Then a delete confirmation dialogue should appear #needs Step
+	    And the user clicks the delete button         
+
         Then close the browser
 
 
