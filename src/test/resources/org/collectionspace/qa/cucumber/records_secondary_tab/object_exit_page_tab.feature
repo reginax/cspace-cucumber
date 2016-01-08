@@ -217,7 +217,8 @@ Feature: Object Exit Page Tab
         Then the "Exit Date" field should contain "2016-01-10"
         Then the "Exit Note" field should contain "This \n is \n CQA115 \n Test 13"
         Then the "Packing Note" field should contain "Packing for CQA115 Test 13"
-	    And the user clicks the "Delete this relation" button
+        And the user clicks the "Go To Record" button	    
+	    And the user clicks the "Delete" button
 	    Then a delete confirmation dialogue should appear #needs Step
 	    And the user clicks the delete button 
 	    Then the deletion should be confirmed in a dialogue   
