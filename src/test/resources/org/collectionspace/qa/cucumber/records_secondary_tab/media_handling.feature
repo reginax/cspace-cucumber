@@ -276,7 +276,8 @@ Feature: Media Handling Page Tab
         Then the "Rights holder" field should contain "Jennifer Be"
         Then the "Description" field should contain "CQA114 description box pt 2"
         Then the "Languages" field should contain "German"
-	    And the user clicks the "Delete this relation" button
+        And the user clicks the "Go To Record" button	    
+	    And the user clicks the "Delete" button
 	    Then a delete confirmation dialogue should appear #needs Step
 	    And the user clicks the delete button         
         Then close the browser
