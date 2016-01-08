@@ -263,7 +263,8 @@ Feature: Loan In Tab
         Then the "Loan In Date" field should contain "2015-03-08"
         Then the "Loan Return Date" field should contain "2018-05-03"
         Then the "Loan Renewal Application Date" field should contain "2017-06-01"
-        And the user clicks the "Delete this relation" button
+        And the user clicks the "Go To Record" button        
+        And the user clicks the "Delete" button
         Then a delete confirmation dialogue should appear #needs Step
         And the user clicks the delete button
         
