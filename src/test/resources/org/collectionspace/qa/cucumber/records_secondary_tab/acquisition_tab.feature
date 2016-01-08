@@ -273,6 +273,7 @@ Feature: Acquisition Tab
         Then the "Source provisos" field should contain "Some"
         Then the "Credit Line" field should contain "93.13.8"
         Then the "Field collection event name" field should contain "CQA93 Digging Event"
+        And user clicks the "Go To Record" button
         And the user clicks the "Delete this relation" button
         Then a delete confirmation dialogue should appear #needs Step
         And the user clicks the delete button        
