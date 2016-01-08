@@ -156,10 +156,10 @@ Feature: Condition Check Tab Test Plan
         And the user clicks on the "+ Add Record" button
         And clicks on the Create button
         And the user saves the record # click the save button
-        Then the message "___" should appear #fail
+        Then the message "Please specify a Condition Check Number" should appear #fail
         And user enters "CQA103.11" in the "Condition Check/Assessment Reference Number" field
         And user saves the record
-        Then the message "______" should appear #success!
+        Then the message "Relation successfully created." should appear #success!
 
         And user selects "Medium" from the "Object Audit Category" drop down box
         And user selects "Medium" from the "Conservation Treatment Priority" drop down box
@@ -201,7 +201,7 @@ Feature: Condition Check Tab Test Plan
         And user enters "2016-11-11" in the "Salvage Priority Code Date" field
         And user enters "103103" in the "Salvage Priority Code" field
         And user saves the record
-        Then the message "______" should appear #success!        
+        Then the message "Condition Check successfully saved" should appear #success!        
         
         ## test 11 thens
 
@@ -287,7 +287,7 @@ Feature: Condition Check Tab Test Plan
         And user enters "2017-11-11" in the "Salvage Priority Code Date" field
         And user enters "102" in the "Salvage Priority Code" field
         And user saves the record
-        Then the message "______" should appear #success!  
+        Then the message "Condition Check successfully saved" should appear #success!  
 
         ## test 11 thens
 
@@ -327,6 +327,10 @@ Feature: Condition Check Tab Test Plan
         Then the "Legal/License Requirements Held Renew Date" field should contain "2017-10-10"
         Then the "Salvage Priority Code Date" field should contain "2017-11-11"
         Then the "Salvage Priority Code" field should contain "102"
+        And the user clicks the "Delete this relation." button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue        
         Then close the browser
 
 
