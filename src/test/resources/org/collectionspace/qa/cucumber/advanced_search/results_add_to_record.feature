@@ -33,3 +33,4 @@ Feature: Advanced Search results Add to Record
         #Then at all times it should be possible to see which field has focus
         #Then the drop down, items in the drop down, auths, and textfields should all work as expected
 
+## don't forget to delete the group!
