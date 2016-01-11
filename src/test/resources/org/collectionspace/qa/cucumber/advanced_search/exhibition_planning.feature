@@ -143,6 +143,27 @@ Feature: Advanced Search ­– Exhibition Planning
         Then the search results should contain "CQA74.2"
         Then the search results should contain "CQA74.3"        
         Then the search results should not contain "CQA74.4"
+
+        And user goes to the record with identification number "CQA74.1"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "CQA74.2"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "CQA74.3"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "CQA74.3"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue        
         Then close the browser
 
 # Dont forget to delete the record
