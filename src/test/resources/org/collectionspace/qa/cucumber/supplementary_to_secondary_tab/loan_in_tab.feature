@@ -1,4 +1,4 @@
-@secondary
+@supplementary_to_secondary
 #created by Forest Yang on Christmas Day 2015
 Feature: Loan In Secondary Tab
 
@@ -8,6 +8,8 @@ Feature: Loan In Secondary Tab
       And selects the "Cataloging" radio button on the Create New page
       And clicks on the Create button
       And user enters "1234321" in the "Cataloging" "Identification Number" field
+      And the user saves the record
+    Then the record is successfully saved
       And user selects the "Loan In" tab
     Then "No related record selected" should be displayed
       And user clicks the "+ Add Record" button
@@ -16,22 +18,22 @@ Feature: Loan In Secondary Tab
     Then "Creating new record..." should be displayed
     Then the "Cancel changes" button at the top of the page should not be clickable
     Then the "Cancel changes" button at the bottom of the page should not be clickable
-    Then the "Delete Relation" button at the top of the page should not be clickable
-    Then the "Delete Relation" button at the bottom of the page should not be clickable
+    Then the "Delete this relation." button at the top of the page should not be clickable
+    Then the "Delete this relation." button at the bottom of the page should not be clickable
       And user clicks the "Select number pattern" button
       And user selects something from dropdown in "Loan In Number" row
     Then the "Cancel changes" button at the top of the page should be clickable
     Then the "Cancel changes" button at the bottom of the page should be clickable
-    Then the "Delete Relation" button at the top of the page should be clickable
-    Then the "Delete Relation" button at the bottom of the page should be clickable
+    Then the "Delete this relation." button at the top of the page should be clickable
+    Then the "Delete this relation." button at the bottom of the page should be clickable
       And user fills in required fields for "Loan In" record
       And the user saves the record
     Then the record entry should be displayed under "Related Loan In Records"
       And user clicks the newly created record 
     Then the "Cancel changes" button at the top of the page should not be clickable
     Then the "Cancel changes" button at the bottom of the page should not be clickable
-    Then the "Delete Relation" button at the top of the page should be clickable
-    Then the "Delete Relation" button at the bottom of the page should be clickable
+    Then the "Delete this relation." button at the top of the page should be clickable
+    Then the "Delete this relation." button at the bottom of the page should be clickable
       And user selects the "Current Record" tab
       And the user saves the record
     Given user is on the "My Collectionspace" page
