@@ -194,7 +194,7 @@ Feature: Advanced Search - Location / Movement / Inventory
       And user selects "Location/Movement/Inventory" from record type dropdown
       And user enters today's date in the "Advanced Search" "Modified Date" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "3357"
     Then close the browser
 
   Scenario: Search by username
@@ -204,7 +204,7 @@ Feature: Advanced Search - Location / Movement / Inventory
       And user selects "Location/Movement/Inventory" from record type dropdown
       And user enters username in the "Advanced Search" "Record last modified by" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "3357"
     Then close the browser
 
   Scenario: search by reference number

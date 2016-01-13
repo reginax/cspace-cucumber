@@ -1,6 +1,6 @@
 # created by forest at 11/29/2015
 
-@supplementaryprimary
+@supplementarysecondary
 Feature: Supplementary Manual QA - Location-Movement-Inventory Secondary Tab
 
   Scenario: Create a dummy record
