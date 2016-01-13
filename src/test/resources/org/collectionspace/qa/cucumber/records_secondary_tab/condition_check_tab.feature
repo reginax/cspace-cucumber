@@ -1,4 +1,5 @@
 # Created by Cesar Villalobos on 12/30/2015
+@recordssecondarytab
 Feature: Condition Check Tab Test Plan
   # Enter feature description here
 

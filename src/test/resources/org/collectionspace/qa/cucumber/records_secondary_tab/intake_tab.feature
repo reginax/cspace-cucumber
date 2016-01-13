@@ -9,7 +9,7 @@
         # I'm not sure how to proceed with them because some of the things that they ask are no longer there
         # which I suspect were removed since they say (version 1.x) nex to them
 
-@secondary
+@recordssecondarytab
 Feature: Intake Tab 
   
   # Test 1
