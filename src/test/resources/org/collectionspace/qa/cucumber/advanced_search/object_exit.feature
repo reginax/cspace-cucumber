@@ -114,7 +114,7 @@ Feature: Advanced Search - Object Exit
       And user selects "Object Exit" from record type dropdown
       And user enters today's date in the "Advanced Search" "Modified Date" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "desiderium"
     Then close the browser
 
   Scenario: Search by username
@@ -124,7 +124,7 @@ Feature: Advanced Search - Object Exit
       And user selects "Object Exit" from record type dropdown
       And user enters username in the "Advanced Search" "Record last modified by" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "desiderium"
     Then close the browser
 
   #Test2

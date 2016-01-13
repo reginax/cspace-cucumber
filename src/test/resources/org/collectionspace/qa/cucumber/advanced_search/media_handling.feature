@@ -142,7 +142,7 @@ Feature: Advanced Search - Media Handling
       And user selects "Media Handling" from record type dropdown
       And user enters today's date in the "Advanced Search" "Modified Date" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "685934"
     Then close the browser
 
   Scenario: Search by username
@@ -152,7 +152,7 @@ Feature: Advanced Search - Media Handling
       And user selects "Media Handling" from record type dropdown
       And user enters username in the "Advanced Search" "Record last modified by" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "685934"
     Then close the browser
 
   Scenario: textb**
@@ -162,7 +162,7 @@ Feature: Advanced Search - Media Handling
       And user selects "Media Handling" from record type dropdown
       And user enters "textb*" in the "Advanced Search" "Subjects" field
       And user clicks the "Search" button
-    Then the search results should contain "textbook"
+    Then the search results should contain "685934"
     Then close the browser
 
   #Test2 
