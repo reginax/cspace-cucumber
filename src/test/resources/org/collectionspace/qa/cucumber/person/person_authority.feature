@@ -111,7 +111,7 @@ Feature: Person Vocabulary Data Entry
     Scenario: Create then delete a record		
       Given user is on a blank "Person" record		
         And user enters "Delete Me" in the "Person" "Display Name" field		
-      Then the delete button should not be clickable		
+      Then the "delete" button should not be clickable		
         And the user saves the record		
       Then the record is successfully saved		
         And user clicks on the delete button		

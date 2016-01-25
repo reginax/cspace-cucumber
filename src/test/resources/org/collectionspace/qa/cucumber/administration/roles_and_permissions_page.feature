@@ -1,4 +1,4 @@
-# Created by xxx on mo/day/2015
+# Created by Rick Jaffe on 11/21/2015
 
 @administration
 Feature: #Enter feature name here
