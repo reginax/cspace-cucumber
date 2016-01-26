@@ -1,6 +1,6 @@
 # Created by xxx on mo/day/2015
 
-@generalpages
+@frontpageandlogin
 Feature: #Enter feature name here
   # Enter feature description here
 

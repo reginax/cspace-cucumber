@@ -180,6 +180,7 @@ By convention, each Feature is started with an tag annotation, such as  `@place`
 if you only want to run a single Scenario, perhaps during the development process, just add a `@test` tag at the start of the scenario and pass the `@test` tag to maven on the cli. 
 
 ### Further Reading
+* [Maven+Cucu](http://www.weblogism.com/item/334/integration-tests-with-cucumber-selenium-and-maven)
 * [Cucumber reference](https://cucumber.io/docs/reference) - language agnostic
 * [Cucumber-jvm](https://cucumber.io/docs/reference/jvm) 
 * [Gherkin Syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
