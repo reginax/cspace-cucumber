@@ -118,18 +118,18 @@ Feature: Advanced Search ­ Acquisition
         And user enters "thank you" in the "Credit Line" field
         And user selects "Purchase" from the "Acquisition Method" drop down box  
         And clicks the "search" button
-        Then the search results should contain "CQA74.2"
-        Then the search results should contain "CQA74.3"        
-        Then the search results should contain "CQA74.4"
+        Then the search results should contain "71.2"
+        Then the search results should contain "71.3"        
+        Then the search results should contain "71.4"
 
 		And clicks the "Advanced Search" button
         And user selects "Acquisition" from the "Record Type Select" drop down box
         And user selects "all (AND)" from the "Field-based Search" drop down box
         And user enters "thank you" in the "Credit Line" field
         And user selects "Purchase" from the "Acquisition Method" drop down box  
-        Then the search results should contain "CQA74.2"
-        Then the search results should contain "CQA74.3"        
-        Then the search results should not contain "CQA74.4"
+        Then the search results should contain "71.2"
+        Then the search results should contain "71.3"        
+        Then the search results should not contain "71.4"
 
         Then close the browser
 
@@ -142,9 +142,9 @@ Feature: Advanced Search ­ Acquisition
         And user enters "thank you" in the "Credit Line" field
         And user selects "Purchase" from the "Acquisition Method" drop down box  
         And clicks the "search" button
-        Then the search results should contain "CQA74.2"
-        Then the search results should contain "CQA74.3"        
-        Then the search results should contain "CQA74.4"
+        Then the search results should contain "71.2"
+        Then the search results should contain "71.3"        
+        Then the search results should contain "71.4"
         
         And clicks the "search" button
         And clicks the "Advanced Search" button
@@ -152,9 +152,33 @@ Feature: Advanced Search ­ Acquisition
         And user selects "all (AND)" from the "Field-based Search" drop down box
         And user enters "thank you" in the "Credit Line" field
         And user selects "Purchase" from the "Acquisition Method" drop down box  
-        Then the search results should contain "CQA74.2"
-        Then the search results should contain "CQA74.3"        
-        Then the search results should not contain "CQA74.4"
+        Then the search results should contain "71.2"
+        Then the search results should contain "71.3"        
+        Then the search results should not contain "71.4"
+
+
+        And user goes to the record with identification number "71.1"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "71.2"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "71.3"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        And user goes to the record with identification number "71.3"
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue        
+        Then close the browser
+
 
         Then close the browser
 
