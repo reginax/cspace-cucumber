@@ -2,7 +2,7 @@
 
 @advancedsearch
 Feature: Advanced Search results Add to Record
-    # Enter feature description here
+    Adding search results to a group
 
     Scenario: Relate cataloging records to an existing Group record.
         Given the user is in the "Create New" page
@@ -10,27 +10,57 @@ Feature: Advanced Search results Add to Record
         And user enters "CQA-86 Group" in the "Title" field
         And the user saves the record
         And clicks the "Advanced Search Button"
-        And user enters "CQA110" in the in the search field #stepDef
+        And user enters "CQA86" in the in the search field #stepDef
         Then the results should contain "CQA86.1"
         Then the results should contain "CQA86.2"
         Then the results should contain "CQA86.3"
 
         And clicks the "Add to Record" button
-        #Change the search existing dropdown to group and enter a search term that matches your newly created group 
-        #Click the checkbox next o the group record return by the search
-        And clicks the "Add Search Results" button 
-        #Then a message is displayed at the bottom of the page saying "added number..."
+        And user selects "Group" from the "Record Type Select" drop down box
+        And user enters "CQA-86 Group" in the search field
+        And user selects "CQA-86 Group" # Like, the box next to it. Stepdef
+        And clicks the "Add search results" button
+        Then the message "Added 3 records to test group" should appear
+        Then close the browser
 
     Scenario: View procedure record to see related records
-        #Using seach or advanced search search for "CQA-86 Group"
-        #Select the record by clicking on it
-        #Then the record for your group should be displayed
-        #Then a set of related recods are visible within the cataloging section of the right sidebar matering the catalogging records added in test 1
+        # Using seach or advanced search search for "CQA-86 Group"
+        Given the user is in the "Find and Edit" page
+        And clicks the "Advanced Search Button"
+        And user enters "CQA-86 Group" in the "search" field
+        And the user clicks on result with text "CQA-86 Group"
+        And user selects the "Cataloging" tab 
+
+        Then "120415.1" should appear in the "Cataloging" sidebar #needs stepdef
+        Then "120415.2" should appear in the "Cataloging" sidebar #needs stepdef
+
+        Then "CQA86.1" should appear in the "Related Cataloging Records" area
+        Then "CQA86.2" should appear in the "Related Cataloging Records" area
+        Then "CQA86.3" should appear in the "Related Cataloging Records" area
+        And the user clicks on result with text "CQA86.1"
+        And clicks the "Delete this relation." button
+        Then "CQA86.1" should not appear in the "Related Cataloging Records" area
+
+        And user selects the "Current Record" tab 
+        And the user clicks the delete button
+        Then a delete confirmation dialogue should appear
+        And the user clicks the delete button 
+        Then the deletion should be confirmed in a dialogue
+        Then close the browser 
 
 
     Scenario: Keyboard accessibility:
-        #From an advanced search results page, use the keyboard only to navi to and activeate the add to record button
-        #Then at all times it should be possible to see which field has focus
-        #Then the drop down, items in the drop down, auths, and textfields should all work as expected
+        Given the user is in the "Create New" page
+        And clicks the "Advanced Search Button"
+        And user enters "CQA86" in the in the search field #stepDef
+        Then the results should contain "CQA86.1"
+        Then the results should contain "CQA86.2"
+        Then the results should contain "CQA86.3"
+        And the user presses the "Tab" key until reaching the "Add record" button  #needs Stepdef
+        And the user presses the "Enter" key
+        Then an "Add Search Results to Record" menu should appear
+        
+        Then close the browser
+
 
 ## don't forget to delete the group!
