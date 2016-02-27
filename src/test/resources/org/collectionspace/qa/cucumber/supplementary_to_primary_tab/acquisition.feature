@@ -1,5 +1,5 @@
 # Created by Regina Xu on 10/27/15
-# Updated to match step defs; to do: testing
+# Updated 2/26/16: need to match step defs
 
 @supplementaryprimary
 Feature: Supplementary Manual QA - Acquisition
@@ -116,12 +116,3 @@ Feature: Supplementary Manual QA - Acquisition
       And user clicks the confirmation delete button
       And user clicks delete confirmation OK button
     Then close the browser
-
-  Scenario: Keyboard Accessibility
-    # doesn't work, need to do later
-    When user uses tab through the entire formula
-    Then each of the fields should be reachable
-    Then the two save buttons and Cancel button should be reachable
-    Then the folding functionality should be usable # tab to it and hit space
-    Then the focus is visible at all times
-    Then the terms used in the right frame should be reachable

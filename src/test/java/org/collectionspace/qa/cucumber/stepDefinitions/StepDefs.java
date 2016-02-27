@@ -168,7 +168,7 @@ public class StepDefs {
         Select vocabSelect = new Select(vocab);
         vocabSelect.selectByVisibleText(searchType);
     }
-
+    
     @And("^clicks on the top nav search submit button$")
     public void clicks_on_the_top_nav_search_submit_button() throws Throwable {
         String xpath = "//div[@class='csc-header-searchBox']/div/input[@type='button']";
@@ -377,6 +377,16 @@ public class StepDefs {
 
     @And("^user clicks the confirmation delete button$")
     public void user_clicks_the_confirmation_delete_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
+    }
+
+    @And("^user clicks the confirmation don't save button$")
+    public void user_clicks_the_confirmation_dont_save_button() throws Throwable {
+        driver.findElement(By.className("csc-confirmationDialogButton-proceed")).click();
+    }
+
+    @And("^user clicks the confirmation save button$")
+    public void user_clicks_the_confirmation_save_button() throws Throwable {
         driver.findElement(By.className("csc-confirmationDialogButton-act")).click();
     }
 
